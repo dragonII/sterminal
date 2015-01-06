@@ -1,5 +1,5 @@
 //
-//  BFViewController.h
+//  BFNavigationViewController.h
 //  sterminal
 //
 //  Created by Wang Long on 1/6/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BFViewController : UIViewController
+@interface BFNavigationViewController : UINavigationController
 
 @end

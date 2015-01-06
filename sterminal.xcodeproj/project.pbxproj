@@ -14,13 +14,17 @@
 		2F8933151A5BD12400A9196E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8933141A5BD12400A9196E /* main.m */; };
 		2F8933191A5BD12400A9196E /* BFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8933181A5BD12400A9196E /* BFAppDelegate.m */; };
 		2F89331C1A5BD12400A9196E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F89331A1A5BD12400A9196E /* Main.storyboard */; };
-		2F89331F1A5BD12400A9196E /* BFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89331E1A5BD12400A9196E /* BFViewController.m */; };
 		2F8933211A5BD12400A9196E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8933201A5BD12400A9196E /* Images.xcassets */; };
 		2F8933281A5BD12400A9196E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F8933271A5BD12400A9196E /* XCTest.framework */; };
 		2F8933291A5BD12400A9196E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F8933081A5BD12300A9196E /* Foundation.framework */; };
 		2F89332A1A5BD12400A9196E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F89330C1A5BD12400A9196E /* UIKit.framework */; };
 		2F8933321A5BD12400A9196E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F8933301A5BD12400A9196E /* InfoPlist.strings */; };
 		2F8933341A5BD12400A9196E /* sterminalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8933331A5BD12400A9196E /* sterminalTests.m */; };
+		2F8933431A5BD42A00A9196E /* BFActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8933421A5BD42A00A9196E /* BFActiveViewController.m */; };
+		2F8933461A5BD60700A9196E /* BFNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8933451A5BD60700A9196E /* BFNavigationViewController.m */; };
+		2F8933491A5BDBA800A9196E /* BFActivateProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8933481A5BDBA800A9196E /* BFActivateProcessViewController.m */; };
+		2F89334C1A5BE15C00A9196E /* BFUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89334B1A5BE15C00A9196E /* BFUserLoginViewController.m */; };
+		2F89334F1A5BE40400A9196E /* BFUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89334E1A5BE40400A9196E /* BFUserListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +49,22 @@
 		2F8933171A5BD12400A9196E /* BFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFAppDelegate.h; sourceTree = "<group>"; };
 		2F8933181A5BD12400A9196E /* BFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFAppDelegate.m; sourceTree = "<group>"; };
 		2F89331B1A5BD12400A9196E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2F89331D1A5BD12400A9196E /* BFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFViewController.h; sourceTree = "<group>"; };
-		2F89331E1A5BD12400A9196E /* BFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFViewController.m; sourceTree = "<group>"; };
 		2F8933201A5BD12400A9196E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2F8933261A5BD12400A9196E /* sterminalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sterminalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8933271A5BD12400A9196E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2F89332F1A5BD12400A9196E /* sterminalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sterminalTests-Info.plist"; sourceTree = "<group>"; };
 		2F8933311A5BD12400A9196E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F8933331A5BD12400A9196E /* sterminalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sterminalTests.m; sourceTree = "<group>"; };
+		2F8933411A5BD42A00A9196E /* BFActiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFActiveViewController.h; sourceTree = "<group>"; };
+		2F8933421A5BD42A00A9196E /* BFActiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFActiveViewController.m; sourceTree = "<group>"; };
+		2F8933441A5BD60700A9196E /* BFNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFNavigationViewController.h; sourceTree = "<group>"; };
+		2F8933451A5BD60700A9196E /* BFNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNavigationViewController.m; sourceTree = "<group>"; };
+		2F8933471A5BDBA800A9196E /* BFActivateProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFActivateProcessViewController.h; sourceTree = "<group>"; };
+		2F8933481A5BDBA800A9196E /* BFActivateProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFActivateProcessViewController.m; sourceTree = "<group>"; };
+		2F89334A1A5BE15C00A9196E /* BFUserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFUserLoginViewController.h; sourceTree = "<group>"; };
+		2F89334B1A5BE15C00A9196E /* BFUserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFUserLoginViewController.m; sourceTree = "<group>"; };
+		2F89334D1A5BE40400A9196E /* BFUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFUserListViewController.h; sourceTree = "<group>"; };
+		2F89334E1A5BE40400A9196E /* BFUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFUserListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +124,8 @@
 		2F89330E1A5BD12400A9196E /* sterminal */ = {
 			isa = PBXGroup;
 			children = (
-				2F8933171A5BD12400A9196E /* BFAppDelegate.h */,
-				2F8933181A5BD12400A9196E /* BFAppDelegate.m */,
+				2F89333D1A5BD3BC00A9196E /* classes */,
 				2F89331A1A5BD12400A9196E /* Main.storyboard */,
-				2F89331D1A5BD12400A9196E /* BFViewController.h */,
-				2F89331E1A5BD12400A9196E /* BFViewController.m */,
 				2F8933201A5BD12400A9196E /* Images.xcassets */,
 				2F89330F1A5BD12400A9196E /* Supporting Files */,
 			);
@@ -150,6 +159,25 @@
 				2F8933301A5BD12400A9196E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F89333D1A5BD3BC00A9196E /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				2F8933171A5BD12400A9196E /* BFAppDelegate.h */,
+				2F8933181A5BD12400A9196E /* BFAppDelegate.m */,
+				2F8933441A5BD60700A9196E /* BFNavigationViewController.h */,
+				2F8933451A5BD60700A9196E /* BFNavigationViewController.m */,
+				2F8933411A5BD42A00A9196E /* BFActiveViewController.h */,
+				2F8933421A5BD42A00A9196E /* BFActiveViewController.m */,
+				2F8933471A5BDBA800A9196E /* BFActivateProcessViewController.h */,
+				2F8933481A5BDBA800A9196E /* BFActivateProcessViewController.m */,
+				2F89334A1A5BE15C00A9196E /* BFUserLoginViewController.h */,
+				2F89334B1A5BE15C00A9196E /* BFUserLoginViewController.m */,
+				2F89334D1A5BE40400A9196E /* BFUserListViewController.h */,
+				2F89334E1A5BE40400A9196E /* BFUserListViewController.m */,
+			);
+			name = classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +228,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Wang Long";
 				TargetAttributes = {
+					2F8933041A5BD12300A9196E = {
+						DevelopmentTeam = E99HD65J5U;
+					};
 					2F8933251A5BD12400A9196E = {
 						TestTargetID = 2F8933041A5BD12300A9196E;
 					};
@@ -250,9 +281,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F89331F1A5BD12400A9196E /* BFViewController.m in Sources */,
 				2F8933191A5BD12400A9196E /* BFAppDelegate.m in Sources */,
+				2F8933491A5BDBA800A9196E /* BFActivateProcessViewController.m in Sources */,
+				2F89334F1A5BE40400A9196E /* BFUserListViewController.m in Sources */,
+				2F8933431A5BD42A00A9196E /* BFActiveViewController.m in Sources */,
+				2F8933461A5BD60700A9196E /* BFNavigationViewController.m in Sources */,
 				2F8933151A5BD12400A9196E /* main.m in Sources */,
+				2F89334C1A5BE15C00A9196E /* BFUserLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sterminal/sterminal-Prefix.pch";
 				INFOPLIST_FILE = "sterminal/sterminal-Info.plist";
@@ -394,6 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sterminal/sterminal-Prefix.pch";
 				INFOPLIST_FILE = "sterminal/sterminal-Info.plist";
