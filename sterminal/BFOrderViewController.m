@@ -1,18 +1,18 @@
 //
-//  BFUserListViewController.m
+//  BFOrderViewController.m
 //  sterminal
 //
 //  Created by Wang Long on 1/6/15.
 //  Copyright (c) 2015 Wang Long. All rights reserved.
 //
 
-#import "BFUserListViewController.h"
+#import "BFOrderViewController.h"
 
-@interface BFUserListViewController ()
+@interface BFOrderViewController ()
 
 @end
 
-@implementation BFUserListViewController
+@implementation BFOrderViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,8 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    self.str = @"ABCDEFG";
 }
 
 - (void)didReceiveMemoryWarning

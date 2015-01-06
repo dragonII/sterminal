@@ -26,6 +26,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="i0x-cX-jsA" kind="unwind" unwindAction="unwindToLogin:" id="Scj-J7-MYw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -34,6 +37,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hD-YD-ccz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="i0x-cX-jsA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2385" y="-3454"/>
         </scene>
@@ -87,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="2385" y="-2181"/>
         </scene>
-        <!--View Controller-->
+        <!--Order View Controller-->
         <scene sceneID="iio-aj-eJW">
             <objects>
-                <viewController id="WkM-ge-ThZ" sceneMemberID="viewController">
+                <viewController id="WkM-ge-ThZ" customClass="BFOrderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lst-mT-fuB"/>
                         <viewControllerLayoutGuide type="bottom" id="Gkx-Ia-MTS"/>
@@ -98,10 +102,80 @@
                     <view key="view" contentMode="scaleToFill" id="tYY-sR-uUw">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orderListDetailBg3" translatesAutoresizingMaskIntoConstraints="NO" id="gML-M5-fWT">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sph-dj-keZ">
+                                <rect key="frame" x="548" y="206" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="listBtn">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VoW-GD-mZh">
+                                <rect key="frame" x="596" y="206" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="imgBtn">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXR-Eo-61B">
+                                <rect key="frame" x="0.0" y="20" width="131" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upR-nc-giT">
+                                <rect key="frame" x="408" y="728" width="64" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sr5-pW-suL">
+                                <rect key="frame" x="480" y="727" width="64" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGq-CH-We4">
+                                <rect key="frame" x="552" y="728" width="64" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYi-wJ-R9X">
+                                <rect key="frame" x="0.0" y="190" width="410" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orderNormalBtn" translatesAutoresizingMaskIntoConstraints="NO" id="rGy-Rm-u9p">
+                                <rect key="frame" x="0.0" y="64" width="1024" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="bgImageView" destination="gML-M5-fWT" id="h8I-86-d2T"/>
+                        <outlet property="catalogButton" destination="dYi-wJ-R9X" id="TPE-Jr-bN6"/>
+                        <outlet property="checkoutButton" destination="rGy-Rm-u9p" id="sv3-UE-k7n"/>
+                        <outlet property="closeButton" destination="wXR-Eo-61B" id="DlV-4h-ijU"/>
+                        <outlet property="historyButton" destination="DGq-CH-We4" id="Nl2-ah-0Bg"/>
+                        <outlet property="imageSwitchButton" destination="VoW-GD-mZh" id="jWp-ch-sfv"/>
+                        <outlet property="inventoryButton" destination="upR-nc-giT" id="yBv-EN-wGH"/>
+                        <outlet property="listSwitchButton" destination="sph-dj-keZ" id="SVQ-IA-6Iw"/>
+                        <outlet property="orderButton" destination="sr5-pW-suL" id="Bz7-Hf-cpK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kcf-wr-m1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,6 +283,10 @@
     <resources>
         <image name="activateBg" width="1024" height="768"/>
         <image name="activateProcessbg" width="1024" height="768"/>
+        <image name="imgBtn" width="30" height="30"/>
+        <image name="listBtn" width="30" height="30"/>
+        <image name="orderListDetailBg3" width="1024" height="768"/>
+        <image name="orderNormalBtn" width="1024" height="125"/>
         <image name="userbg" width="1024" height="768"/>
         <image name="userlistbg" width="1024" height="768"/>
     </resources>

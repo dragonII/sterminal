@@ -7,6 +7,7 @@
 //
 
 #import "BFUserLoginViewController.h"
+#import "BFUserListViewController.h"
 
 @interface BFUserLoginViewController ()
 
@@ -26,14 +27,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)userLogin:(id)sender
 {
@@ -45,4 +52,11 @@
     //[self dismissViewControllerAnimated:NO completion:nil];
     [self performSegueWithIdentifier:@"switchUserSegue" sender:self];
 }
+
+- (IBAction)unwindToLogin:(UIStoryboardSegue *)segue
+{
+    //BFUserListViewController *userListVC = (BFUserListViewController *)segue.sourceViewController;
+    //NSLog(@"From Source: %@", userListVC.str);
+}
+
 @end

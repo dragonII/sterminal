@@ -37,6 +37,7 @@
 
 - (IBAction)activateClicked:(id)sender
 {
+    //[self dismissViewControllerAnimated:YES completion:nil];
     [self performSegueWithIdentifier:@"userLoginSegue" sender:self];
 }
 @end

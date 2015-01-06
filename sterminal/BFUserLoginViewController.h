@@ -12,4 +12,6 @@
 - (IBAction)userLogin:(id)sender;
 - (IBAction)userSwitch:(id)sender;
 
+- (IBAction)unwindToLogin:(UIStoryboardSegue *)segue;
+
 @end
