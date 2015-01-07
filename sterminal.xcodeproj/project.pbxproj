@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F242BAC1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F242BAB1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m */; };
+		2F242BAE1A5D1042004A56B1 /* MyOrderCollCellBasic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F242BAD1A5D1042004A56B1 /* MyOrderCollCellBasic.xib */; };
+		2F242BB01A5D105B004A56B1 /* MyOrderCollCellImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F242BAF1A5D105B004A56B1 /* MyOrderCollCellImage.xib */; };
 		2F8933091A5BD12300A9196E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F8933081A5BD12300A9196E /* Foundation.framework */; };
 		2F89330B1A5BD12300A9196E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F89330A1A5BD12300A9196E /* CoreGraphics.framework */; };
 		2F89330D1A5BD12400A9196E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F89330C1A5BD12400A9196E /* UIKit.framework */; };
@@ -26,6 +29,11 @@
 		2F89334C1A5BE15C00A9196E /* BFUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89334B1A5BE15C00A9196E /* BFUserLoginViewController.m */; };
 		2F89334F1A5BE40400A9196E /* BFUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89334E1A5BE40400A9196E /* BFUserListViewController.m */; };
 		2FA42D621A5C2929004324AF /* BFOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA42D611A5C2929004324AF /* BFOrderViewController.m */; };
+		2FF8C4951A5CDA2500B28A0F /* CustomOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8C4941A5CDA2500B28A0F /* CustomOrderCell.xib */; };
+		2FF8C4981A5CDC2900B28A0F /* BFOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8C4971A5CDC2900B28A0F /* BFOrderItemCell.m */; };
+		2FF8C49A1A5CED0700B28A0F /* product.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8C4991A5CED0700B28A0F /* product.plist */; };
+		2FF8C49C1A5CED1E00B28A0F /* categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8C49B1A5CED1E00B28A0F /* categories.plist */; };
+		2FF8C49F1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8C49E1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F242BAA1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFMyOrderItemCollectionCell.h; sourceTree = "<group>"; };
+		2F242BAB1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFMyOrderItemCollectionCell.m; sourceTree = "<group>"; };
+		2F242BAD1A5D1042004A56B1 /* MyOrderCollCellBasic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderCollCellBasic.xib; sourceTree = "<group>"; };
+		2F242BAF1A5D105B004A56B1 /* MyOrderCollCellImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderCollCellImage.xib; sourceTree = "<group>"; };
 		2F8933051A5BD12300A9196E /* sterminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sterminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8933081A5BD12300A9196E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F89330A1A5BD12300A9196E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,6 +80,13 @@
 		2F89334E1A5BE40400A9196E /* BFUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFUserListViewController.m; sourceTree = "<group>"; };
 		2FA42D601A5C2929004324AF /* BFOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOrderViewController.h; sourceTree = "<group>"; };
 		2FA42D611A5C2929004324AF /* BFOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOrderViewController.m; sourceTree = "<group>"; };
+		2FF8C4941A5CDA2500B28A0F /* CustomOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOrderCell.xib; sourceTree = "<group>"; };
+		2FF8C4961A5CDC2900B28A0F /* BFOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOrderItemCell.h; sourceTree = "<group>"; };
+		2FF8C4971A5CDC2900B28A0F /* BFOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOrderItemCell.m; sourceTree = "<group>"; };
+		2FF8C4991A5CED0700B28A0F /* product.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = product.plist; sourceTree = "<group>"; };
+		2FF8C49B1A5CED1E00B28A0F /* categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = categories.plist; sourceTree = "<group>"; };
+		2FF8C49D1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
+		2FF8C49E1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +113,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F242BA91A5D0F9F004A56B1 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2F242BAA1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.h */,
+				2F242BAB1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m */,
+				2F242BAD1A5D1042004A56B1 /* MyOrderCollCellBasic.xib */,
+				2F242BAF1A5D105B004A56B1 /* MyOrderCollCellImage.xib */,
+			);
+			name = CollectionViewCell;
+			sourceTree = "<group>";
+		};
 		2F8932FC1A5BD12300A9196E = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +160,8 @@
 				2F89333D1A5BD3BC00A9196E /* classes */,
 				2F89331A1A5BD12400A9196E /* Main.storyboard */,
 				2F8933201A5BD12400A9196E /* Images.xcassets */,
+				2FF8C4991A5CED0700B28A0F /* product.plist */,
+				2FF8C49B1A5CED1E00B28A0F /* categories.plist */,
 				2F89330F1A5BD12400A9196E /* Supporting Files */,
 			);
 			path = sterminal;
@@ -167,6 +199,8 @@
 		2F89333D1A5BD3BC00A9196E /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				2F242BA91A5D0F9F004A56B1 /* CollectionViewCell */,
+				2FF8C4931A5CD9BC00B28A0F /* TableViewCell */,
 				2F8933171A5BD12400A9196E /* BFAppDelegate.h */,
 				2F8933181A5BD12400A9196E /* BFAppDelegate.m */,
 				2F8933441A5BD60700A9196E /* BFNavigationViewController.h */,
@@ -181,8 +215,20 @@
 				2F89334E1A5BE40400A9196E /* BFUserListViewController.m */,
 				2FA42D601A5C2929004324AF /* BFOrderViewController.h */,
 				2FA42D611A5C2929004324AF /* BFOrderViewController.m */,
+				2FF8C49D1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.h */,
+				2FF8C49E1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m */,
 			);
 			name = classes;
+			sourceTree = "<group>";
+		};
+		2FF8C4931A5CD9BC00B28A0F /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2FF8C4941A5CDA2500B28A0F /* CustomOrderCell.xib */,
+				2FF8C4961A5CDC2900B28A0F /* BFOrderItemCell.h */,
+				2FF8C4971A5CDC2900B28A0F /* BFOrderItemCell.m */,
+			);
+			name = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +311,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F242BB01A5D105B004A56B1 /* MyOrderCollCellImage.xib in Resources */,
 				2F8933211A5BD12400A9196E /* Images.xcassets in Resources */,
 				2F8933131A5BD12400A9196E /* InfoPlist.strings in Resources */,
+				2FF8C49C1A5CED1E00B28A0F /* categories.plist in Resources */,
+				2F242BAE1A5D1042004A56B1 /* MyOrderCollCellBasic.xib in Resources */,
 				2F89331C1A5BD12400A9196E /* Main.storyboard in Resources */,
+				2FF8C49A1A5CED0700B28A0F /* product.plist in Resources */,
+				2FF8C4951A5CDA2500B28A0F /* CustomOrderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +341,10 @@
 				2F8933491A5BDBA800A9196E /* BFActivateProcessViewController.m in Sources */,
 				2F89334F1A5BE40400A9196E /* BFUserListViewController.m in Sources */,
 				2F8933431A5BD42A00A9196E /* BFActiveViewController.m in Sources */,
+				2F242BAC1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m in Sources */,
 				2F8933461A5BD60700A9196E /* BFNavigationViewController.m in Sources */,
+				2FF8C49F1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m in Sources */,
+				2FF8C4981A5CDC2900B28A0F /* BFOrderItemCell.m in Sources */,
 				2FA42D621A5C2929004324AF /* BFOrderViewController.m in Sources */,
 				2F8933151A5BD12400A9196E /* main.m in Sources */,
 				2F89334C1A5BE15C00A9196E /* BFUserLoginViewController.m in Sources */,
