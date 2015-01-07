@@ -33,6 +33,9 @@ static NSString *TableCellIdentifier = @"MyOrderCell";
 static int ListModeBasic = 0;
 static int ListModeImage = 1;
 
+static const int MenuLevelCategory = 0;
+static const int MenuLevelInventory = 1;
+
 @implementation BFOrderViewController
 
 
@@ -101,7 +104,7 @@ static int ListModeImage = 1;
 
 - (void)initializeValues
 {
-    self.currentMenu = 0;
+    self.currentMenu = MenuLevelCategory;
     self.listMode = ListModeImage;
     self.buyCount = 0.0f;
     
@@ -242,7 +245,7 @@ static int ListModeImage = 1;
 {
     CHTCollectionViewWaterfallLayout *layout = (CHTCollectionViewWaterfallLayout *)self.productsCollView.collectionViewLayout;
     NSLog(@"currentMenu = %d", self.currentMenu);
-    if(self.currentMenu)
+    if(self.currentMenu == MenuLevelInventory)
     {
         self.currentList = self.inventoryList;
         [self.catalogButton setHidden:NO];
@@ -322,7 +325,7 @@ static int ListModeImage = 1;
     
     switch(self.currentMenu)
     {
-        case 0:
+        case (MenuLevelCategory):
         {
             NSString *descStr = [NSString stringWithFormat:@"%@", [dict objectForKey:@"description"]];
             //cell.descriptionStr = [NSString stringWithFormat:@"%@", [dict objectForKey:@"description"]];
@@ -333,7 +336,7 @@ static int ListModeImage = 1;
             cell.snStr = @"";
             break;
         }
-        case 1:
+        case (MenuLevelInventory):
         {
             //dict = [self.currentList objectAtIndex:indexPath.row];
             [self.catalogButton setTitle:[NSString stringWithFormat:@"%@", [dict objectForKey:@"categories"]] forState:UIControlStateNormal];
@@ -350,6 +353,94 @@ static int ListModeImage = 1;
         }
     }
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSString *catelogString;
+    NSMutableDictionary *dict;
+    int i;
+    
+    switch(self.currentMenu)
+    {
+        case(MenuLevelCategory):
+        {
+            catelogString = [[self.catagoryList objectAtIndex:indexPath.row] objectForKey:@"description"];
+            
+            for(i = 0; i < [self.inventoryList count]; i++)
+            {
+                dict = [self.inventoryList objectAtIndex:i];
+                if([catelogString isEqualToString:[dict objectForKey:@"categories"]])
+                {
+                    [array addObject:dict];
+                }
+            }
+            self.inventoryList = [NSMutableArray arrayWithArray:array];
+            
+            self.currentMenu = MenuLevelInventory;
+            
+            break;
+        }
+        case(MenuLevelInventory):
+        {
+            dict = [self.currentList objectAtIndex:indexPath.row];
+            int count = 1;
+            int index = 0;
+            float amount = 1.0f;
+            int i;
+            BOOL replace = NO;
+            
+            count = [[dict objectForKey:@"quantity"] intValue];
+            if(count == 0) break;
+            
+            [dict setObject:[NSString stringWithFormat:@"%d", count - 1] forKey:@"quantity"];
+            [self.currentList replaceObjectAtIndex:indexPath.row withObject:dict];
+            
+            count = 1;
+            
+            NSMutableDictionary *orderItemDict = nil;
+            for(i = 0; i < [self.orderList count]; i++)
+            {
+                if([[dict objectForKey:@"description"] isEqualToString:[self.orderList objectAtIndex:i]])
+                {
+                    orderItemDict = [self.orderList objectAtIndex:i];
+                    index = i;
+                    replace = YES;
+                    break;
+                }
+            }
+            
+            if(orderItemDict)
+            {
+                count = [[orderItemDict objectForKey:@"quantity"] intValue] + 1;
+                amount = count * [[dict objectForKey:@"price"] floatValue];
+            } else {
+                orderItemDict = [[NSMutableDictionary alloc] init];
+                amount = [[dict objectForKey:@"price"] floatValue];
+            }
+            
+            [orderItemDict setObject:[dict objectForKey:@"description"] forKey:@"description"];
+            [orderItemDict setObject:[dict objectForKey:@"sn"] forKey:@"sn"];
+            [orderItemDict setObject:[dict objectForKey:@"categories"] forKey:@"categories"];
+            [orderItemDict setObject:[NSString stringWithFormat:@"%.2f", amount] forKey:@"price"];
+            [orderItemDict setObject:[NSString stringWithFormat:@"%d", count] forKey:@"quantity"];
+            if([self.orderList count] && replace)
+            {
+                [self.orderList replaceObjectAtIndex:index withObject:orderItemDict];
+            } else {
+                [self.orderList addObject:orderItemDict];
+            }
+            
+            [self.orderListTable reloadData];
+            
+            break;
+        }
+        default:
+            break;
+    }
+    
+    [collectionView reloadData];
 }
 
 - (IBAction)setListModeBasic:(id)sender
