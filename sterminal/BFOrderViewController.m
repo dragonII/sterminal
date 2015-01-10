@@ -10,6 +10,7 @@
 #import "BFOrderItemCell.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "BFMyOrderItemCollectionCell.h"
+#import "BFOrderCheckoutViewController.h"
 
 @interface BFOrderViewController ()
 
@@ -126,9 +127,18 @@ static const int MenuLevelInventory = 1;
     self.checkoutButton.image = [UIImage imageNamed:@"orderNormalBtn"];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"orderCheckoutSegue"])
+    {
+        BFOrderCheckoutViewController *checkoutVC = (BFOrderCheckoutViewController *)segue.destinationViewController;
+        checkoutVC.totalAmountString = [NSString stringWithFormat:@"%@", self.currentAmount.text];
+    }
+}
+
 - (void)switchToCheckOut:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"orderCheckoutSegue" sender:self];
 }
 
 - (void)handleTapGesture:(UIGestureRecognizer *)gestureRecognizer
@@ -255,7 +265,8 @@ static const int MenuLevelInventory = 1;
         inDict = [self.currentList objectAtIndex:i];
         if([[dict objectForKey:@"description"] isEqualToString:[inDict objectForKey:@"description"]])
         {
-            price = [[[self.currentList objectAtIndex:i] objectForKey:@"description"] floatValue];
+            //price = [[[self.currentList objectAtIndex:i] objectForKey:@"description"] floatValue];
+            price = [[[self.currentList objectAtIndex:i] objectForKey:@"price"] floatValue];
             break;
         }
     }
@@ -500,4 +511,22 @@ static const int MenuLevelInventory = 1;
     
     [self.productsCollView reloadData];
 }
+
+- (IBAction)reloadCatalogs:(id)sender
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"categories" ofType:@"plist"];
+    self.catagoryList = [NSMutableArray arrayWithContentsOfFile:path];
+    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"product" ofType:@"plist"];
+    self.inventoryList = [NSMutableArray arrayWithContentsOfFile:path1];
+    
+    self.currentMenu = MenuLevelCategory;
+    
+    [self.productsCollView reloadData];
+}
+
+- (IBAction)closeCheckoutView:(UIStoryboardSegue *)segue
+{
+    
+}
+
 @end

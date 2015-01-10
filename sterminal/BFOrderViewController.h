@@ -28,4 +28,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *orderListTable;
 - (IBAction)setListModeBasic:(id)sender;
 - (IBAction)setListModeImage:(id)sender;
+- (IBAction)reloadCatalogs:(id)sender;
+
+- (IBAction)closeCheckoutView:(UIStoryboardSegue *)segue;
+
 @end
