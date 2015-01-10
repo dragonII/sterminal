@@ -42,7 +42,7 @@
     {
         // change to custom selected background view
         orderItemCellBackground *backgroundView = [[orderItemCellBackground alloc] initWithFrame:CGRectZero];
-        self.backgroundView = backgroundView;
+        self.selectedBackgroundView = backgroundView;
         self.backgroundColor = [UIColor whiteColor];
         
         for(id obj in self.subviews)
@@ -73,6 +73,51 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setProductDescriptionStr:(NSString *)productDescriptionStr
+{
+    if(![_productDescriptionStr isEqualToString:productDescriptionStr])
+    {
+        _productDescriptionStr = [productDescriptionStr copy];
+        _productDescriptionLabel.text = _productDescriptionStr;
+    }
+}
+
+- (void)setProductAmountStr:(NSString *)productAmountStr
+{
+    if(![_productAmountStr isEqualToString: productAmountStr])
+    {
+        _productAmountStr = [productAmountStr copy];
+        _productAmountLabel.text = _productAmountStr;
+    }
+}
+
+- (void)setProductSNStr:(NSString *)productSNStr
+{
+    if(![_productSNStr isEqualToString:productSNStr])
+    {
+        _productSNStr = [productSNStr copy];
+        _productSNLabel.text = _productSNStr;
+    }
+}
+
+- (void)setProductQuantityStr:(NSString *)productQuantityStr
+{
+    if(![_productQuantityStr isEqualToString:productQuantityStr])
+    {
+        _productQuantityStr = [productQuantityStr copy];
+        _productQuantityLabel.text = _productQuantityStr;
+    }
+}
+
+- (void)setProductImgStr:(NSString *)productImgStr
+{
+    if(![_productImgStr isEqualToString:productImgStr])
+    {
+        _productImgStr = productImgStr;
+        _productImg.image = [UIImage imageNamed:_productImgStr];
+    }
 }
 
 @end

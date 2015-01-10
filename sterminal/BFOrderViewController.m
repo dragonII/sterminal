@@ -162,6 +162,8 @@ static const int MenuLevelInventory = 1;
 
 - (void)initializeOrderTable
 {
+    self.orderListTable.rowHeight = 60;
+    
     [self.orderListTable registerClass:[BFOrderItemCell class] forCellReuseIdentifier:TableCellIdentifier];
     UINib *nib = [UINib nibWithNibName:@"CustomOrderCell" bundle:nil];
     [self.orderListTable registerNib:nib forCellReuseIdentifier:TableCellIdentifier];
@@ -241,6 +243,42 @@ static const int MenuLevelInventory = 1;
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableDictionary *dict = [self.orderList objectAtIndex:indexPath.row];
+    int i;
+    NSMutableDictionary *inDict;
+    float price = 1.00f;
+    
+    for(i = 0; i < [self.currentList count]; i++)
+    {
+        inDict = [self.currentList objectAtIndex:i];
+        if([[dict objectForKey:@"description"] isEqualToString:[inDict objectForKey:@"description"]])
+        {
+            price = [[[self.currentList objectAtIndex:i] objectForKey:@"description"] floatValue];
+            break;
+        }
+    }
+    if(dict)
+    {
+        int count = 1;
+        float amount = 1.00f;
+        amount = [[dict objectForKey:@"price"] floatValue];
+        count = [[dict objectForKey:@"quantity"] intValue];
+        if(count == 1)
+        {
+            [self.orderList removeObjectAtIndex:indexPath.row];
+        } else {
+            [dict setObject:[NSString stringWithFormat:@"%d", count - 1] forKey:@"quantity"];
+            [dict setObject:[NSString stringWithFormat:@"%.2f", (count - 1) * price] forKey:@"price"];
+        }
+        count = [[inDict objectForKey:@"quantity"] intValue] + 1;
+        [inDict setObject:[NSString stringWithFormat:@"%d", count] forKey:@"quantity"];
+    }
+    [self.productsCollView reloadData];
+    [self.orderListTable reloadData];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     CHTCollectionViewWaterfallLayout *layout = (CHTCollectionViewWaterfallLayout *)self.productsCollView.collectionViewLayout;
@@ -311,11 +349,11 @@ static const int MenuLevelInventory = 1;
     
     NSMutableDictionary *dict = [self.currentList objectAtIndex:indexPath.row];
     NSLog(@"dict: %@", dict);
-    NSLog(@"Description: %@", [NSString stringWithFormat:@"%@", [dict objectForKey:@"description"]]);
-    NSLog(@"ImagePath: %@", [NSString stringWithFormat:@"%@.jpg", [dict objectForKey:@"description"]]);
+    //NSLog(@"Description: %@", [NSString stringWithFormat:@"%@", [dict objectForKey:@"description"]]);
+    //NSLog(@"ImagePath: %@", [NSString stringWithFormat:@"%@.jpg", [dict objectForKey:@"description"]]);
     
-    NSString *testString = [[NSString stringWithFormat:@"%@", [dict objectForKey:@"description"]] copy];
-    NSLog(@"Test String: %@", testString);
+    //NSString *testString = [[NSString stringWithFormat:@"%@", [dict objectForKey:@"description"]] copy];
+    //NSLog(@"Test String: %@", testString);
     
     if(self.listMode == ListModeImage)
     {
@@ -402,11 +440,12 @@ static const int MenuLevelInventory = 1;
             NSMutableDictionary *orderItemDict = nil;
             for(i = 0; i < [self.orderList count]; i++)
             {
-                if([[dict objectForKey:@"description"] isEqualToString:[self.orderList objectAtIndex:i]])
+                if([[dict objectForKey:@"description"] isEqualToString:[[self.orderList objectAtIndex:i] objectForKey:@"description"]])
                 {
                     orderItemDict = [self.orderList objectAtIndex:i];
                     index = i;
                     replace = YES;
+                    NSLog(@"Yes, ordered before");
                     break;
                 }
             }
@@ -427,6 +466,7 @@ static const int MenuLevelInventory = 1;
             [orderItemDict setObject:[NSString stringWithFormat:@"%d", count] forKey:@"quantity"];
             if([self.orderList count] && replace)
             {
+                NSLog(@"replaced");
                 [self.orderList replaceObjectAtIndex:index withObject:orderItemDict];
             } else {
                 [self.orderList addObject:orderItemDict];
