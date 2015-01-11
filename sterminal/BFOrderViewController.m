@@ -11,6 +11,7 @@
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "BFMyOrderItemCollectionCell.h"
 #import "BFOrderCheckoutViewController.h"
+#import "BFUserLoginViewController.h"
 
 @interface BFOrderViewController ()
 
@@ -528,5 +529,14 @@ static const int MenuLevelInventory = 1;
 {
     
 }
+
+- (IBAction)switchToHistory:(id)sender
+{
+    BFUserLoginViewController *loginVC = (BFUserLoginViewController *)self.presentingViewController;
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [loginVC switchToHistory];
+}
+
 
 @end

@@ -14,4 +14,6 @@
 
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)segue;
 
+- (void)switchToHistory;
+
 @end

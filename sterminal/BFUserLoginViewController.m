@@ -59,4 +59,9 @@
     //NSLog(@"From Source: %@", userListVC.str);
 }
 
+- (void)switchToHistory
+{
+    [self performSegueWithIdentifier:@"historySegue" sender:self];
+}
+
 @end

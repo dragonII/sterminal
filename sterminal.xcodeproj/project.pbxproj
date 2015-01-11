@@ -12,6 +12,11 @@
 		2F242BB01A5D105B004A56B1 /* MyOrderCollCellImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F242BAF1A5D105B004A56B1 /* MyOrderCollCellImage.xib */; };
 		2F59A1911A618266008BFF6F /* BFOrderCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F59A1901A618266008BFF6F /* BFOrderCheckoutViewController.m */; };
 		2F59A1941A619235008BFF6F /* BFOrderFinalConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F59A1931A619235008BFF6F /* BFOrderFinalConfirmViewController.m */; };
+		2F622F601A62D33D00B0A846 /* BFHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F622F5F1A62D33D00B0A846 /* BFHistoryViewController.m */; };
+		2F622F631A62D96F00B0A846 /* OrderItemHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F622F621A62D96F00B0A846 /* OrderItemHistoryCell.xib */; };
+		2F622F651A62DA2A00B0A846 /* HistoryIndexTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F622F641A62DA2A00B0A846 /* HistoryIndexTableCell.xib */; };
+		2F622F681A62DBB400B0A846 /* HistoryIndexTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F622F671A62DBB400B0A846 /* HistoryIndexTableCell.m */; };
+		2F622F6F1A62DDF100B0A846 /* BFCellSelectedBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F622F6E1A62DDF100B0A846 /* BFCellSelectedBackgroundView.m */; };
 		2F8933091A5BD12300A9196E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F8933081A5BD12300A9196E /* Foundation.framework */; };
 		2F89330B1A5BD12300A9196E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F89330A1A5BD12300A9196E /* CoreGraphics.framework */; };
 		2F89330D1A5BD12400A9196E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F89330C1A5BD12400A9196E /* UIKit.framework */; };
@@ -57,6 +62,14 @@
 		2F59A1901A618266008BFF6F /* BFOrderCheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOrderCheckoutViewController.m; sourceTree = "<group>"; };
 		2F59A1921A619235008BFF6F /* BFOrderFinalConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOrderFinalConfirmViewController.h; sourceTree = "<group>"; };
 		2F59A1931A619235008BFF6F /* BFOrderFinalConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOrderFinalConfirmViewController.m; sourceTree = "<group>"; };
+		2F622F5E1A62D33D00B0A846 /* BFHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFHistoryViewController.h; sourceTree = "<group>"; };
+		2F622F5F1A62D33D00B0A846 /* BFHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFHistoryViewController.m; sourceTree = "<group>"; };
+		2F622F621A62D96F00B0A846 /* OrderItemHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderItemHistoryCell.xib; sourceTree = "<group>"; };
+		2F622F641A62DA2A00B0A846 /* HistoryIndexTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryIndexTableCell.xib; sourceTree = "<group>"; };
+		2F622F661A62DBB400B0A846 /* HistoryIndexTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryIndexTableCell.h; sourceTree = "<group>"; };
+		2F622F671A62DBB400B0A846 /* HistoryIndexTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryIndexTableCell.m; sourceTree = "<group>"; };
+		2F622F6D1A62DDF100B0A846 /* BFCellSelectedBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCellSelectedBackgroundView.h; sourceTree = "<group>"; };
+		2F622F6E1A62DDF100B0A846 /* BFCellSelectedBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFCellSelectedBackgroundView.m; sourceTree = "<group>"; };
 		2F8933051A5BD12300A9196E /* sterminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sterminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8933081A5BD12300A9196E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F89330A1A5BD12300A9196E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +141,26 @@
 				2F242BAF1A5D105B004A56B1 /* MyOrderCollCellImage.xib */,
 			);
 			name = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		2F622F611A62D94C00B0A846 /* HistoryTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				2F622F621A62D96F00B0A846 /* OrderItemHistoryCell.xib */,
+				2F622F641A62DA2A00B0A846 /* HistoryIndexTableCell.xib */,
+				2F622F661A62DBB400B0A846 /* HistoryIndexTableCell.h */,
+				2F622F671A62DBB400B0A846 /* HistoryIndexTableCell.m */,
+			);
+			name = HistoryTableCell;
+			sourceTree = "<group>";
+		};
+		2F622F691A62DD9000B0A846 /* CellBackgroundView */ = {
+			isa = PBXGroup;
+			children = (
+				2F622F6D1A62DDF100B0A846 /* BFCellSelectedBackgroundView.h */,
+				2F622F6E1A62DDF100B0A846 /* BFCellSelectedBackgroundView.m */,
+			);
+			name = CellBackgroundView;
 			sourceTree = "<group>";
 		};
 		2F8932FC1A5BD12300A9196E = {
@@ -205,6 +238,8 @@
 		2F89333D1A5BD3BC00A9196E /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				2F622F691A62DD9000B0A846 /* CellBackgroundView */,
+				2F622F611A62D94C00B0A846 /* HistoryTableCell */,
 				2F242BA91A5D0F9F004A56B1 /* CollectionViewCell */,
 				2FF8C4931A5CD9BC00B28A0F /* TableViewCell */,
 				2F8933171A5BD12400A9196E /* BFAppDelegate.h */,
@@ -221,6 +256,8 @@
 				2F89334E1A5BE40400A9196E /* BFUserListViewController.m */,
 				2FA42D601A5C2929004324AF /* BFOrderViewController.h */,
 				2FA42D611A5C2929004324AF /* BFOrderViewController.m */,
+				2F622F5E1A62D33D00B0A846 /* BFHistoryViewController.h */,
+				2F622F5F1A62D33D00B0A846 /* BFHistoryViewController.m */,
 				2F59A18F1A618266008BFF6F /* BFOrderCheckoutViewController.h */,
 				2F59A1901A618266008BFF6F /* BFOrderCheckoutViewController.m */,
 				2F59A1921A619235008BFF6F /* BFOrderFinalConfirmViewController.h */,
@@ -322,12 +359,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F242BB01A5D105B004A56B1 /* MyOrderCollCellImage.xib in Resources */,
+				2F622F631A62D96F00B0A846 /* OrderItemHistoryCell.xib in Resources */,
 				2F8933211A5BD12400A9196E /* Images.xcassets in Resources */,
 				2F8933131A5BD12400A9196E /* InfoPlist.strings in Resources */,
 				2FF8C49C1A5CED1E00B28A0F /* categories.plist in Resources */,
 				2F242BAE1A5D1042004A56B1 /* MyOrderCollCellBasic.xib in Resources */,
 				2F89331C1A5BD12400A9196E /* Main.storyboard in Resources */,
 				2FF8C49A1A5CED0700B28A0F /* product.plist in Resources */,
+				2F622F651A62DA2A00B0A846 /* HistoryIndexTableCell.xib in Resources */,
 				2FF8C4951A5CDA2500B28A0F /* CustomOrderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,10 +387,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F8933191A5BD12400A9196E /* BFAppDelegate.m in Sources */,
+				2F622F601A62D33D00B0A846 /* BFHistoryViewController.m in Sources */,
 				2F8933491A5BDBA800A9196E /* BFActivateProcessViewController.m in Sources */,
 				2F89334F1A5BE40400A9196E /* BFUserListViewController.m in Sources */,
 				2F59A1911A618266008BFF6F /* BFOrderCheckoutViewController.m in Sources */,
+				2F622F6F1A62DDF100B0A846 /* BFCellSelectedBackgroundView.m in Sources */,
 				2F8933431A5BD42A00A9196E /* BFActiveViewController.m in Sources */,
+				2F622F681A62DBB400B0A846 /* HistoryIndexTableCell.m in Sources */,
 				2F242BAC1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m in Sources */,
 				2F8933461A5BD60700A9196E /* BFNavigationViewController.m in Sources */,
 				2FF8C49F1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m in Sources */,
