@@ -10,6 +10,7 @@
 #import "BFUserListViewController.h"
 
 #import "AFNetworking.h"
+#import "GDataXMLNode.h"
 
 @interface BFUserLoginViewController ()
 

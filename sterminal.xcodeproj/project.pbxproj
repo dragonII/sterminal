@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F14804A1A63B5D3000C0BF6 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1480491A63B5D3000C0BF6 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2F242BAC1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F242BAB1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m */; };
 		2F242BAE1A5D1042004A56B1 /* MyOrderCollCellBasic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F242BAD1A5D1042004A56B1 /* MyOrderCollCellBasic.xib */; };
 		2F242BB01A5D105B004A56B1 /* MyOrderCollCellImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F242BAF1A5D105B004A56B1 /* MyOrderCollCellImage.xib */; };
@@ -71,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F1480481A63B5D3000C0BF6 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		2F1480491A63B5D3000C0BF6 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		2F242BAA1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFMyOrderItemCollectionCell.h; sourceTree = "<group>"; };
 		2F242BAB1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFMyOrderItemCollectionCell.m; sourceTree = "<group>"; };
 		2F242BAD1A5D1042004A56B1 /* MyOrderCollCellBasic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderCollCellBasic.xib; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				2F622F611A62D94C00B0A846 /* HistoryTableCell */,
 				2F242BA91A5D0F9F004A56B1 /* CollectionViewCell */,
 				2FF8C4931A5CD9BC00B28A0F /* TableViewCell */,
+				2F1480481A63B5D3000C0BF6 /* GDataXMLNode.h */,
+				2F1480491A63B5D3000C0BF6 /* GDataXMLNode.m */,
 				2F8933171A5BD12400A9196E /* BFAppDelegate.h */,
 				2F8933181A5BD12400A9196E /* BFAppDelegate.m */,
 				2F8933441A5BD60700A9196E /* BFNavigationViewController.h */,
@@ -502,6 +507,7 @@
 				2F622F601A62D33D00B0A846 /* BFHistoryViewController.m in Sources */,
 				2F8933491A5BDBA800A9196E /* BFActivateProcessViewController.m in Sources */,
 				2F89334F1A5BE40400A9196E /* BFUserListViewController.m in Sources */,
+				2F14804A1A63B5D3000C0BF6 /* GDataXMLNode.m in Sources */,
 				2F59A1911A618266008BFF6F /* BFOrderCheckoutViewController.m in Sources */,
 				2F5DE04E1A63B0C2000A8D45 /* AFSecurityPolicy.m in Sources */,
 				2F5DE0581A63B0C2000A8D45 /* UIProgressView+AFNetworking.m in Sources */,
@@ -606,6 +612,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -640,6 +651,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -656,6 +672,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sterminal/sterminal-Prefix.pch";
 				INFOPLIST_FILE = "sterminal/sterminal-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -670,6 +687,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sterminal/sterminal-Prefix.pch";
 				INFOPLIST_FILE = "sterminal/sterminal-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
