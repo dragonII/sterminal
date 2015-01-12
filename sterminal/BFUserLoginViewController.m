@@ -64,4 +64,9 @@
     [self performSegueWithIdentifier:@"historySegue" sender:self];
 }
 
+- (void)switchToOrder
+{
+    [self performSegueWithIdentifier:@"orderSegue" sender:self];
+}
+
 @end

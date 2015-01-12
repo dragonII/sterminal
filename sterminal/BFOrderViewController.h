@@ -31,5 +31,7 @@
 - (IBAction)reloadCatalogs:(id)sender;
 
 - (IBAction)closeCheckoutView:(UIStoryboardSegue *)segue;
+- (IBAction)closeFinalConfirmation:(UIStoryboardSegue *)segue;
+- (IBAction)cancelFinalConfirmation:(UIStoryboardSegue *)segue;
 
 @end

@@ -12,4 +12,12 @@
 @property (weak, nonatomic) IBOutlet UITableView *orderIndexTable;
 @property (weak, nonatomic) IBOutlet UITableView *orderListTable;
 
+@property (weak, nonatomic) IBOutlet UILabel *todayAmountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subTotalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subDiscountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
+
+- (IBAction)switchToOrder:(id)sender;
+
+
 @end

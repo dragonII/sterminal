@@ -530,6 +530,43 @@ static const int MenuLevelInventory = 1;
     
 }
 
+- (IBAction)closeFinalConfirmation:(UIStoryboardSegue *)segue
+{
+    //NSLog(@"Final stage confirmed");
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *savedOrderRecordPath = [documentDirectory stringByAppendingPathComponent:@"OrderRecords.plist"];
+    NSMutableArray *savedOrderList = [NSMutableArray arrayWithContentsOfFile:savedOrderRecordPath];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMMddHHmmss"];
+    NSDate *now = [NSDate date];
+    
+    if(savedOrderList == nil)
+    {
+        savedOrderList = [[NSMutableArray alloc] init];
+    }
+    NSLog(@"order description: %@", [self.orderList description]);
+    
+    NSMutableDictionary *savedOrderItemDict = [[NSMutableDictionary alloc] init];
+    [savedOrderItemDict setObject:[NSString stringWithFormat:@"01%@%02d", [formatter stringFromDate:now], 1] forKey:@"orderNumber"];
+    [savedOrderItemDict setObject:[NSDate date] forKey:@"orderDate"];
+    [savedOrderItemDict setObject:self.totalLabel.text forKey:@"orderAmount"];
+    // TODO: add user who handles this order in dict
+    
+    [savedOrderItemDict setObject:self.orderList forKey:@"orderItem"];
+    
+    [savedOrderList addObject:savedOrderItemDict];
+    [savedOrderList writeToFile:savedOrderRecordPath atomically:YES];
+    NSLog(@"Writing to %@", savedOrderRecordPath);
+    [self.orderList removeAllObjects];
+    [self.orderListTable reloadData];
+}
+
+- (IBAction)cancelFinalConfirmation:(UIStoryboardSegue *)segue
+{
+    
+}
+
 - (IBAction)switchToHistory:(id)sender
 {
     BFUserLoginViewController *loginVC = (BFUserLoginViewController *)self.presentingViewController;
