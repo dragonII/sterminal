@@ -11,8 +11,8 @@
 #import "BFOrderItemCell.h"
 #import "BFUserLoginViewController.h"
 
-static int ListModeBasic = 0;
-static int ListModeImage = 1;
+//static int ListModeBasic = 0;
+//static int ListModeImage = 1;
 
 static const int MenuLevelCategory = 0;
 static const int MenuLevelInventory = 1;
