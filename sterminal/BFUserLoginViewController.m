@@ -12,7 +12,9 @@
 #import "AFNetworking.h"
 #import "GDataXMLNode.h"
 
-@interface BFUserLoginViewController ()
+@interface BFUserLoginViewController () <UITextFieldDelegate>
+
+@property (strong, nonatomic) NSMutableString *rString;
 
 @end
 
@@ -35,6 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.rString = [[NSMutableString alloc] init];
 }
 
 
@@ -42,6 +45,73 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    self.rString = [[NSMutableString alloc] init];
+    [textField resignFirstResponder];
+    return NO;
+}
+
+- (IBAction)click1:(id)sender
+{
+    [self.rString appendString:@"1"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click2:(id)sender
+{
+    [self.rString appendString:@"2"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click3:(id)sender
+{
+    [self.rString appendString:@"3"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click4:(id)sender
+{
+    [self.rString appendString:@"4"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click5:(id)sender
+{
+    [self.rString appendString:@"5"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click6:(id)sender
+{
+    [self.rString appendString:@"6"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click7:(id)sender
+{
+    [self.rString appendString:@"7"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click8:(id)sender
+{
+    [self.rString appendString:@"8"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click9:(id)sender
+{
+    [self.rString appendString:@"9"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
+}
+
+- (IBAction)click0:(id)sender
+{
+    [self.rString appendString:@"0"];
+    self.passwordTextField.text = [NSString stringWithFormat:@"%@", self.rString];
 }
 
 

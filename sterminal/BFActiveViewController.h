@@ -11,4 +11,23 @@
 @interface BFActiveViewController : UIViewController
 - (IBAction)activateClick:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UITextField *storeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *managerTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+
+- (IBAction)click1:(id)sender;
+- (IBAction)click2:(id)sender;
+- (IBAction)click3:(id)sender;
+- (IBAction)click4:(id)sender;
+- (IBAction)click5:(id)sender;
+- (IBAction)click6:(id)sender;
+- (IBAction)click7:(id)sender;
+- (IBAction)click8:(id)sender;
+- (IBAction)click9:(id)sender;
+- (IBAction)click0:(id)sender;
+
+
 @end

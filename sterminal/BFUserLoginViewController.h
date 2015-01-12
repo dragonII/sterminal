@@ -12,6 +12,8 @@
 - (IBAction)userLogin:(id)sender;
 - (IBAction)userSwitch:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)segue;
 
 - (void)switchToHistory;
