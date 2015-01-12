@@ -9,6 +9,8 @@
 #import "BFUserLoginViewController.h"
 #import "BFUserListViewController.h"
 
+#import "AFNetworking.h"
+
 @interface BFUserLoginViewController ()
 
 @end
@@ -44,6 +46,20 @@
 
 - (IBAction)userLogin:(id)sender
 {
+    NSString *urlString = @"http://www.raywenderlich.com/demos/weather_sample/weather.php?format=json";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Getting information...");
+        NSLog(@"%@", (NSDictionary *)responseObject);
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", [error localizedDescription]);
+    }];
+    
+    [operation start];
+    
     [self performSegueWithIdentifier:@"orderSegue" sender:self];
 }
 

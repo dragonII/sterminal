@@ -338,7 +338,7 @@ static const int MenuLevelInventory = 1;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BFMyOrderItemCollectionCell *cell;
-    NSLog(@"listMode = %d", self.listMode);
+    //NSLog(@"listMode = %d", self.listMode);
     if(self.listMode == ListModeBasic)
     {
         cell = (BFMyOrderItemCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:BasicCellIdentifier forIndexPath:indexPath];
@@ -360,7 +360,7 @@ static const int MenuLevelInventory = 1;
     }
     
     NSMutableDictionary *dict = [self.currentList objectAtIndex:indexPath.row];
-    NSLog(@"dict: %@", dict);
+    //NSLog(@"dict: %@", dict);
     //NSLog(@"Description: %@", [NSString stringWithFormat:@"%@", [dict objectForKey:@"description"]]);
     //NSLog(@"ImagePath: %@", [NSString stringWithFormat:@"%@.jpg", [dict objectForKey:@"description"]]);
     
