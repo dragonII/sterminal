@@ -533,6 +533,8 @@ static const int MenuLevelInventory = 1;
 - (IBAction)closeFinalConfirmation:(UIStoryboardSegue *)segue
 {
     //NSLog(@"Final stage confirmed");
+    self.checkoutButton.image = [UIImage imageNamed:@"orderNormalBtn"];
+    
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *savedOrderRecordPath = [documentDirectory stringByAppendingPathComponent:@"OrderRecords.plist"];
     NSMutableArray *savedOrderList = [NSMutableArray arrayWithContentsOfFile:savedOrderRecordPath];
