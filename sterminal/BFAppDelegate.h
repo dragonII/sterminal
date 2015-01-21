@@ -11,5 +11,7 @@
 @interface BFAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+//@property (assign, nonatomic) NSString *lastOperationTimeStamp;
+@property NSTimeInterval lastOperationTimeStamp;
 
 @end

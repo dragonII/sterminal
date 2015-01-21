@@ -14,6 +14,8 @@
 {
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    self.lastOperationTimeStamp = 0;
+    
     return YES;
 }
 							

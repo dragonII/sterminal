@@ -8,8 +8,9 @@
 
 #import "BFActiveViewController.h"
 #import "AFNetworking.h"
+#import "BFAppDelegate.h"
 
-static NSString *loginURLString = @"http://demo.syslive.cn/login.ds";
+static NSString *baseURLString = @"http://demo.syslive.cn/";
 static NSString *WrongUserOrPassword = @"Incorrect username or password";
 static NSString *NoSuchUser = @"The user name does not exist";
 static NSString *LoginOK = @"/index.ds";
@@ -26,7 +27,13 @@ static NSString *LoginOK = @"/index.ds";
 @property (strong, nonatomic) AFHTTPSessionManager *httpSessionManager;
 @property (strong, nonatomic) NSDictionary *loginStatusDict;
 
+@property (strong, nonatomic) BFAppDelegate *appDelegate;
+
 @property (nonatomic) NSInteger loginStatusCode;
+
+@property (copy, nonatomic) NSString *storeID;
+@property (copy, nonatomic) NSString *managerID;
+@property (copy, nonatomic) NSString *managerPWD;
 
 @end
 
@@ -49,13 +56,31 @@ static NSString *LoginOK = @"/index.ds";
     self.activeLabelIndex = 0;
     self.textFields = @[self.storeTextField, self.managerTextField, self.passwordTextField];
     
-    NSURL *url = [NSURL URLWithString:loginURLString];
+    NSURL *url = [NSURL URLWithString:baseURLString];
     self.httpSessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
+    self.httpSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    self.httpSessionManager.responseSerializer.acceptableContentTypes = [self.httpSessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"html/text"];
     
     self.loginStatusDict = @{LoginOK: @0,
                              WrongUserOrPassword: @1,
                              NoSuchUser: @2};
     self.loginStatusCode = -2;
+    
+    self.appDelegate = [[UIApplication sharedApplication] delegate];
+}
+
+- (void)setLastOperationTimeStamp
+{
+    NSTimeInterval lastTimeStamp = self.appDelegate.lastOperationTimeStamp;
+    NSTimeInterval currentTimeStamp = [[NSDate date] timeIntervalSince1970];
+    
+    if(currentTimeStamp - lastTimeStamp > 600)
+    {
+        [self.appDelegate setLastOperationTimeStamp:currentTimeStamp];
+        NSLog(@"Setting timestamp done: %f", currentTimeStamp);
+    } else {
+        // Login again
+    }
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -75,26 +100,52 @@ static NSString *LoginOK = @"/index.ds";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)performLoginWithUsername:(NSString *)username Password:(NSString *)password
+- (void)loginWithUsername:(NSString *)username Password:(NSString *)password
 {
-    NSLog(@"Performing Login...");
-    self.httpSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    self.httpSessionManager.responseSerializer.acceptableContentTypes = [self.httpSessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"html/text"];
-    
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     params[@"user"] = username;
     params[@"password"] = password;
     
-    [self.httpSessionManager POST:@""
+    [self.httpSessionManager POST:@"login.ds"
+                       parameters:params
+                          success:^(NSURLSessionDataTask *task, id responseObject) {
+                              NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                              [self getResultByString:responseString];
+                              if(_loginStatusCode == 0)
+                              {
+                                  [self.appDelegate setLastOperationTimeStamp:[[NSDate date] timeIntervalSince1970]];
+                              }
+                          }failure:^(NSURLSessionDataTask *task, NSError *error) {
+                              NSLog(@"Error: %@", [error localizedDescription]);
+                          }];
+}
+
+- (void)performLoginWithUsername:(NSString *)username Password:(NSString *)password
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"user"] = username;
+    params[@"password"] = password;
+    
+    [self.httpSessionManager POST:@"login.ds"
                        parameters:params
                           success:^(NSURLSessionDataTask *task, id responseObject) {
                               NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                               [self getResultByString:responseString];
                               NSLog(@"Login Status Code: %d", _loginStatusCode);
+                              if(_loginStatusCode == 0)
+                              {
+                                  [self.appDelegate setLastOperationTimeStamp:[[NSDate date] timeIntervalSince1970]];
+                                  [self getStoreInformation];
+                              }
                               //NSLog(@"success: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
                           }failure:^(NSURLSessionDataTask *task, NSError *error) {
                               NSLog(@"Error: %@", [error localizedDescription]);
                           }];
+}
+
+- (void)getStoreInformation
+{
+    
 }
 
 - (void)getResultByString:(NSString *)responseString
@@ -114,10 +165,10 @@ static NSString *LoginOK = @"/index.ds";
 - (IBAction)activateClick:(id)sender
 {
     //NSString *storeID = [self.storeTextField.text copy];
-    NSString *managerID = [self.managerTextField.text copy];
-    NSString *managerPWD = [self.passwordTextField.text copy];
+    self.managerID = [self.managerTextField.text copy];
+    self.managerPWD = [self.passwordTextField.text copy];
     
-    [self performLoginWithUsername:managerID Password:managerPWD];
+    [self performLoginWithUsername:self.managerID Password:self.managerPWD];
     
     //[self dismissViewControllerAnimated:YES completion:nil];
     //[self performSegueWithIdentifier:@"activateProcesSegue" sender:self.parentViewController];
