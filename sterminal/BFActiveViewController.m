@@ -140,6 +140,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
                                   [self.appDelegate setLastOperationTimeStamp:[[NSDate date] timeIntervalSince1970]];
                                   [self getStoreInformation];
                                   [self getGoodsInformation];
+                                  [self getStaffInformation];
                               }
                           }failure:^(NSURLSessionDataTask *task, NSError *error) {
                               NSLog(@"Error: %@", [error localizedDescription]);
@@ -167,6 +168,17 @@ static NSString *GarbageString = @"Thread was being aborted.";
                              NSLog(@"Error: %@", [error localizedDescription]);
                          }];
     
+}
+
+- (void)getStaffInformation
+{
+    [self.httpSessionManager GET:@"employee/listemployee_json.ds"
+                      parameters:nil
+                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                             [self parseStaffJson:responseObject];
+                         }failure:^(NSURLSessionDataTask *task, NSError *error) {
+                             NSLog(@"Error: %@", [error localizedDescription]);
+                         }];
 }
 
 - (NSString *)stringByRemovingControlCharacters: (NSString *)inputString
@@ -220,6 +232,19 @@ static NSString *GarbageString = @"Thread was being aborted.";
 }
 
 - (void)parseStoreJson:(id)responseObject
+{
+    NSArray *outerArray = [self prepareForParse:responseObject];
+    
+    for(NSArray *innerArray in outerArray)
+    {
+        for(NSString *itemString in innerArray)
+        {
+            NSLog(@"itemString: %@", itemString);
+        }
+    }
+}
+
+- (void)parseStaffJson:(id)responseObject
 {
     NSArray *outerArray = [self prepareForParse:responseObject];
     
