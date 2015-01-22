@@ -16,6 +16,9 @@ static NSString *NoSuchUser = @"The user name does not exist";
 static NSString *LoginOK = @"/index.ds";
 
 
+static NSString *GarbageString = @"Thread was being aborted.";
+
+
 @interface BFActiveViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) NSArray *textFields;
@@ -131,13 +134,13 @@ static NSString *LoginOK = @"/index.ds";
                           success:^(NSURLSessionDataTask *task, id responseObject) {
                               NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                               [self getResultByString:responseString];
-                              NSLog(@"Login Status Code: %d", _loginStatusCode);
+                              NSLog(@"Login Status Code: %ld", (long)_loginStatusCode);
                               if(_loginStatusCode == 0)
                               {
                                   [self.appDelegate setLastOperationTimeStamp:[[NSDate date] timeIntervalSince1970]];
                                   [self getStoreInformation];
+                                  [self getGoodsInformation];
                               }
-                              //NSLog(@"success: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
                           }failure:^(NSURLSessionDataTask *task, NSError *error) {
                               NSLog(@"Error: %@", [error localizedDescription]);
                           }];
@@ -145,7 +148,88 @@ static NSString *LoginOK = @"/index.ds";
 
 - (void)getStoreInformation
 {
+    [self.httpSessionManager GET:@"shop/listshop_json.ds"
+                      parameters:nil
+                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                             [self parseStoreJson:responseObject];
+                         }failure:^(NSURLSessionDataTask *task, NSError *error) {
+                             NSLog(@"Error: %@", [error localizedDescription]);
+                         }];
+}
+
+- (void)getGoodsInformation
+{
+    [self.httpSessionManager GET:@"goods/listgoods_json.ds"
+                      parameters:nil
+                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                             [self parseGoodsJson:responseObject];
+                         }failure:^(NSURLSessionDataTask *task, NSError *error) {
+                             NSLog(@"Error: %@", [error localizedDescription]);
+                         }];
     
+}
+
+- (NSString *)stringByRemovingControlCharacters: (NSString *)inputString
+{
+    NSCharacterSet *controlChars = [NSCharacterSet controlCharacterSet];
+    NSRange range = [inputString rangeOfCharacterFromSet:controlChars];
+    if (range.location != NSNotFound) {
+        NSMutableString *mutable = [NSMutableString stringWithString:inputString];
+        while (range.location != NSNotFound) {
+            [mutable deleteCharactersInRange:range];
+            range = [mutable rangeOfCharacterFromSet:controlChars];
+        }
+        return mutable;
+    }
+    return inputString;
+}
+
+- (NSArray *)prepareForParse:(id)responseObject
+{
+    NSString *rawString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+    
+    NSString *noEscapedString = [self stringByRemovingControlCharacters:rawString];
+    
+    NSString *cleanString = [noEscapedString stringByReplacingOccurrencesOfString:GarbageString withString:@""];
+    cleanString = [cleanString stringByReplacingOccurrencesOfString:@"\'" withString:@"\""];
+    
+    NSData *data = [cleanString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    
+    if(error)
+    {
+        NSLog(@"Error: %@", error);
+    }
+    
+    NSArray *outerArray = [json objectForKey:@"data"];
+    return outerArray;
+}
+
+- (void)parseGoodsJson:(id)responseObject
+{
+    NSArray *outerArray = [self prepareForParse:responseObject];
+    
+    for(NSArray *innerArray in outerArray)
+    {
+        for(NSString *itemString in innerArray)
+        {
+            NSLog(@"itemString: %@", itemString);
+        }
+    }
+}
+
+- (void)parseStoreJson:(id)responseObject
+{
+    NSArray *outerArray = [self prepareForParse:responseObject];
+    
+    for(NSArray *innerArray in outerArray)
+    {
+        for(NSString *itemString in innerArray)
+        {
+            NSLog(@"itemString: %@", itemString);
+        }
+    }
 }
 
 - (void)getResultByString:(NSString *)responseString
