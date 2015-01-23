@@ -226,6 +226,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
     
     NSString *cleanString = [noEscapedString stringByReplacingOccurrencesOfString:GarbageString withString:@""];
     cleanString = [cleanString stringByReplacingOccurrencesOfString:@"\'" withString:@"\""];
+    //NSLog(@"cleanString: %@", cleanString);
     
     NSData *data = [cleanString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
@@ -244,13 +245,33 @@ static NSString *GarbageString = @"Thread was being aborted.";
 {
     NSArray *outerArray = [self prepareForParse:responseObject];
     
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    NSMutableArray *goodsArray;
+    
     for(NSArray *innerArray in outerArray)
     {
+        goodsArray = [[NSMutableArray alloc] init];
+        
+        [goodsArray addObject:@{@"ID": (NSString *)[innerArray objectAtIndex:0]}];
+        [goodsArray addObject:@{@"name": (NSString *)[innerArray objectAtIndex:1]}];
+        [goodsArray addObject:@{@"category": (NSString *)[innerArray objectAtIndex:2]}];
+        [goodsArray addObject:@{@"place": (NSString *)[innerArray objectAtIndex:3]}];
+        [goodsArray addObject:@{@"time": (NSString *)[innerArray objectAtIndex:4]}];
+        [goodsArray addObject:@{@"price": (NSString *)[innerArray objectAtIndex:5]}];
+        [goodsArray addObject:@{@"description": (NSString *)[innerArray objectAtIndex:6]}];
+        //NSString *imgURLString = (NSString *)[baseURLString stringByAppendingString:[innerArray objectAtIndex:7]
+        //[goodsArray addObject:@{@"image": (NSString *)[innerArray objectAtIndex:7]}];
+        [goodsArray addObject:@{@"image": [baseURLString stringByAppendingString:(NSString *)[innerArray objectAtIndex:7]]}];
+        
+        [dict setObject:goodsArray forKey:(NSString *)[innerArray objectAtIndex:0]];
+        /*
         for(NSString *itemString in innerArray)
         {
             NSLog(@"itemString: %@", itemString);
         }
+         */
     }
+    [BFPreferenceData saveProductsPreferenceDict:dict];
 }
 
 - (void)parseStoreJson:(id)responseObject
@@ -270,13 +291,30 @@ static NSString *GarbageString = @"Thread was being aborted.";
 {
     NSArray *outerArray = [self prepareForParse:responseObject];
     
+    NSMutableDictionary *dict = [BFPreferenceData getStaffPreferenceDict];
+    NSMutableArray *staffArray;
+    
     for(NSArray *innerArray in outerArray)
     {
+        staffArray = [[NSMutableArray alloc] init];
+        
+        [staffArray addObject:@{@"ID": (NSString *)[innerArray objectAtIndex:0]}];
+        [staffArray addObject:@{@"name": (NSString *)[innerArray objectAtIndex:1]}];
+        [staffArray addObject:@{@"sex": (NSString *)[innerArray objectAtIndex:2]}];
+        [staffArray addObject:@{@"age": (NSString *)[innerArray objectAtIndex:3]}];
+        [staffArray addObject:@{@"tel": (NSString *)[innerArray objectAtIndex:4]}];
+        [staffArray addObject:@{@"QQ": (NSString *)[innerArray objectAtIndex:5]}];
+        
+        [dict setObject:staffArray forKey:(NSString *)[innerArray objectAtIndex:0]];
+        /*
         for(NSString *itemString in innerArray)
         {
             NSLog(@"itemString: %@", itemString);
         }
+         */
     }
+    
+    [BFPreferenceData saveStaffPreferenceDict:dict];
 }
 
 - (void)getResultByString:(NSString *)responseString
@@ -308,7 +346,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
         // Do whatever you need to do when all requests are finished
         if(_loginStatusCode == 0)
         {
-            NSLog(@"Status Code: %d", _loginStatusCode);
+            NSLog(@"Status Code: %ld", (long)_loginStatusCode);
             [self dismissViewControllerAnimated:YES completion:nil];
             [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
         }

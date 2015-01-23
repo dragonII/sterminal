@@ -20,7 +20,7 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *prefereceFilePath = [documentDirectory stringByAppendingString:fileName];
+    NSString *prefereceFilePath = [documentDirectory stringByAppendingPathComponent:fileName];
     
     return prefereceFilePath;
 }
@@ -35,7 +35,7 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
     {
         dict = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
     } else {
-        dict = nil;
+        dict = [[NSMutableDictionary alloc] init];
     }
     
     return dict;
@@ -61,9 +61,25 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
     return [self getDictionaryFilePreferenceFile:StaffPreferenceFileName];
 }
 
++ (void)saveStaffPreferenceDict:(NSMutableDictionary *)dict
+{
+    NSString *filePath = [self getFilePathWithName:StaffPreferenceFileName];
+    [dict writeToFile:filePath atomically:YES];
+    
+    NSLog(@"Saving Staff Done");
+}
+
 + (NSMutableDictionary *)getProductsPreferenceDict
 {
     return [self getDictionaryFilePreferenceFile:ProductsPreferenceFileName];
+}
+
++ (void)saveProductsPreferenceDict:(NSMutableDictionary *)dict
+{
+    NSString *filePath = [self getFilePathWithName:ProductsPreferenceFileName];
+    [dict writeToFile:filePath atomically:YES];
+    
+    NSLog(@"Saving Products Done");
 }
 
 @end
