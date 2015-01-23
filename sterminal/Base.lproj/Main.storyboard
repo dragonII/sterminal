@@ -898,7 +898,7 @@
                         <outlet property="managerTextField" destination="Ip7-Er-cTr" id="Xf6-Ro-1Sm"/>
                         <outlet property="passwordTextField" destination="zge-f2-Hqz" id="8RL-zb-vMr"/>
                         <outlet property="storeTextField" destination="ggg-7N-fJW" id="AG3-yJ-aR4"/>
-                        <segue destination="Nc8-S2-SLp" kind="modal" identifier="activateProcesSegue" modalTransitionStyle="crossDissolve" id="W4E-gq-ICb"/>
+                        <segue destination="Nc8-S2-SLp" kind="modal" identifier="activateProcessSegue" modalTransitionStyle="crossDissolve" id="W4E-gq-ICb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iN5-lO-3So" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -9,6 +9,7 @@
 #import "BFActiveViewController.h"
 #import "AFNetworking.h"
 #import "BFAppDelegate.h"
+#import "BFPreferenceData.h"
 
 static NSString *baseURLString = @"http://demo.syslive.cn/";
 static NSString *WrongUserOrPassword = @"Incorrect username or password";
@@ -37,6 +38,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
 @property (copy, nonatomic) NSString *storeID;
 @property (copy, nonatomic) NSString *managerID;
 @property (copy, nonatomic) NSString *managerPWD;
+
+@property dispatch_group_t globalGroup;
 
 @end
 
@@ -102,6 +105,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+ 
 
 - (void)loginWithUsername:(NSString *)username Password:(NSString *)password
 {
@@ -129,6 +133,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
     params[@"user"] = username;
     params[@"password"] = password;
     
+    dispatch_group_enter(_globalGroup);
+    
     [self.httpSessionManager POST:@"login.ds"
                        parameters:params
                           success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -137,47 +143,63 @@ static NSString *GarbageString = @"Thread was being aborted.";
                               NSLog(@"Login Status Code: %ld", (long)_loginStatusCode);
                               if(_loginStatusCode == 0)
                               {
-                                  [self.appDelegate setLastOperationTimeStamp:[[NSDate date] timeIntervalSince1970]];
-                                  [self getStoreInformation];
-                                  [self getGoodsInformation];
-                                  [self getStaffInformation];
+                                  [self.appDelegate updateLastOperationTimeStamp];
+                                  //[self getStoreInformation];
+                                  //[self getGoodsInformation];
+                                  //[self getStaffInformation];
+                                  
+                                  dispatch_group_leave(_globalGroup);
                               }
                           }failure:^(NSURLSessionDataTask *task, NSError *error) {
                               NSLog(@"Error: %@", [error localizedDescription]);
+                              dispatch_group_leave(_globalGroup);
                           }];
 }
 
 - (void)getStoreInformation
 {
+    dispatch_group_enter(_globalGroup);
+    
     [self.httpSessionManager GET:@"shop/listshop_json.ds"
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
+                             [self.appDelegate updateLastOperationTimeStamp];
                              [self parseStoreJson:responseObject];
+                             dispatch_group_leave(_globalGroup);
                          }failure:^(NSURLSessionDataTask *task, NSError *error) {
                              NSLog(@"Error: %@", [error localizedDescription]);
+                             dispatch_group_leave(_globalGroup);
                          }];
 }
 
 - (void)getGoodsInformation
 {
+    dispatch_group_enter(_globalGroup);
+    
     [self.httpSessionManager GET:@"goods/listgoods_json.ds"
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              [self parseGoodsJson:responseObject];
+                             dispatch_group_leave(_globalGroup);
                          }failure:^(NSURLSessionDataTask *task, NSError *error) {
                              NSLog(@"Error: %@", [error localizedDescription]);
+                             dispatch_group_leave(_globalGroup);
                          }];
     
 }
 
 - (void)getStaffInformation
 {
+    dispatch_group_enter(_globalGroup);
+    
     [self.httpSessionManager GET:@"employee/listemployee_json.ds"
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              [self parseStaffJson:responseObject];
+                             dispatch_group_leave(_globalGroup);
                          }failure:^(NSURLSessionDataTask *task, NSError *error) {
                              NSLog(@"Error: %@", [error localizedDescription]);
+                             dispatch_group_leave(_globalGroup);
                          }];
 }
 
@@ -271,16 +293,40 @@ static NSString *GarbageString = @"Thread was being aborted.";
     _loginStatusCode = -1;
 }
 
+- (void)batchTasks
+{
+    // Create a dispatch group
+    _globalGroup = dispatch_group_create();
+
+    [self performLoginWithUsername:self.managerID Password:self.managerPWD];
+    [self getStoreInformation];
+    [self getGoodsInformation];
+    [self getStaffInformation];
+    
+    // Here we wait for all the requests to finish
+    dispatch_group_notify(_globalGroup, dispatch_get_main_queue(), ^{
+        // Do whatever you need to do when all requests are finished
+        if(_loginStatusCode == 0)
+        {
+            NSLog(@"Status Code: %d", _loginStatusCode);
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
+        }
+    });
+}
+
 - (IBAction)activateClick:(id)sender
 {
     //NSString *storeID = [self.storeTextField.text copy];
     self.managerID = [self.managerTextField.text copy];
     self.managerPWD = [self.passwordTextField.text copy];
     
-    [self performLoginWithUsername:self.managerID Password:self.managerPWD];
+    [self batchTasks];
+    
+    //[self performLoginWithUsername:self.managerID Password:self.managerPWD];
     
     //[self dismissViewControllerAnimated:YES completion:nil];
-    //[self performSegueWithIdentifier:@"activateProcesSegue" sender:self.parentViewController];
+    //[self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
 }
 
 - (IBAction)click1:(id)sender

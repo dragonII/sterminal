@@ -14,4 +14,6 @@
 //@property (assign, nonatomic) NSString *lastOperationTimeStamp;
 @property NSTimeInterval lastOperationTimeStamp;
 
+- (void)updateLastOperationTimeStamp;
+
 @end
