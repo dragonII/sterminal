@@ -11,5 +11,9 @@
 @interface BFPreferenceData : NSObject
 
 + (NSMutableDictionary *)getPreferenceDict;
++ (NSMutableDictionary *)getManagerPreferenceDict;
++ (NSMutableDictionary *)getStaffPreferenceDict;
++ (NSMutableDictionary *)getStorePreferenceDict;
++ (NSMutableDictionary *)getProductsPreferenceDict;
 
 @end
