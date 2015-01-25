@@ -856,8 +856,8 @@
                                     <action selector="click0:" destination="ayo-2W-9ty" eventType="touchUpInside" id="O9F-TQ-05J"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hT-dc-rtc">
-                                <rect key="frame" x="138" y="109" width="240" height="238"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DefaultLogo" translatesAutoresizingMaskIntoConstraints="NO" id="1hT-dc-rtc">
+                                <rect key="frame" x="138" y="108" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" tag="2000" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="点击输入" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ggg-7N-fJW">
@@ -926,6 +926,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="DefaultLogo" width="240" height="240"/>
         <image name="activateBg" width="1024" height="768"/>
         <image name="activateProcessbg" width="1024" height="768"/>
         <image name="historyImgBg" width="1024" height="768"/>

@@ -12,6 +12,7 @@
 #import "BFMyOrderItemCollectionCell.h"
 #import "BFOrderCheckoutViewController.h"
 #import "BFUserLoginViewController.h"
+#import "BFPreferenceData.h"
 
 @interface BFOrderViewController ()
 
@@ -19,6 +20,8 @@
 @property (strong, nonatomic) NSMutableArray *inventoryList;
 @property (strong, nonatomic) NSMutableArray *orderList;
 @property (strong, nonatomic) NSMutableArray *currentList;
+
+@property (strong, nonatomic) NSMutableDictionary *inventoryDict;
 
 @property (strong, nonatomic) UICollectionView *productsCollView;
 
@@ -114,6 +117,8 @@ static const int MenuLevelInventory = 1;
     NSString *pathIventory = [[NSBundle mainBundle] pathForResource:@"product" ofType:@"plist"];
     self.catagoryList = [NSMutableArray arrayWithContentsOfFile:pathCategory];
     self.inventoryList = [NSMutableArray arrayWithContentsOfFile:pathIventory];
+    
+    self.inventoryDict = [BFPreferenceData getProductsPreferenceDict];
     
     [self.catalogButton setHidden:YES];
     self.totalLabel.text = @"0.00";
@@ -297,7 +302,16 @@ static const int MenuLevelInventory = 1;
     NSLog(@"currentMenu = %d", self.currentMenu);
     if(self.currentMenu == MenuLevelInventory)
     {
+        // from fullhouse
         self.currentList = self.inventoryList;
+        
+        /*// sterminal
+        NSString *keyString;
+        for(keyString in [self.inventoryDict allKeys])
+        {
+            [self.currentList addObject:[self.inventoryDict objectForKey:keyString]];
+        }
+         */
         [self.catalogButton setHidden:NO];
     } else {
         self.currentList = self.catagoryList;

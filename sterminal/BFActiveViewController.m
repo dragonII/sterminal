@@ -11,10 +11,12 @@
 #import "BFAppDelegate.h"
 #import "BFPreferenceData.h"
 
-static NSString *baseURLString = @"http://demo.syslive.cn/";
-static NSString *WrongUserOrPassword = @"Incorrect username or password";
-static NSString *NoSuchUser = @"The user name does not exist";
-static NSString *LoginOK = @"/index.ds";
+//static NSString *baseURLString = @"http://demo.syslive.cn/";
+static NSString *baseURLString = @"http://mixmb.syslive.cn/";
+static NSString *WrongUserOrPassword = @"<rest name=\"rest\">2</rest>";
+static NSString *NoSuchUser = @"<rest name=\"rest\">0</rest>";
+static NSString *LoginOK = @"<rest name=\"rest\">1</rest>";
+static NSString *LockedAccount = @"<rest name=\"rest\">3</rest>";
 
 
 static NSString *GarbageString = @"Thread was being aborted.";
@@ -69,7 +71,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
     
     self.loginStatusDict = @{LoginOK: @0,
                              WrongUserOrPassword: @1,
-                             NoSuchUser: @2};
+                             NoSuchUser: @2,
+                             LockedAccount: @3};
     self.loginStatusCode = -2;
     
     self.appDelegate = [[UIApplication sharedApplication] delegate];
@@ -117,6 +120,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
                        parameters:params
                           success:^(NSURLSessionDataTask *task, id responseObject) {
                               NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                              NSLog(@"responseString; %@", responseString);
                               [self getResultByString:responseString];
                               if(_loginStatusCode == 0)
                               {
@@ -135,10 +139,11 @@ static NSString *GarbageString = @"Thread was being aborted.";
     
     dispatch_group_enter(_globalGroup);
     
-    [self.httpSessionManager POST:@"login.ds"
+    [self.httpSessionManager POST:@"mblogin/mblogin.ds"
                        parameters:params
                           success:^(NSURLSessionDataTask *task, id responseObject) {
                               NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                              NSLog(@"responseString: %@", responseString);
                               [self getResultByString:responseString];
                               NSLog(@"Login Status Code: %ld", (long)_loginStatusCode);
                               if(_loginStatusCode == 0)
@@ -176,7 +181,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
 {
     dispatch_group_enter(_globalGroup);
     
-    [self.httpSessionManager GET:@"goods/listgoods_json.ds"
+    [self.httpSessionManager GET:@"lsproduct/product.ds"
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              [self parseGoodsJson:responseObject];
@@ -226,7 +231,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
     
     NSString *cleanString = [noEscapedString stringByReplacingOccurrencesOfString:GarbageString withString:@""];
     cleanString = [cleanString stringByReplacingOccurrencesOfString:@"\'" withString:@"\""];
-    //NSLog(@"cleanString: %@", cleanString);
+    NSLog(@"cleanString: %@", cleanString);
     
     NSData *data = [cleanString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
@@ -301,9 +306,9 @@ static NSString *GarbageString = @"Thread was being aborted.";
         [staffArray addObject:@{@"ID": (NSString *)[innerArray objectAtIndex:0]}];
         [staffArray addObject:@{@"name": (NSString *)[innerArray objectAtIndex:1]}];
         [staffArray addObject:@{@"sex": (NSString *)[innerArray objectAtIndex:2]}];
-        [staffArray addObject:@{@"age": (NSString *)[innerArray objectAtIndex:3]}];
-        [staffArray addObject:@{@"tel": (NSString *)[innerArray objectAtIndex:4]}];
-        [staffArray addObject:@{@"QQ": (NSString *)[innerArray objectAtIndex:5]}];
+        //[staffArray addObject:@{@"image": (NSString *)[innerArray objectAtIndex:3]}];
+        [staffArray addObject:@{@"tel": (NSString *)[innerArray objectAtIndex:3]}];
+        [staffArray addObject:@{@"image": (NSString *)[innerArray objectAtIndex:4]}];
         
         [dict setObject:staffArray forKey:(NSString *)[innerArray objectAtIndex:0]];
         /*
@@ -314,11 +319,15 @@ static NSString *GarbageString = @"Thread was being aborted.";
          */
     }
     
+    NSLog(@"staff dict: %@", dict);
+    
     [BFPreferenceData saveStaffPreferenceDict:dict];
 }
 
 - (void)getResultByString:(NSString *)responseString
 {
+    NSLog(@"---------------------------------------");
+    NSLog(@"%@", responseString);
     NSString *keyString;
     for( keyString in [self.loginStatusDict allKeys])
     {
@@ -337,8 +346,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
     _globalGroup = dispatch_group_create();
 
     [self performLoginWithUsername:self.managerID Password:self.managerPWD];
-    [self getStoreInformation];
-    [self getGoodsInformation];
+    //[self getStoreInformation];
+    //[self getGoodsInformation];
     [self getStaffInformation];
     
     // Here we wait for all the requests to finish
@@ -347,8 +356,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
         if(_loginStatusCode == 0)
         {
             NSLog(@"Status Code: %ld", (long)_loginStatusCode);
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
+            //[self dismissViewControllerAnimated:YES completion:nil];
+            //[self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
         }
     });
 }
