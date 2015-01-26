@@ -25,6 +25,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
 @interface BFActiveViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) NSArray *textFields;
+@property (strong, nonatomic) NSArray *inputFields;
 @property (strong, nonatomic) NSMutableString *rString;
 
 @property int activeLabelIndex;
@@ -63,6 +64,12 @@ static NSString *GarbageString = @"Thread was being aborted.";
 	
     self.activeLabelIndex = 0;
     self.textFields = @[self.storeTextField, self.managerTextField, self.passwordTextField];
+    self.inputFields = @[self.storeFieldBG, self.managerFieldBG, self.passwordFieldBG];
+    
+    for(int i = 0; i < [self.inputFields count]; i++)
+    {
+        [[self.inputFields objectAtIndex:i] setHidden:YES];
+    }
     
     NSURL *url = [NSURL URLWithString:baseURLString];
     self.httpSessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
@@ -98,7 +105,18 @@ static NSString *GarbageString = @"Thread was being aborted.";
     //[textField resignFirstResponder];
     self.activeLabelIndex = textField.tag - 2000;
     self.currentTextField = (UITextField *)[self.textFields objectAtIndex:self.activeLabelIndex];
+    
     NSLog(@"Active Index: %d", self.activeLabelIndex);
+    
+    for(int i = 0; i < [self.inputFields count]; i++)
+    {
+        if(i == self.activeLabelIndex)
+        {
+            [[self.inputFields objectAtIndex:i] setHidden:NO];
+        } else {
+            [[self.inputFields objectAtIndex:i] setHidden:YES];
+        }
+    }
     
     return NO;
 }
@@ -326,8 +344,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
 
 - (void)getResultByString:(NSString *)responseString
 {
-    NSLog(@"---------------------------------------");
-    NSLog(@"%@", responseString);
+    //NSLog(@"---------------------------------------");
+    //NSLog(@"%@", responseString);
     NSString *keyString;
     for( keyString in [self.loginStatusDict allKeys])
     {

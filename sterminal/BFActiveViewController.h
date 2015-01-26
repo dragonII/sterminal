@@ -29,5 +29,8 @@
 - (IBAction)click9:(id)sender;
 - (IBAction)click0:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *storeFieldBG;
+@property (weak, nonatomic) IBOutlet UIImageView *managerFieldBG;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordFieldBG;
 
 @end
