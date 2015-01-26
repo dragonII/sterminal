@@ -58,9 +58,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QE5-Ib-iq2">
-                                <rect key="frame" x="716" y="605" width="180" height="35"/>
+                                <rect key="frame" x="683" y="604" width="213" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="28"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -68,9 +70,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1k-ZR-W3v">
-                                <rect key="frame" x="716" y="558" width="180" height="39"/>
+                                <rect key="frame" x="128" y="611" width="213" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="28"/>
+                                <state key="normal" title="切换用户">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -78,46 +82,46 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="直接输入" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="xKu-Ou-vkr">
-                                <rect key="frame" x="716" y="222" width="180" height="35"/>
+                                <rect key="frame" x="683" y="214.5" width="213" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="fAM-2l-j4g" id="zE3-kF-25C"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ol5-Ex-qKP">
-                                <rect key="frame" x="625" y="275" width="83" height="87"/>
+                                <rect key="frame" x="576" y="275" width="99" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click1:" destination="fAM-2l-j4g" eventType="touchUpInside" id="NeQ-tB-bsu"/>
+                                    <action selector="click7:" destination="fAM-2l-j4g" eventType="touchUpInside" id="d9B-lU-8Rk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrq-DY-BVf">
-                                <rect key="frame" x="625" y="370" width="83" height="87"/>
+                                <rect key="frame" x="576" y="388" width="99" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click4:" destination="fAM-2l-j4g" eventType="touchUpInside" id="hC1-cF-JU2"/>
+                                    <action selector="click4:" destination="fAM-2l-j4g" eventType="touchUpInside" id="3KN-nO-hmD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFc-ax-8V6">
-                                <rect key="frame" x="625" y="465" width="83" height="83"/>
+                                <rect key="frame" x="576" y="497" width="99" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click7:" destination="fAM-2l-j4g" eventType="touchUpInside" id="qRO-CQ-xZU"/>
+                                    <action selector="click1:" destination="fAM-2l-j4g" eventType="touchUpInside" id="SgX-Rk-S91"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VF-Dn-1FG">
-                                <rect key="frame" x="625" y="558" width="83" height="82"/>
+                                <rect key="frame" x="576" y="606" width="99" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,71 +131,84 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NL7-2a-6hW">
-                                <rect key="frame" x="716" y="275" width="89" height="87"/>
+                                <rect key="frame" x="683" y="275" width="108" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click2:" destination="fAM-2l-j4g" eventType="touchUpInside" id="7Qd-1I-8Jf"/>
+                                    <action selector="click8:" destination="fAM-2l-j4g" eventType="touchUpInside" id="Olp-yf-V79"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3C-s1-3Bb">
-                                <rect key="frame" x="716" y="370" width="89" height="87"/>
+                                <rect key="frame" x="683" y="387" width="108" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click5:" destination="fAM-2l-j4g" eventType="touchUpInside" id="JLg-Wk-Ets"/>
+                                    <action selector="click5:" destination="fAM-2l-j4g" eventType="touchUpInside" id="eXR-00-bvg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwz-6U-7w6">
-                                <rect key="frame" x="716" y="465" width="89" height="83"/>
+                                <rect key="frame" x="683" y="497" width="108" height="99"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click8:" destination="fAM-2l-j4g" eventType="touchUpInside" id="kJR-33-Qz6"/>
+                                    <action selector="click2:" destination="fAM-2l-j4g" eventType="touchUpInside" id="yQn-Xe-XdO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtM-nu-9Bu">
-                                <rect key="frame" x="813" y="275" width="83" height="87"/>
+                                <rect key="frame" x="799" y="275" width="97" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click3:" destination="fAM-2l-j4g" eventType="touchUpInside" id="LSR-AN-zb2"/>
+                                    <action selector="click9:" destination="fAM-2l-j4g" eventType="touchUpInside" id="bZL-IZ-cr8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTM-2e-1iF">
-                                <rect key="frame" x="813" y="370" width="83" height="87"/>
+                                <rect key="frame" x="799" y="387" width="97" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click6:" destination="fAM-2l-j4g" eventType="touchUpInside" id="cXh-b8-dyl"/>
+                                    <action selector="click6:" destination="fAM-2l-j4g" eventType="touchUpInside" id="8nx-2y-18L"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIh-RZ-uD1">
-                                <rect key="frame" x="813" y="465" width="83" height="83"/>
+                                <rect key="frame" x="799" y="497" width="97" height="99"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="click9:" destination="fAM-2l-j4g" eventType="touchUpInside" id="sXI-t5-8ya"/>
+                                    <action selector="click2:" destination="fAM-2l-j4g" eventType="touchUpInside" id="0UR-cm-ojG"/>
+                                    <action selector="click3:" destination="fAM-2l-j4g" eventType="touchUpInside" id="aHS-5e-xF5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="员工密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7C-67-TDi">
+                                <rect key="frame" x="582" y="215" width="93" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="highlightInput" translatesAutoresizingMaskIntoConstraints="NO" id="K3r-3l-ENM">
+                                <rect key="frame" x="576" y="214" width="322" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="inputViewBG" destination="K3r-3l-ENM" id="bEX-S4-0ff"/>
                         <outlet property="passwordTextField" destination="xKu-Ou-vkr" id="pDn-w3-MhH"/>
                         <segue destination="eJO-BO-wBA" kind="modal" identifier="switchUserSegue" modalTransitionStyle="crossDissolve" id="VIo-BY-Zgx"/>
                         <segue destination="WkM-ge-ThZ" kind="modal" identifier="orderSegue" modalTransitionStyle="crossDissolve" animates="NO" id="kuh-a3-5LM"/>

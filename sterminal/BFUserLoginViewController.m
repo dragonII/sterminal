@@ -15,6 +15,7 @@
 @interface BFUserLoginViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) NSMutableString *rString;
+@property (weak, nonatomic) IBOutlet UIImageView *inputViewBG;
 
 @end
 
@@ -32,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.inputViewBG setHidden:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -51,6 +54,7 @@
 {
     self.rString = [[NSMutableString alloc] init];
     [textField resignFirstResponder];
+    [self.inputViewBG setHidden:NO];
     return NO;
 }
 

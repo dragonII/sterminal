@@ -374,8 +374,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
         if(_loginStatusCode == 0)
         {
             NSLog(@"Status Code: %ld", (long)_loginStatusCode);
-            //[self dismissViewControllerAnimated:YES completion:nil];
-            //[self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
         }
     });
 }
