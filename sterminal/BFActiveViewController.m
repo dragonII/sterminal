@@ -25,6 +25,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
 
 @interface BFActiveViewController () <UITextFieldDelegate>
 
+@property (strong, nonatomic) UIView *waitingIndicatorView;
+
 @property (strong, nonatomic) NSArray *textFields;
 @property (strong, nonatomic) NSArray *inputFields;
 @property (strong, nonatomic) NSMutableString *rString;
@@ -396,6 +398,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
         {
             [self retrievingTask];
         } else {
+            [self enableInput];
             [self showAlert];
         }
     });
@@ -412,17 +415,80 @@ static NSString *GarbageString = @"Thread was being aborted.";
     
     // Here we wait for all the requests to finish
     dispatch_group_notify(_retrieveGroup, dispatch_get_main_queue(), ^{
+        [self enableInput];
+        
         [self dismissViewControllerAnimated:YES completion:nil];
         [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
     });
 }
 
+- (void)showWaitingIndicator
+{
+    self.waitingIndicatorView = [[UIView alloc] init];
+    [self.waitingIndicatorView setFrame:self.view.bounds];
+    
+    self.waitingIndicatorView.layer.cornerRadius = 10.0f;
+    self.waitingIndicatorView.layer.shadowOffset = CGSizeZero;
+    self.waitingIndicatorView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.waitingIndicatorView.layer.shadowOpacity = 0.5f;
+    self.waitingIndicatorView.layer.shadowRadius = 110;
+    self.waitingIndicatorView.layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectInset(self.view.bounds, -5, -5)].CGPath;
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //spinner.color = [UIColor grayColor];
+    
+    spinner.center = CGPointMake(CGRectGetMidX(self.view.bounds) + 0.5f, CGRectGetMidY(self.view.bounds) + 0.5);
+    
+    spinner.tag = 1001;
+    [self.waitingIndicatorView addSubview:spinner];
+    [self.view addSubview:self.waitingIndicatorView];
+    
+    [spinner startAnimating];
+}
+
+- (void)hideWaitingIndicator
+{
+    [self.waitingIndicatorView removeFromSuperview];
+}
+
+- (void)showSpinner
+{
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.color = [UIColor grayColor];
+    
+    spinner.center = CGPointMake(CGRectGetMidX(self.view.bounds) + 0.5f, CGRectGetMidY(self.view.bounds) + 0.5f);
+    
+    spinner.tag = 1000;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+}
+
+- (void)hideSpinner
+{
+    [[self.view viewWithTag:1000] removeFromSuperview];
+}
+
+- (void)disableInput
+{
+    self.activateButton.enabled = NO;
+    //[self showSpinner];
+    [self showWaitingIndicator];
+}
+
+- (void)enableInput
+{
+    self.activateButton.enabled = YES;
+    //[self hideSpinner];
+    [self hideWaitingIndicator];
+}
+
 - (IBAction)activateClick:(id)sender
 {
-#warning TODO:1.需要提示用户操作正在进行中 2.点击激活按钮时，在所有操作结束前，禁止用户再次点击
     //NSString *storeID = [self.storeTextField.text copy];
     self.managerID = [self.managerTextField.text copy];
     self.managerPWD = [self.passwordTextField.text copy];
+    
+    [self disableInput];
     
     [self loginTask];
 }

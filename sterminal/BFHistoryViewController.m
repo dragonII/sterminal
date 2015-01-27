@@ -163,7 +163,6 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSArray *orderItems = [[self.totalOrderList objectAtIndex:indexPath.row] objectForKey:OrderRecordItemKey];
     if([tableView isEqual:self.orderIndexTable])
     {
         self.orderList = [[self.totalOrderList objectAtIndex:indexPath.row] objectForKey:OrderRecordItemKey];
@@ -174,10 +173,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
         [self.orderListTable reloadData];
     } else {
         float amount = [[[self.orderList objectAtIndex:indexPath.row] objectForKey:OrderProductPriceKey] floatValue];
-        //float amount = [[orderItem objectForKey:OrderProductPriceKey] floatValue];
-        //float amount = [orderItems object]
         int count = [[[self.orderList objectAtIndex:indexPath.row] objectForKey:OrderProductQuantityKey] intValue];
-        //int count = [[orderItem objectForKey:OrderProductQuantityKey] intValue];
         self.subTotalLabel.text = [NSString stringWithFormat:@"%.2f", amount * count];
         self.subDiscountLabel.text = @"0.00";
     }

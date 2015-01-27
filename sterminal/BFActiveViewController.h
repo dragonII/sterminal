@@ -17,6 +17,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+@property (weak, nonatomic) IBOutlet UIButton *activateButton;
 
 - (IBAction)click1:(id)sender;
 - (IBAction)click2:(id)sender;

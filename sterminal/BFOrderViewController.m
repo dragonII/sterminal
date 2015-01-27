@@ -658,7 +658,7 @@ static const int MenuLevelInventory = 1;
     {
         savedOrderList = [[NSMutableArray alloc] init];
     }
-    NSLog(@"order description: %@", [self.orderList description]);
+    //NSLog(@"order description: %@", [self.orderList description]);
     
     NSMutableDictionary *savedOrderItemDict = [[NSMutableDictionary alloc] init];
     [savedOrderItemDict setObject:[NSString stringWithFormat:@"01%@%02d", [formatter stringFromDate:now], 1] forKey:OrderRecordNumberKey];

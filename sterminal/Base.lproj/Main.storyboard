@@ -958,6 +958,7 @@
                     <navigationItem key="navigationItem" id="R9r-3o-PpX"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="activateButton" destination="ahe-B2-rYx" id="R2r-gR-cWu"/>
                         <outlet property="logoImageView" destination="1hT-dc-rtc" id="Ecn-yG-Odb"/>
                         <outlet property="managerFieldBG" destination="Tjb-ou-NkQ" id="jlB-3w-LB2"/>
                         <outlet property="managerTextField" destination="Ip7-Er-cTr" id="Xf6-Ro-1Sm"/>
