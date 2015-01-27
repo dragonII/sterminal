@@ -46,4 +46,9 @@ static const NSInteger LoginNoSuchUser = 2;
 static const NSInteger LoginUserLocked = 3;
 static const NSInteger LoginNoUserOrPassword = 6;
 
+static NSString *OrderRecordNumberKey = @"orderNumber";
+static NSString *OrderRecordDateKey = @"orderDate";
+static NSString *OrderRecordAmountKey = @"orderAmount";
+static NSString *OrderRecordItemKey = @"orderItem";
+
 #endif

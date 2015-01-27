@@ -643,9 +643,12 @@ static const int MenuLevelInventory = 1;
     //NSLog(@"Final stage confirmed");
     self.checkoutButton.image = [UIImage imageNamed:@"orderNormalBtn"];
     
+    /*
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *savedOrderRecordPath = [documentDirectory stringByAppendingPathComponent:@"OrderRecords.plist"];
     NSMutableArray *savedOrderList = [NSMutableArray arrayWithContentsOfFile:savedOrderRecordPath];
+     */
+    NSMutableArray *savedOrderList = [BFPreferenceData loadOrderRecordsArray];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyyMMddHHmmss"];
@@ -658,16 +661,19 @@ static const int MenuLevelInventory = 1;
     NSLog(@"order description: %@", [self.orderList description]);
     
     NSMutableDictionary *savedOrderItemDict = [[NSMutableDictionary alloc] init];
-    [savedOrderItemDict setObject:[NSString stringWithFormat:@"01%@%02d", [formatter stringFromDate:now], 1] forKey:@"orderNumber"];
-    [savedOrderItemDict setObject:[NSDate date] forKey:@"orderDate"];
-    [savedOrderItemDict setObject:self.totalLabel.text forKey:@"orderAmount"];
+    [savedOrderItemDict setObject:[NSString stringWithFormat:@"01%@%02d", [formatter stringFromDate:now], 1] forKey:OrderRecordNumberKey];
+    [savedOrderItemDict setObject:[NSDate date] forKey:OrderRecordDateKey];
+    [savedOrderItemDict setObject:self.totalLabel.text forKey:OrderRecordAmountKey];
     // TODO: add user who handles this order in dict
     
-    [savedOrderItemDict setObject:self.orderList forKey:@"orderItem"];
+    [savedOrderItemDict setObject:self.orderList forKey:OrderRecordItemKey];
     
     [savedOrderList addObject:savedOrderItemDict];
-    [savedOrderList writeToFile:savedOrderRecordPath atomically:YES];
-    NSLog(@"Writing to %@", savedOrderRecordPath);
+    
+    [BFPreferenceData saveOrderRecordsArray:savedOrderList];
+    
+    //[savedOrderList writeToFile:savedOrderRecordPath atomically:YES];
+    //NSLog(@"Writing to %@", savedOrderRecordPath);
     [self.orderList removeAllObjects];
     [self.orderListTable reloadData];
 }

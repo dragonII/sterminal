@@ -10,6 +10,8 @@
 #import "HistoryIndexTableCell.h"
 #import "BFOrderItemCell.h"
 #import "BFUserLoginViewController.h"
+#import "BFPreferenceData.h"
+#import "defs.h"
 
 //static int ListModeBasic = 0;
 //static int ListModeImage = 1;
@@ -49,14 +51,20 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 {
     [super viewDidLoad];
 	
+    /*
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *orderFilePath = [documentDirectory stringByAppendingPathComponent:@"OrderRecords.plist"];
     
     self.totalOrderList = [NSMutableArray arrayWithContentsOfFile:orderFilePath];
+     */
+    self.totalOrderList = [BFPreferenceData loadOrderRecordsArray];
+    
     if(self.totalOrderList == nil)
     {
         self.totalOrderList = [[NSMutableArray alloc] init];
     }
+    
+    self.orderList = nil;
     
     // orderIndexTable
     [self.orderIndexTable registerClass:[HistoryIndexTableCell class] forCellReuseIdentifier:HistoryIndexCellIdentifier];
@@ -89,11 +97,11 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 {
     if([tableView isEqual:self.orderIndexTable])
     {
-        self.todayAmountLabel.text = @"Today: 0.00";
+        self.todayAmountLabel.text = @"今天: 0.00";
         if([self.totalOrderList count])
         {
-            NSArray *mutableQueryStringComponents = [NSMutableArray array];
-            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"orderDate" ascending:NO selector:@selector(compare:)];
+            NSArray *mutableQueryStringComponents;// = [NSMutableArray array];
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:OrderRecordDateKey ascending:NO selector:@selector(compare:)];
             mutableQueryStringComponents = [self.totalOrderList sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
             self.totalOrderList = [NSMutableArray arrayWithArray:mutableQueryStringComponents];
         }
@@ -101,7 +109,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
         int i;
         for(i = 0; i < [self.totalOrderList count]; i++)
         {
-            totalAmountValue += [[[self.totalOrderList objectAtIndex:i] objectForKey:@"orderAmount"] floatValue];
+            totalAmountValue += [[[self.totalOrderList objectAtIndex:i] objectForKey:OrderRecordAmountKey] floatValue];
         }
         
         self.subTotalLabel.text = [NSString stringWithFormat:@"%.2f", totalAmountValue];
@@ -125,7 +133,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
         HistoryIndexTableCell *cell;
         cell = (HistoryIndexTableCell *)[tableView dequeueReusableCellWithIdentifier:HistoryIndexCellIdentifier forIndexPath:indexPath];
         NSMutableDictionary *dict = [self.totalOrderList objectAtIndex:indexPath.row];
-        cell.orderAmountString = [NSString stringWithFormat:@"%.2f", [[dict objectForKey:@"orderAmount"] floatValue]];
+        cell.orderAmountString = [NSString stringWithFormat:@"%.2f", [[dict objectForKey:OrderRecordAmountKey] floatValue]];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         
         [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
@@ -133,8 +141,8 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
         [formatter setPMSymbol:@"下午"];
         [formatter setDateFormat:@"HH:mm aaa"];
         
-        cell.orderDateString = [formatter stringFromDate:[dict objectForKey:@"orderDate"]];
-        cell.orderNumberString = [dict objectForKey:@"orderNumber"];
+        cell.orderDateString = [formatter stringFromDate:[dict objectForKey:OrderRecordDateKey]];
+        cell.orderNumberString = [dict objectForKey:OrderRecordNumberKey];
         
         return cell;
     } else {
@@ -142,11 +150,11 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
         NSMutableDictionary *dict = [self.orderList objectAtIndex:indexPath.row];
         if(dict)
         {
-            cell.productDescriptionStr = [dict objectForKey:@"description"];
-            cell.productSNStr = [dict objectForKey:@"sn"];
-            cell.productQuantityStr = [dict objectForKey:@"quantity"];
-            cell.productAmountStr = [NSString stringWithFormat:@"%.2f", [[dict objectForKey:@"price"] floatValue]];
-            cell.productImgStr = [NSString stringWithFormat:@"%@.jpg", [dict objectForKey:@"description"]];
+            cell.productDescriptionStr = [dict objectForKey:OrderProductNameKey];
+            cell.productSNStr = [dict objectForKey:OrderProductIDKey];
+            cell.productQuantityStr = [dict objectForKey:OrderProductQuantityKey];
+            cell.productAmountStr = [NSString stringWithFormat:@"%.2f", [[dict objectForKey:OrderProductPriceKey] floatValue]];
+            //cell.productImgStr = [NSString stringWithFormat:@"%@.jpg", [dict objectForKey:@"description"]];
         }
         return cell;
     }
@@ -155,19 +163,22 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //NSArray *orderItems = [[self.totalOrderList objectAtIndex:indexPath.row] objectForKey:OrderRecordItemKey];
     if([tableView isEqual:self.orderIndexTable])
     {
-        self.orderList = [[self.totalOrderList objectAtIndex:indexPath.row] objectForKey:@"orderItem"];
+        self.orderList = [[self.totalOrderList objectAtIndex:indexPath.row] objectForKey:OrderRecordItemKey];
         self.subDiscountLabel.text = @"0.00";
-        self.subTotalLabel.text = [NSString stringWithFormat:@"%.2f", [[[self.totalOrderList objectAtIndex:indexPath.row] objectForKey:@"orderAmount"] floatValue]];
+        self.subTotalLabel.text = [NSString stringWithFormat:@"%.2f", [[[self.totalOrderList objectAtIndex:indexPath.row] objectForKey:OrderRecordAmountKey] floatValue]];
         self.totalAmountLabel.text = [NSString stringWithFormat:@"%.2f", [self.subTotalLabel.text floatValue]];
         
         [self.orderListTable reloadData];
     } else {
-        float amount = [[[self.orderList objectAtIndex:indexPath.row] objectForKey:@"price"] floatValue];
-        int count = [[[self.orderList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+        float amount = [[[self.orderList objectAtIndex:indexPath.row] objectForKey:OrderProductPriceKey] floatValue];
+        //float amount = [[orderItem objectForKey:OrderProductPriceKey] floatValue];
+        //float amount = [orderItems object]
+        int count = [[[self.orderList objectAtIndex:indexPath.row] objectForKey:OrderProductQuantityKey] intValue];
+        //int count = [[orderItem objectForKey:OrderProductQuantityKey] intValue];
         self.subTotalLabel.text = [NSString stringWithFormat:@"%.2f", amount * count];
-        //self.subTotalLabel.text = [NSString stringWithFormat:@"%.2f", amount * count];
         self.subDiscountLabel.text = @"0.00";
     }
 }

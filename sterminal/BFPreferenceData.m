@@ -13,6 +13,7 @@ static NSString *ManagerPreferenceFileName = @"manager_profile.plist";
 static NSString *StaffPreferenceFileName = @"staff_profile.plist";
 static NSString *StorePreferenceFileName = @"store_profile.plist";
 static NSString *ProductsPreferenceFileName = @"products_profile.plist";
+static NSString *OrderRecordFileName = @"order_records.plist";
 
 @implementation BFPreferenceData
 
@@ -50,6 +51,22 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
     if([[NSFileManager defaultManager] fileExistsAtPath:filePath])
     {
         array = [NSArray arrayWithContentsOfFile:filePath];
+    } else {
+        array = nil;
+    }
+    
+    return array;
+}
+
++ (NSMutableArray *)getMutableArrayPreferenceFile:(NSString *)fileName
+{
+    NSString *filePath = [self getFilePathWithName:fileName];
+    
+    NSMutableArray *array;
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    {
+        array = [NSMutableArray arrayWithContentsOfFile:filePath];
     } else {
         array = nil;
     }
@@ -108,6 +125,19 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
     [dict writeToFile:filePath atomically:YES];
     
     NSLog(@"Saving Store Information Done");
+}
+
++ (NSMutableArray *)loadOrderRecordsArray
+{
+    return [self getMutableArrayPreferenceFile:OrderRecordFileName];
+}
+
++ (void)saveOrderRecordsArray:(NSMutableArray *)array
+{
+    NSString *filePath = [self getFilePathWithName:OrderRecordFileName];
+    [array writeToFile:filePath atomically:YES];
+    
+    NSLog(@"Saving Order Records Done");
 }
 
 @end
