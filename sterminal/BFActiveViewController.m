@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "BFAppDelegate.h"
 #import "BFPreferenceData.h"
+#import "defs.h"
 
 //static NSString *baseURLString = @"http://demo.syslive.cn/";
 static NSString *baseURLString = @"http://mixmb.syslive.cn/";
@@ -42,7 +43,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
 @property (copy, nonatomic) NSString *managerID;
 @property (copy, nonatomic) NSString *managerPWD;
 
-@property dispatch_group_t globalGroup;
+@property dispatch_group_t retrieveGroup;
+@property dispatch_group_t loginGroup;
 
 @end
 
@@ -155,7 +157,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
     params[@"user"] = username;
     params[@"password"] = password;
     
-    dispatch_group_enter(_globalGroup);
+    dispatch_group_enter(_loginGroup);
     
     [self.httpSessionManager POST:@"mblogin/mblogin.ds"
                        parameters:params
@@ -167,62 +169,59 @@ static NSString *GarbageString = @"Thread was being aborted.";
                               if(_loginStatusCode == 0)
                               {
                                   [self.appDelegate updateLastOperationTimeStamp];
-                                  //[self getStoreInformation];
-                                  //[self getGoodsInformation];
-                                  //[self getStaffInformation];
                                   
-                                  dispatch_group_leave(_globalGroup);
+                                  dispatch_group_leave(_loginGroup);
                               }
                           }failure:^(NSURLSessionDataTask *task, NSError *error) {
                               NSLog(@"Error: %@", [error localizedDescription]);
-                              dispatch_group_leave(_globalGroup);
+                              dispatch_group_leave(_loginGroup);
                           }];
 }
 
 - (void)getStoreInformation
 {
-    dispatch_group_enter(_globalGroup);
+    dispatch_group_enter(_retrieveGroup);
     
-    [self.httpSessionManager GET:@"shop/listshop_json.ds"
+    [self.httpSessionManager GET:@"myinfo/shopinfolist.ds"
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              [self.appDelegate updateLastOperationTimeStamp];
                              [self parseStoreJson:responseObject];
-                             dispatch_group_leave(_globalGroup);
+                             dispatch_group_leave(_retrieveGroup);
                          }failure:^(NSURLSessionDataTask *task, NSError *error) {
                              NSLog(@"Error: %@", [error localizedDescription]);
-                             dispatch_group_leave(_globalGroup);
+                             dispatch_group_leave(_retrieveGroup);
                          }];
 }
 
 - (void)getGoodsInformation
 {
-    dispatch_group_enter(_globalGroup);
+    dispatch_group_enter(_retrieveGroup);
     
     [self.httpSessionManager GET:@"lsproduct/product.ds"
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              [self parseGoodsJson:responseObject];
-                             dispatch_group_leave(_globalGroup);
+                             dispatch_group_leave(_retrieveGroup);
                          }failure:^(NSURLSessionDataTask *task, NSError *error) {
                              NSLog(@"Error: %@", [error localizedDescription]);
-                             dispatch_group_leave(_globalGroup);
+                             dispatch_group_leave(_retrieveGroup);
                          }];
     
 }
 
 - (void)getStaffInformation
 {
-    dispatch_group_enter(_globalGroup);
+    dispatch_group_enter(_retrieveGroup);
     
     [self.httpSessionManager GET:@"employee/listemployee_json.ds"
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              [self parseStaffJson:responseObject];
-                             dispatch_group_leave(_globalGroup);
+                             dispatch_group_leave(_retrieveGroup);
                          }failure:^(NSURLSessionDataTask *task, NSError *error) {
                              NSLog(@"Error: %@", [error localizedDescription]);
-                             dispatch_group_leave(_globalGroup);
+                             dispatch_group_leave(_retrieveGroup);
                          }];
 }
 
@@ -268,84 +267,71 @@ static NSString *GarbageString = @"Thread was being aborted.";
 {
     NSArray *outerArray = [self prepareForParse:responseObject];
     
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    NSMutableArray *goodsArray;
+    NSMutableDictionary *dict;
+    NSMutableArray *goodsArray = [[NSMutableArray alloc] init];
     
     for(NSArray *innerArray in outerArray)
     {
-        goodsArray = [[NSMutableArray alloc] init];
+        dict = [[NSMutableDictionary alloc] init];
         
-        [goodsArray addObject:@{@"ID": (NSString *)[innerArray objectAtIndex:0]}];
-        [goodsArray addObject:@{@"name": (NSString *)[innerArray objectAtIndex:1]}];
-        [goodsArray addObject:@{@"category": (NSString *)[innerArray objectAtIndex:2]}];
-        [goodsArray addObject:@{@"place": (NSString *)[innerArray objectAtIndex:3]}];
-        [goodsArray addObject:@{@"time": (NSString *)[innerArray objectAtIndex:4]}];
-        [goodsArray addObject:@{@"price": (NSString *)[innerArray objectAtIndex:5]}];
-        [goodsArray addObject:@{@"description": (NSString *)[innerArray objectAtIndex:6]}];
-        //NSString *imgURLString = (NSString *)[baseURLString stringByAppendingString:[innerArray objectAtIndex:7]
-        //[goodsArray addObject:@{@"image": (NSString *)[innerArray objectAtIndex:7]}];
-        [goodsArray addObject:@{@"image": [baseURLString stringByAppendingString:(NSString *)[innerArray objectAtIndex:7]]}];
+        [dict setObject:[innerArray objectAtIndex:0] forKey:ProductIDKey];
+        [dict setObject:[innerArray objectAtIndex:1] forKey:ProductNameKey];
+        [dict setObject:[innerArray objectAtIndex:2] forKey:ProductBrandKey];
+        [dict setObject:[innerArray objectAtIndex:3] forKey:ProductCategoryKey];
+        [dict setObject:[innerArray objectAtIndex:4] forKey:ProductPriceKey];
         
-        [dict setObject:goodsArray forKey:(NSString *)[innerArray objectAtIndex:0]];
-        /*
-        for(NSString *itemString in innerArray)
-        {
-            NSLog(@"itemString: %@", itemString);
-        }
-         */
+        [goodsArray addObject:dict];
     }
-    [BFPreferenceData saveProductsPreferenceDict:dict];
+    
+    [BFPreferenceData saveProductsPreferenceArray:goodsArray];
 }
 
 - (void)parseStoreJson:(id)responseObject
 {
     NSArray *outerArray = [self prepareForParse:responseObject];
+    NSMutableDictionary *storeDict = [[NSMutableDictionary alloc] init];
     
     for(NSArray *innerArray in outerArray)
     {
-        for(NSString *itemString in innerArray)
-        {
-            NSLog(@"itemString: %@", itemString);
-        }
+        [storeDict setObject:[innerArray objectAtIndex:0] forKey:StoreIDKey];
+        [storeDict setObject:[innerArray objectAtIndex:1] forKey:StoreNameKey];
+        [storeDict setObject:[innerArray objectAtIndex:2] forKey:StoreSNameKey];
+        [storeDict setObject:[innerArray objectAtIndex:3] forKey:StoreTypeKey];
+        [storeDict setObject:[innerArray objectAtIndex:4] forKey:StoreAddrCountryKey];
+        [storeDict setObject:[innerArray objectAtIndex:5] forKey:StoreAddrProviceKey];
+        [storeDict setObject:[innerArray objectAtIndex:6] forKey:StoreAddrCityKey];
+        [storeDict setObject:[innerArray objectAtIndex:7] forKey:StoreAddrStreetKey];
+        [storeDict setObject:[innerArray objectAtIndex:8] forKey:StoreStatusKey];
     }
+    
+    [BFPreferenceData saveStorePreferenceDict:storeDict];
 }
 
 - (void)parseStaffJson:(id)responseObject
 {
     NSArray *outerArray = [self prepareForParse:responseObject];
     
-    NSMutableDictionary *dict = [BFPreferenceData getStaffPreferenceDict];
-    NSMutableArray *staffArray;
+    NSMutableDictionary *dict;
+    NSMutableArray *staffArray = [[NSMutableArray alloc] init];
     
     for(NSArray *innerArray in outerArray)
     {
-        staffArray = [[NSMutableArray alloc] init];
+        dict = [[NSMutableDictionary alloc] init];
         
-        [staffArray addObject:@{@"ID": (NSString *)[innerArray objectAtIndex:0]}];
-        [staffArray addObject:@{@"name": (NSString *)[innerArray objectAtIndex:1]}];
-        [staffArray addObject:@{@"sex": (NSString *)[innerArray objectAtIndex:2]}];
-        //[staffArray addObject:@{@"image": (NSString *)[innerArray objectAtIndex:3]}];
-        [staffArray addObject:@{@"tel": (NSString *)[innerArray objectAtIndex:3]}];
-        [staffArray addObject:@{@"image": (NSString *)[innerArray objectAtIndex:4]}];
+        [dict setObject:[innerArray objectAtIndex:0] forKey:StaffIDKey];
+        [dict setObject:[innerArray objectAtIndex:1] forKey:StaffNameKey];
+        [dict setObject:[innerArray objectAtIndex:2] forKey:StaffSexKey];
+        [dict setObject:[innerArray objectAtIndex:3] forKey:StaffTelKey];
+        [dict setObject:[innerArray objectAtIndex:4] forKey:StaffPhotoKey];
         
-        [dict setObject:staffArray forKey:(NSString *)[innerArray objectAtIndex:0]];
-        /*
-        for(NSString *itemString in innerArray)
-        {
-            NSLog(@"itemString: %@", itemString);
-        }
-         */
+        [staffArray addObject:dict];
     }
     
-    NSLog(@"staff dict: %@", dict);
-    
-    [BFPreferenceData saveStaffPreferenceDict:dict];
+    [BFPreferenceData saveStaffPreferenceArray:staffArray];
 }
 
 - (void)getResultByString:(NSString *)responseString
 {
-    //NSLog(@"---------------------------------------");
-    //NSLog(@"%@", responseString);
     NSString *keyString;
     for( keyString in [self.loginStatusDict allKeys])
     {
@@ -358,18 +344,28 @@ static NSString *GarbageString = @"Thread was being aborted.";
     _loginStatusCode = -1;
 }
 
-- (void)batchTasks
+- (void)loginTask
+{
+    _loginGroup = dispatch_group_create();
+    
+    [self performLoginWithUsername:self.managerID Password:self.managerPWD];
+    
+    dispatch_group_notify(_loginGroup, dispatch_get_main_queue(), ^{
+        [self retrievingTask];
+    });
+}
+
+- (void)retrievingTask
 {
     // Create a dispatch group
-    _globalGroup = dispatch_group_create();
+    _retrieveGroup = dispatch_group_create();
 
-    [self performLoginWithUsername:self.managerID Password:self.managerPWD];
-    //[self getStoreInformation];
-    //[self getGoodsInformation];
+    [self getStoreInformation];
+    [self getGoodsInformation];
     [self getStaffInformation];
     
     // Here we wait for all the requests to finish
-    dispatch_group_notify(_globalGroup, dispatch_get_main_queue(), ^{
+    dispatch_group_notify(_retrieveGroup, dispatch_get_main_queue(), ^{
         // Do whatever you need to do when all requests are finished
         if(_loginStatusCode == 0)
         {
@@ -386,9 +382,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
     self.managerID = [self.managerTextField.text copy];
     self.managerPWD = [self.passwordTextField.text copy];
     
-    [self batchTasks];
-    
-    //[self performLoginWithUsername:self.managerID Password:self.managerPWD];
+    [self loginTask];
     
     //[self dismissViewControllerAnimated:YES completion:nil];
     //[self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];

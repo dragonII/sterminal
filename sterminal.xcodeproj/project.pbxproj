@@ -158,6 +158,7 @@
 		2FA42D611A5C2929004324AF /* BFOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOrderViewController.m; sourceTree = "<group>"; };
 		2FA94FE51A71FB0900386EA3 /* BFPreferenceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPreferenceData.h; sourceTree = "<group>"; };
 		2FA94FE61A71FB0900386EA3 /* BFPreferenceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPreferenceData.m; sourceTree = "<group>"; };
+		2FB459EC1A773DAC002A7F87 /* defs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = defs.h; sourceTree = "<group>"; };
 		2FF8C4941A5CDA2500B28A0F /* CustomOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOrderCell.xib; sourceTree = "<group>"; };
 		2FF8C4961A5CDC2900B28A0F /* BFOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOrderItemCell.h; sourceTree = "<group>"; };
 		2FF8C4971A5CDC2900B28A0F /* BFOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOrderItemCell.m; sourceTree = "<group>"; };
@@ -355,6 +356,7 @@
 				2FF8C4931A5CD9BC00B28A0F /* TableViewCell */,
 				2F1480481A63B5D3000C0BF6 /* GDataXMLNode.h */,
 				2F1480491A63B5D3000C0BF6 /* GDataXMLNode.m */,
+				2FB459EC1A773DAC002A7F87 /* defs.h */,
 				2F8933171A5BD12400A9196E /* BFAppDelegate.h */,
 				2F8933181A5BD12400A9196E /* BFAppDelegate.m */,
 				2FA94FE51A71FB0900386EA3 /* BFPreferenceData.h */,

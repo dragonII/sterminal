@@ -16,7 +16,8 @@
 + (NSMutableDictionary *)getStorePreferenceDict;
 + (NSMutableDictionary *)getProductsPreferenceDict;
 
-+ (void)saveStaffPreferenceDict:(NSMutableDictionary *)dict;
-+ (void)saveProductsPreferenceDict:(NSMutableDictionary *)dict;
++ (void)saveStorePreferenceDict:(NSMutableDictionary *)dict;
++ (void)saveStaffPreferenceArray:(NSMutableArray *)array;
++ (void)saveProductsPreferenceArray:(NSMutableArray *)array;
 
 @end

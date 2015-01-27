@@ -61,12 +61,11 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
     return [self getDictionaryFilePreferenceFile:StaffPreferenceFileName];
 }
 
-+ (void)saveStaffPreferenceDict:(NSMutableDictionary *)dict
++ (void)saveStaffPreferenceArray:(NSMutableArray *)array
 {
     NSString *filePath = [self getFilePathWithName:StaffPreferenceFileName];
-    [dict writeToFile:filePath atomically:YES];
-    
-    NSLog(@"Saving Staff Done");
+    [array writeToFile:filePath atomically:YES];
+    NSLog(@"Saving Staff Information Done");
 }
 
 + (NSMutableDictionary *)getProductsPreferenceDict
@@ -74,12 +73,20 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
     return [self getDictionaryFilePreferenceFile:ProductsPreferenceFileName];
 }
 
-+ (void)saveProductsPreferenceDict:(NSMutableDictionary *)dict
++ (void)saveProductsPreferenceArray:(NSMutableArray *)array
 {
     NSString *filePath = [self getFilePathWithName:ProductsPreferenceFileName];
+    [array writeToFile:filePath atomically:YES];
+    
+    NSLog(@"Saving Products Information Done");
+}
+
++ (void)saveStorePreferenceDict:(NSMutableDictionary *)dict
+{
+    NSString *filePath = [self getFilePathWithName:StorePreferenceFileName];
     [dict writeToFile:filePath atomically:YES];
     
-    NSLog(@"Saving Products Done");
+    NSLog(@"Saving Store Information Done");
 }
 
 @end
