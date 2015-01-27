@@ -31,4 +31,12 @@ static NSString *StaffSexKey = @"sex";
 static NSString *StaffTelKey = @"tel";
 static NSString *StaffPhotoKey = @"photo";
 
+static const NSInteger  LoginInitValue = -2;
+static const NSInteger LoginErrorUnknownValue = -1;
+static const NSInteger LoginOKValue = 0;
+static const NSInteger LoginWrongUserOrPasswordValue = 1;
+static const NSInteger LoginNoSuchUser = 2;
+static const NSInteger LoginUserLocked = 3;
+static const NSInteger LoginNoUserOrPassword = 6;
+
 #endif

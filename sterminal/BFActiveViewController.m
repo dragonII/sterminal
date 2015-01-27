@@ -78,11 +78,11 @@ static NSString *GarbageString = @"Thread was being aborted.";
     self.httpSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     self.httpSessionManager.responseSerializer.acceptableContentTypes = [self.httpSessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"html/text"];
     
-    self.loginStatusDict = @{LoginOK: @0,
-                             WrongUserOrPassword: @1,
-                             NoSuchUser: @2,
-                             LockedAccount: @3};
-    self.loginStatusCode = -2;
+    self.loginStatusDict = @{LoginOK: [NSNumber numberWithInteger:LoginOKValue],
+                             WrongUserOrPassword: [NSNumber numberWithInteger:LoginWrongUserOrPasswordValue],
+                             NoSuchUser: [NSNumber numberWithInteger:LoginNoSuchUser],
+                             LockedAccount: [NSNumber numberWithInteger:LoginUserLocked]};
+    self.loginStatusCode = LoginInitValue;
     
     self.appDelegate = [[UIApplication sharedApplication] delegate];
 }
@@ -142,7 +142,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
                               NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                               NSLog(@"responseString; %@", responseString);
                               [self getResultByString:responseString];
-                              if(_loginStatusCode == 0)
+                              if(_loginStatusCode == LoginOKValue)
                               {
                                   [self.appDelegate setLastOperationTimeStamp:[[NSDate date] timeIntervalSince1970]];
                               }
@@ -159,6 +159,13 @@ static NSString *GarbageString = @"Thread was being aborted.";
     
     dispatch_group_enter(_loginGroup);
     
+    if([username length] == 0 || [password length] == 0)
+    {
+        _loginStatusCode = LoginNoUserOrPassword;
+        dispatch_group_leave(_loginGroup);
+        return;
+    }
+    
     [self.httpSessionManager POST:@"mblogin/mblogin.ds"
                        parameters:params
                           success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -166,12 +173,11 @@ static NSString *GarbageString = @"Thread was being aborted.";
                               NSLog(@"responseString: %@", responseString);
                               [self getResultByString:responseString];
                               NSLog(@"Login Status Code: %ld", (long)_loginStatusCode);
-                              if(_loginStatusCode == 0)
+                              if(_loginStatusCode == LoginOKValue)
                               {
                                   [self.appDelegate updateLastOperationTimeStamp];
-                                  
-                                  dispatch_group_leave(_loginGroup);
                               }
+                              dispatch_group_leave(_loginGroup);
                           }failure:^(NSURLSessionDataTask *task, NSError *error) {
                               NSLog(@"Error: %@", [error localizedDescription]);
                               dispatch_group_leave(_loginGroup);
@@ -341,7 +347,42 @@ static NSString *GarbageString = @"Thread was being aborted.";
             return;
         }
     }
-    _loginStatusCode = -1;
+    _loginStatusCode = LoginErrorUnknownValue;
+}
+
+- (void)showAlert
+{
+    NSString *message;
+    switch (_loginStatusCode)
+    {
+        case LoginErrorUnknownValue:
+            message = [NSString stringWithFormat:@"%@", @"未连接到服务器"];
+            break;
+        case LoginWrongUserOrPasswordValue:
+            message = [NSString stringWithFormat:@"%@", @"密码错误"];
+            break;
+        case LoginNoSuchUser:
+            message = [NSString stringWithFormat:@"%@", @"账户名不存在"];
+            break;
+        case LoginUserLocked:
+            message = [NSString stringWithFormat:@"%@", @"账户已冻结"];
+            break;
+        case LoginNoUserOrPassword:
+            message = [NSString stringWithFormat:@"%@", @"管理账号或密码不能为空"];
+            break;
+            
+        default:
+            message = nil;
+            break;
+    }
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:@"登录失败"
+                              message:message
+                              delegate:nil
+                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+                              otherButtonTitles:nil];
+    
+    [alertView show];
 }
 
 - (void)loginTask
@@ -351,7 +392,12 @@ static NSString *GarbageString = @"Thread was being aborted.";
     [self performLoginWithUsername:self.managerID Password:self.managerPWD];
     
     dispatch_group_notify(_loginGroup, dispatch_get_main_queue(), ^{
-        [self retrievingTask];
+        if(_loginStatusCode == LoginOKValue)
+        {
+            [self retrievingTask];
+        } else {
+            [self showAlert];
+        }
     });
 }
 
@@ -366,13 +412,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
     
     // Here we wait for all the requests to finish
     dispatch_group_notify(_retrieveGroup, dispatch_get_main_queue(), ^{
-        // Do whatever you need to do when all requests are finished
-        if(_loginStatusCode == 0)
-        {
-            NSLog(@"Status Code: %ld", (long)_loginStatusCode);
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
-        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
     });
 }
 
@@ -383,9 +424,6 @@ static NSString *GarbageString = @"Thread was being aborted.";
     self.managerPWD = [self.passwordTextField.text copy];
     
     [self loginTask];
-    
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    //[self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
 }
 
 - (IBAction)click1:(id)sender
