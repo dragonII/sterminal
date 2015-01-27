@@ -13,6 +13,7 @@
 #import "BFOrderCheckoutViewController.h"
 #import "BFUserLoginViewController.h"
 #import "BFPreferenceData.h"
+#import "defs.h"
 
 @interface BFOrderViewController ()
 
@@ -20,6 +21,8 @@
 @property (strong, nonatomic) NSMutableArray *inventoryList;
 @property (strong, nonatomic) NSMutableArray *orderList;
 @property (strong, nonatomic) NSMutableArray *currentList;
+
+@property (strong, nonatomic) NSArray *productsArray;
 
 @property (strong, nonatomic) NSMutableDictionary *inventoryDict;
 
@@ -91,25 +94,12 @@ static const int MenuLevelInventory = 1;
     return self.productsCollView;
 }
 
-- (UIView *)makeTestView
-{
-    NSLog(@"width: %f", self.view.bounds.size.width);
-    NSLog(@"height: %f", self.view.bounds.size.height);
-    CGRect rect = CGRectMake(self.view.bounds.origin.x,
-                             self.view.bounds.origin.y + 288,
-                             self.view.bounds.size.width - 128,
-                             self.view.bounds.size.height - 588);
-    UIView *view = [[UIView alloc] initWithFrame:rect];
-    NSLog(@"width: %f, height: %f", view.frame.size.width, view.frame.size.height);
-    view.backgroundColor = [UIColor blackColor];
-    view.alpha = 0.2f;
-    
-    return view;
-}
 
 - (void)initializeValues
 {
-    self.currentMenu = MenuLevelCategory;
+    // No CATEGORY MENU, ARRAY AT ALL!
+    //self.currentMenu = MenuLevelCategory;
+    self.currentMenu = MenuLevelInventory;
     self.listMode = ListModeImage;
     self.buyCount = 0.0f;
     
@@ -118,7 +108,7 @@ static const int MenuLevelInventory = 1;
     self.catagoryList = [NSMutableArray arrayWithContentsOfFile:pathCategory];
     self.inventoryList = [NSMutableArray arrayWithContentsOfFile:pathIventory];
     
-    self.inventoryDict = [BFPreferenceData getProductsPreferenceDict];
+    self.productsArray = [BFPreferenceData loadProductsArray];
     
     [self.catalogButton setHidden:YES];
     self.totalLabel.text = @"0.00";
@@ -204,8 +194,6 @@ static const int MenuLevelInventory = 1;
     
     self.productsCollView = [self productsCollectionView];
     [self.view addSubview:self.productsCollView];
-    //UIView *testView = [self makeTestView];
-    //[self.view addSubview:testView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -237,11 +225,11 @@ static const int MenuLevelInventory = 1;
     NSMutableDictionary *dict = [self.orderList objectAtIndex:indexPath.row];
     if(dict)
     {
-        cell.productDescriptionStr = [dict objectForKey:@"description"];
-        cell.productSNStr = [dict objectForKey:@"sn"];
-        cell.productQuantityStr = [dict objectForKey:@"quantity"];
-        cell.productAmountStr = [dict objectForKey:@"price"];
-        cell.productQuantityStr = [NSString stringWithFormat:@"%@.jpg", [dict objectForKey:@"description"]];
+        cell.productDescriptionStr = [dict objectForKey:OrderProductNameKey];
+        cell.productSNStr = [dict objectForKey:OrderProductIDKey];
+        cell.productQuantityStr = [dict objectForKey:OrderProductQuantityKey];
+        cell.productAmountStr = [dict objectForKey:OrderProductPriceKey];
+        //cell.productImgStr = [dict objectForKey:OrderProductImagePathKey];
     }
     int i;
     float tAmount = 0.00f;
@@ -249,7 +237,7 @@ static const int MenuLevelInventory = 1;
     for(i = 0; i < [self.orderList count]; i++)
     {
         dict = [self.orderList objectAtIndex:i];
-        tAmount += [[dict objectForKey:@"price"] floatValue];
+        tAmount += [[dict objectForKey:OrderProductPriceKey] floatValue];
     }
     
     self.totalLabel.text = [NSString stringWithFormat:@"%.2f", tAmount];
@@ -262,56 +250,68 @@ static const int MenuLevelInventory = 1;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableDictionary *dict = [self.orderList objectAtIndex:indexPath.row];
-    int i;
     NSMutableDictionary *inDict;
     float price = 1.00f;
     
-    for(i = 0; i < [self.currentList count]; i++)
+    
+    for(int i = 0; i < [self.productsArray count]; i++)
     {
-        inDict = [self.currentList objectAtIndex:i];
-        if([[dict objectForKey:@"description"] isEqualToString:[inDict objectForKey:@"description"]])
+        inDict = [self.productsArray objectAtIndex:i];
+        if([[dict objectForKey:OrderProductNameKey] isEqualToString:[inDict objectForKey:ProductNameKey]])
         {
             //price = [[[self.currentList objectAtIndex:i] objectForKey:@"description"] floatValue];
-            price = [[[self.currentList objectAtIndex:i] objectForKey:@"price"] floatValue];
+            //price = [[[self.productsArray objectAtIndex:i] objectForKey:@"price"] floatValue];
+            price = [[inDict objectForKey:ProductPriceKey] floatValue];
             break;
         }
     }
+     
+    
     if(dict)
     {
         int count = 1;
         float amount = 1.00f;
-        amount = [[dict objectForKey:@"price"] floatValue];
-        count = [[dict objectForKey:@"quantity"] intValue];
+        amount = [[dict objectForKey:OrderProductPriceKey] floatValue];
+        count = [[dict objectForKey:OrderProductQuantityKey] intValue];
         if(count == 1)
         {
             [self.orderList removeObjectAtIndex:indexPath.row];
         } else {
-            [dict setObject:[NSString stringWithFormat:@"%d", count - 1] forKey:@"quantity"];
-            [dict setObject:[NSString stringWithFormat:@"%.2f", (count - 1) * price] forKey:@"price"];
+            [dict setObject:[NSString stringWithFormat:@"%d", count - 1] forKey:OrderProductQuantityKey];
+            [dict setObject:[NSString stringWithFormat:@"%.2f", (count - 1) * price] forKey:OrderProductPriceKey];
         }
-        count = [[inDict objectForKey:@"quantity"] intValue] + 1;
-        [inDict setObject:[NSString stringWithFormat:@"%d", count] forKey:@"quantity"];
+        //count = [[inDict objectForKey:@"quantity"] intValue] + 1;
+        //[inDict setObject:[NSString stringWithFormat:@"%d", count] forKey:@"quantity"];
     }
-    [self.productsCollView reloadData];
+    // We don't have quantity in productCollView, so no need to update
+    //[self.productsCollView reloadData];
+    
     [self.orderListTable reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    
     CHTCollectionViewWaterfallLayout *layout = (CHTCollectionViewWaterfallLayout *)self.productsCollView.collectionViewLayout;
+    
+    [self.catalogButton setHidden:YES];
+    
+    if(self.listMode == ListModeBasic) // No big image
+    {
+        layout.columnCount = 1;
+        return [self.productsArray count];
+    } else {
+        layout.columnCount = 3;
+        return [self.productsArray count];
+    }
+    /*
+     // No category List at all
     NSLog(@"currentMenu = %d", self.currentMenu);
     if(self.currentMenu == MenuLevelInventory)
     {
         // from fullhouse
         self.currentList = self.inventoryList;
-        
-        /*// sterminal
-        NSString *keyString;
-        for(keyString in [self.inventoryDict allKeys])
-        {
-            [self.currentList addObject:[self.inventoryDict objectForKey:keyString]];
-        }
-         */
+
         [self.catalogButton setHidden:NO];
     } else {
         self.currentList = self.catagoryList;
@@ -326,6 +326,8 @@ static const int MenuLevelInventory = 1;
         layout.columnCount = 3;
         return [self.currentList count];
     }
+     */
+
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -352,7 +354,51 @@ static const int MenuLevelInventory = 1;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BFMyOrderItemCollectionCell *cell;
-    //NSLog(@"listMode = %d", self.listMode);
+    
+    if(self.listMode == ListModeBasic)
+    {
+        cell = (BFMyOrderItemCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:BasicCellIdentifier forIndexPath:indexPath];
+    } else {
+        cell = (BFMyOrderItemCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:ImageCellIdentifier forIndexPath:indexPath];
+    }
+    
+    if((indexPath.row + 1) % 2)
+    {
+        cell.backgroundColor = [UIColor whiteColor];
+    } else {
+        if(self.listMode == ListModeBasic)
+        {
+            cell.backgroundColor = [UIColor colorWithRed:30/255.0f
+                                                   green:20/255.0f
+                                                    blue:50/255.0f
+                                                   alpha:0.05f];
+        }
+    }
+    
+    NSDictionary *dict = [self.productsArray objectAtIndex:indexPath.row];
+    
+    if(self.listMode == ListModeImage)
+    {
+        // Get product image
+        //cell.imageView = imagePath;
+    }
+#warning 暂缺产品说明，产品库存，产品图片
+
+    cell.descriptionStr = [NSString stringWithFormat:@"%@", [dict objectForKey:ProductNameKey]]; //此字段实际为产品名称
+    cell.categoryStr = @"";
+    if([dict objectForKey:ProductIDKey])
+    {
+        cell.snStr = [NSString stringWithFormat:@"%@", [dict objectForKey:ProductIDKey]];
+    } else {
+        cell.snStr = @"";
+    }
+    cell.quantityStr = @"";
+    
+    return cell;
+    
+    /*
+     // NO CATEGORY LIST AT ALL! //
+     
     if(self.listMode == ListModeBasic)
     {
         cell = (BFMyOrderItemCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:BasicCellIdentifier forIndexPath:indexPath];
@@ -417,15 +463,61 @@ static const int MenuLevelInventory = 1;
         }
     }
     return cell;
+     */
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    NSString *catelogString;
-    NSMutableDictionary *dict;
-    int i;
+    //NSMutableArray *array = [[NSMutableArray alloc] init];
+    //NSString *catelogString;
+    BOOL replace = NO;
+    float amount = 0.0f;
+    int index;
     
+    NSDictionary *dict = [self.productsArray objectAtIndex:indexPath.row];
+    
+    int count = 1;
+    
+    NSMutableDictionary *orderItemDict = nil;
+    for(int i = 0; i < [self.orderList count]; i++)
+    {
+        if([[dict objectForKey:ProductNameKey] isEqualToString:[[self.orderList objectAtIndex:i] objectForKey:ProductNameKey]])
+        {
+            orderItemDict = [self.orderList objectAtIndex:i];
+            replace = YES;
+            index = i;
+            NSLog(@"Ordered before");
+            break;
+        }
+    }
+    
+    if(orderItemDict)
+    {
+        count = [[orderItemDict objectForKey:OrderProductQuantityKey] intValue] + 1;
+        amount = [[dict objectForKey:ProductPriceKey] floatValue] * count;
+    } else {
+        orderItemDict = [[NSMutableDictionary alloc] init];
+        amount = [[dict objectForKey:ProductPriceKey] floatValue];
+    }
+    
+    [orderItemDict setObject:[dict objectForKey:ProductNameKey] forKey:OrderProductNameKey];
+    [orderItemDict setObject:[dict objectForKey:ProductIDKey] forKey:OrderProductIDKey];
+    [orderItemDict setObject:[NSString stringWithFormat:@"%.2f", amount] forKey:OrderProductPriceKey];
+    [orderItemDict setObject:[NSString stringWithFormat:@"%d", count] forKey:OrderProductQuantityKey];
+    //[orderItemDict setObject:[dict objectForKey:ProductImagePathKey] forKey:OrderProductImagePathKey];
+    
+    if([self.orderList count] && replace)
+    {
+        [self.orderList replaceObjectAtIndex:index withObject:orderItemDict];
+    } else {
+        [self.orderList addObject:orderItemDict];
+    }
+    
+    [self.orderListTable reloadData];
+}
+
+    /*
+     // NO CATEGORY MENU, LEVEL, ARRAY AT ALL! //
     switch(self.currentMenu)
     {
         case(MenuLevelCategory):
@@ -505,9 +597,11 @@ static const int MenuLevelInventory = 1;
         default:
             break;
     }
+     
     
     [collectionView reloadData];
 }
+     */
 
 - (IBAction)setListModeBasic:(id)sender
 {

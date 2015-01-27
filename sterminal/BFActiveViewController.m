@@ -140,7 +140,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
                        parameters:params
                           success:^(NSURLSessionDataTask *task, id responseObject) {
                               NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                              NSLog(@"responseString; %@", responseString);
+                              //NSLog(@"responseString; %@", responseString);
                               [self getResultByString:responseString];
                               if(_loginStatusCode == LoginOKValue)
                               {
@@ -170,7 +170,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
                        parameters:params
                           success:^(NSURLSessionDataTask *task, id responseObject) {
                               NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                              NSLog(@"responseString: %@", responseString);
+                              //NSLog(@"responseString: %@", responseString);
                               [self getResultByString:responseString];
                               NSLog(@"Login Status Code: %ld", (long)_loginStatusCode);
                               if(_loginStatusCode == LoginOKValue)
@@ -254,7 +254,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
     
     NSString *cleanString = [noEscapedString stringByReplacingOccurrencesOfString:GarbageString withString:@""];
     cleanString = [cleanString stringByReplacingOccurrencesOfString:@"\'" withString:@"\""];
-    NSLog(@"cleanString: %@", cleanString);
+    //NSLog(@"cleanString: %@", cleanString);
     
     NSData *data = [cleanString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
@@ -419,6 +419,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
 
 - (IBAction)activateClick:(id)sender
 {
+#warning TODO:1.需要提示用户操作正在进行中 2.点击激活按钮时，在所有操作结束前，禁止用户再次点击
     //NSString *storeID = [self.storeTextField.text copy];
     self.managerID = [self.managerTextField.text copy];
     self.managerPWD = [self.passwordTextField.text copy];

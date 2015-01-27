@@ -16,6 +16,8 @@
 + (NSMutableDictionary *)getStorePreferenceDict;
 + (NSMutableDictionary *)getProductsPreferenceDict;
 
++ (NSArray *)loadProductsArray;
+
 + (void)saveStorePreferenceDict:(NSMutableDictionary *)dict;
 + (void)saveStaffPreferenceArray:(NSMutableArray *)array;
 + (void)saveProductsPreferenceArray:(NSMutableArray *)array;

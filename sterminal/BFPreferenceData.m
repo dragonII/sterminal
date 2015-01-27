@@ -41,6 +41,22 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
     return dict;
 }
 
++ (NSArray *)getArrayFromPreferenceFile:(NSString *)fileName
+{
+    NSString *filePath = [self getFilePathWithName:fileName];
+    
+    NSArray *array;
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    {
+        array = [NSArray arrayWithContentsOfFile:filePath];
+    } else {
+        array = nil;
+    }
+    
+    return array;
+}
+
 + (NSMutableDictionary *)getPreferenceDict
 {
     return [self getDictionaryFilePreferenceFile:GlobalPreferenceFileName];
@@ -66,6 +82,11 @@ static NSString *ProductsPreferenceFileName = @"products_profile.plist";
     NSString *filePath = [self getFilePathWithName:StaffPreferenceFileName];
     [array writeToFile:filePath atomically:YES];
     NSLog(@"Saving Staff Information Done");
+}
+
++ (NSArray *)loadProductsArray
+{
+    return [self getArrayFromPreferenceFile:ProductsPreferenceFileName];
 }
 
 + (NSMutableDictionary *)getProductsPreferenceDict

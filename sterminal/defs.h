@@ -24,6 +24,13 @@ static NSString *ProductNameKey = @"name";
 static NSString *ProductBrandKey = @"brand";
 static NSString *ProductCategoryKey = @"category";
 static NSString *ProductPriceKey = @"price";
+static NSString *ProductImagePathKey = @"image";
+
+static NSString *OrderProductIDKey = @"ID";
+static NSString *OrderProductNameKey = @"name";
+static NSString *OrderProductPriceKey = @"price";
+static NSString *OrderProductQuantityKey = @"quantity";
+static NSString *OrderProductImagePathKey = @"image";
 
 static NSString *StaffIDKey = @"ID";
 static NSString *StaffNameKey = @"name";

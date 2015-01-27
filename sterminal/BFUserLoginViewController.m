@@ -121,6 +121,7 @@
 
 - (IBAction)userLogin:(id)sender
 {
+    /*
     NSString *urlString = @"http://www.raywenderlich.com/demos/weather_sample/weather.php?format=json";
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -134,6 +135,7 @@
     }];
     
     [operation start];
+     */
     
     [self performSegueWithIdentifier:@"orderSegue" sender:self];
 }
