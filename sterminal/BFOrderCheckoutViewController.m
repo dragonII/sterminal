@@ -146,6 +146,41 @@
     self.receivedAmountLabel.text = [NSString stringWithFormat:@"%.2f", [self.rString floatValue] / 100];
 }
 
+- (IBAction)click50:(id)sender
+{
+    if([self.rString length] >= 7) return;
+    [self.rString appendString:@"50"];
+    self.receivedAmountLabel.text = [NSString stringWithFormat:@"%.2f", [self.rString floatValue] / 100];
+}
+
+- (IBAction)click20:(id)sender
+{
+    if([self.rString length] >= 7) return;
+    [self.rString appendString:@"20"];
+    self.receivedAmountLabel.text = [NSString stringWithFormat:@"%.2f", [self.rString floatValue] / 100];
+}
+
+- (IBAction)click100:(id)sender
+{
+    if([self.rString length] >= 7) return;
+    [self.rString appendString:@"100"];
+    self.receivedAmountLabel.text = [NSString stringWithFormat:@"%.2f", [self.rString floatValue] / 100];
+}
+
+- (IBAction)click10:(id)sender
+{
+    if([self.rString length] >= 7) return;
+    [self.rString appendString:@"10"];
+    self.receivedAmountLabel.text = [NSString stringWithFormat:@"%.2f", [self.rString floatValue] / 100];
+}
+
+- (IBAction)click00:(id)sender
+{
+    if([self.rString length] >= 7) return;
+    [self.rString appendString:@"00"];
+    self.receivedAmountLabel.text = [NSString stringWithFormat:@"%.2f", [self.rString floatValue] / 100];
+}
+
 
 - (IBAction)closeConfirmView:(UIStoryboardSegue *)segue
 {

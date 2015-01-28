@@ -26,6 +26,12 @@
 - (IBAction)clickClear:(id)sender;
 - (IBAction)clickPay:(id)sender;
 - (IBAction)click0:(id)sender;
+- (IBAction)click50:(id)sender;
+- (IBAction)click20:(id)sender;
+- (IBAction)click100:(id)sender;
+- (IBAction)click10:(id)sender;
+- (IBAction)click00:(id)sender;
+
 
 @property (copy, nonatomic) NSString *totalAmountString;
 @property (copy, nonatomic) NSString *receivedAmountString;

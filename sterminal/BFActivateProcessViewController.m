@@ -10,6 +10,7 @@
 
 @interface BFActivateProcessViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *storeLogoImageView;
 @end
 
 @implementation BFActivateProcessViewController
