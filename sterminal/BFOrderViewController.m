@@ -230,6 +230,7 @@ static const int MenuLevelInventory = 1;
         cell.productQuantityStr = [dict objectForKey:OrderProductQuantityKey];
         cell.productAmountStr = [dict objectForKey:OrderProductPriceKey];
         //cell.productImgStr = [dict objectForKey:OrderProductImagePathKey];
+        cell.productImgStr = [dict objectForKey:OrderProductThumbnailPathKey];
     }
     int i;
     float tAmount = 0.00f;
@@ -380,9 +381,9 @@ static const int MenuLevelInventory = 1;
     if(self.listMode == ListModeImage)
     {
         // Get product image
-        //cell.imageView = imagePath;
+        cell.imgPath = [NSString stringWithFormat:@"%@", [dict objectForKey:ProductImagePathKey]];
     }
-#warning 暂缺产品说明，产品库存，产品图片
+#warning 暂缺产品说明，产品库存
 
     cell.descriptionStr = [NSString stringWithFormat:@"%@", [dict objectForKey:ProductNameKey]]; //此字段实际为产品名称
     cell.categoryStr = @"";
@@ -504,7 +505,8 @@ static const int MenuLevelInventory = 1;
     [orderItemDict setObject:[dict objectForKey:ProductIDKey] forKey:OrderProductIDKey];
     [orderItemDict setObject:[NSString stringWithFormat:@"%.2f", amount] forKey:OrderProductPriceKey];
     [orderItemDict setObject:[NSString stringWithFormat:@"%d", count] forKey:OrderProductQuantityKey];
-    //[orderItemDict setObject:[dict objectForKey:ProductImagePathKey] forKey:OrderProductImagePathKey];
+    [orderItemDict setObject:[dict objectForKey:ProductImagePathKey] forKey:OrderProductImagePathKey];
+    [orderItemDict setObject:[dict objectForKey:ProductThumbnailPathKey] forKey:OrderProductThumbnailPathKey];
     
     if([self.orderList count] && replace)
     {

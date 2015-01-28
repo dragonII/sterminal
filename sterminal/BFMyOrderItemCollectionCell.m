@@ -7,6 +7,7 @@
 //
 
 #import "BFMyOrderItemCollectionCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface ItemCellBackground : UIView
 
@@ -140,10 +141,19 @@
 {
     if(![_imgPath isEqualToString:imgPath])
     {
+        [_imageView setImageWithURL:[NSURL URLWithString:imgPath]];
+    }
+}
+/*
+- (void)setImgPath:(NSString *)imgPath
+{
+    if(![_imgPath isEqualToString:imgPath])
+    {
         _imgPath = [imgPath copy];
         _imageView.image = [UIImage imageNamed:_imgPath];
     }
 }
+ */
 
 /*
 // Only override drawRect: if you perform custom drawing.

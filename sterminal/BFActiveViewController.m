@@ -287,6 +287,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
         [dict setObject:[innerArray objectAtIndex:2] forKey:ProductBrandKey];
         [dict setObject:[innerArray objectAtIndex:3] forKey:ProductCategoryKey];
         [dict setObject:[innerArray objectAtIndex:4] forKey:ProductPriceKey];
+        [dict setObject:[baseURLString stringByAppendingPathComponent:[innerArray objectAtIndex:5]] forKey:ProductThumbnailPathKey];
+        [dict setObject:[baseURLString stringByAppendingPathComponent:[innerArray objectAtIndex:6]] forKey:ProductImagePathKey];
         
         [goodsArray addObject:dict];
     }

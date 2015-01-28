@@ -7,6 +7,9 @@
 //
 
 #import "BFActivateProcessViewController.h"
+#import "BFPreferenceData.h"
+#import "defs.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface BFActivateProcessViewController ()
 
@@ -24,10 +27,23 @@
     return self;
 }
 
+- (void)testLogoLoading
+{
+    NSArray *productsList = [BFPreferenceData loadProductsArray];
+    NSDictionary *productDict = [productsList objectAtIndex:0];
+    
+    //NSString *imgPath = [productDict objectForKey:ProductImagePathKey];
+    NSString *thumbnailPath = [productDict objectForKey:ProductThumbnailPathKey];
+    
+    [self.storeLogoImageView setImageWithURL:[NSURL URLWithString:thumbnailPath]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    //[self testLogoLoading];
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,6 +7,7 @@
 //
 
 #import "BFOrderItemCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface orderItemCellBackground : UIView
 
@@ -116,7 +117,8 @@
     if(![_productImgStr isEqualToString:productImgStr])
     {
         _productImgStr = productImgStr;
-        _productImg.image = [UIImage imageNamed:_productImgStr];
+        //_productImg.image = [UIImage imageNamed:_productImgStr];
+        [_productImg setImageWithURL:[NSURL URLWithString:productImgStr]];
     }
 }
 
