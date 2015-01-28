@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface BFOrderFinalConfirmViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *shouldReceiveTotalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *didReceiveTotalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *GivenChangeLabel;
+
+@property (copy, nonatomic) NSString *shouldReceiveString;
+@property (copy, nonatomic) NSString *didReceiveString;
 
 @end

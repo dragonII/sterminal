@@ -687,7 +687,7 @@ static const int MenuLevelInventory = 1;
 
 - (IBAction)cancelFinalConfirmation:(UIStoryboardSegue *)segue
 {
-    
+    [self.checkoutButton setImage:[UIImage imageNamed:@"orderNormalBtn"]];
 }
 
 - (IBAction)switchToHistory:(id)sender
