@@ -196,6 +196,11 @@ static const int MenuLevelInventory = 1;
     [self.view addSubview:self.productsCollView];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -637,7 +642,7 @@ static const int MenuLevelInventory = 1;
 
 - (IBAction)closeCheckoutView:(UIStoryboardSegue *)segue
 {
-    
+    [self.checkoutButton setImage:[UIImage imageNamed:@"orderNormalBtn"]];
 }
 
 - (IBAction)closeFinalConfirmation:(UIStoryboardSegue *)segue

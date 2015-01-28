@@ -46,6 +46,10 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     return self;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)viewDidLoad
 {
@@ -155,6 +159,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
             cell.productQuantityStr = [dict objectForKey:OrderProductQuantityKey];
             cell.productAmountStr = [NSString stringWithFormat:@"%.2f", [[dict objectForKey:OrderProductPriceKey] floatValue]];
             //cell.productImgStr = [NSString stringWithFormat:@"%@.jpg", [dict objectForKey:@"description"]];
+            cell.productImgStr = [dict objectForKey:OrderProductThumbnailPathKey];
         }
         return cell;
     }
