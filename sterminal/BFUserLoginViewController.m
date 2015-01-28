@@ -10,8 +10,6 @@
 #import "BFUserListViewController.h"
 #import "BFHistoryViewController.h"
 
-#import "defs.h"
-
 #import "AFNetworking.h"
 #import "GDataXMLNode.h"
 
@@ -160,7 +158,7 @@
     if([segue.identifier isEqualToString:@"historySegue"])
     {
         BFHistoryViewController *historyVC = (BFHistoryViewController *)segue.destinationViewController;
-        historyVC.selectedHistoryType = HistoryTypeOffline;
+        historyVC.selectedHistoryType = self.selectedHistoryType;
     }
 }
 

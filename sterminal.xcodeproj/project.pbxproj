@@ -57,8 +57,6 @@
 		2FA94FE71A71FB0900386EA3 /* BFPreferenceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA94FE61A71FB0900386EA3 /* BFPreferenceData.m */; };
 		2FF8C4951A5CDA2500B28A0F /* CustomOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8C4941A5CDA2500B28A0F /* CustomOrderCell.xib */; };
 		2FF8C4981A5CDC2900B28A0F /* BFOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8C4971A5CDC2900B28A0F /* BFOrderItemCell.m */; };
-		2FF8C49A1A5CED0700B28A0F /* product.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8C4991A5CED0700B28A0F /* product.plist */; };
-		2FF8C49C1A5CED1E00B28A0F /* categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8C49B1A5CED1E00B28A0F /* categories.plist */; };
 		2FF8C49F1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8C49E1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m */; };
 /* End PBXBuildFile section */
 
@@ -162,8 +160,6 @@
 		2FF8C4941A5CDA2500B28A0F /* CustomOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOrderCell.xib; sourceTree = "<group>"; };
 		2FF8C4961A5CDC2900B28A0F /* BFOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOrderItemCell.h; sourceTree = "<group>"; };
 		2FF8C4971A5CDC2900B28A0F /* BFOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOrderItemCell.m; sourceTree = "<group>"; };
-		2FF8C4991A5CED0700B28A0F /* product.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = product.plist; sourceTree = "<group>"; };
-		2FF8C49B1A5CED1E00B28A0F /* categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = categories.plist; sourceTree = "<group>"; };
 		2FF8C49D1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		2FF8C49E1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -309,8 +305,6 @@
 				2F89333D1A5BD3BC00A9196E /* classes */,
 				2F89331A1A5BD12400A9196E /* Main.storyboard */,
 				2F8933201A5BD12400A9196E /* Images.xcassets */,
-				2FF8C4991A5CED0700B28A0F /* product.plist */,
-				2FF8C49B1A5CED1E00B28A0F /* categories.plist */,
 				2F89330F1A5BD12400A9196E /* Supporting Files */,
 			);
 			path = sterminal;
@@ -479,10 +473,8 @@
 				2F622F631A62D96F00B0A846 /* OrderItemHistoryCell.xib in Resources */,
 				2F8933211A5BD12400A9196E /* Images.xcassets in Resources */,
 				2F8933131A5BD12400A9196E /* InfoPlist.strings in Resources */,
-				2FF8C49C1A5CED1E00B28A0F /* categories.plist in Resources */,
 				2F242BAE1A5D1042004A56B1 /* MyOrderCollCellBasic.xib in Resources */,
 				2F89331C1A5BD12400A9196E /* Main.storyboard in Resources */,
-				2FF8C49A1A5CED0700B28A0F /* product.plist in Resources */,
 				2F622F651A62DA2A00B0A846 /* HistoryIndexTableCell.xib in Resources */,
 				2FF8C4951A5CDA2500B28A0F /* CustomOrderCell.xib in Resources */,
 			);

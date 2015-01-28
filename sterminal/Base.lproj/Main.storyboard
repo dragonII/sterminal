@@ -299,13 +299,39 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8s-Ep-4oV">
-                                <rect key="frame" x="440" y="730" width="71" height="30"/>
+                                <rect key="frame" x="468" y="728" width="88" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <state key="normal" title="订单">
+                                    <color key="titleColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="switchToOrder:" destination="VDc-lu-WzZ" eventType="touchUpInside" id="Hht-Gr-dlO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hav-oX-OTe">
+                                <rect key="frame" x="372" y="728" width="88" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <state key="normal" title="线上">
+                                    <color key="titleColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchToOnline:" destination="VDc-lu-WzZ" eventType="touchUpInside" id="JNh-i9-ZQ4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQj-ip-Q6B">
+                                <rect key="frame" x="564" y="728" width="88" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <state key="normal" title="线下">
+                                    <color key="titleColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchToOffline:" destination="VDc-lu-WzZ" eventType="touchUpInside" id="w7H-ds-JbN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -318,8 +344,11 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="offlineSwitchButton" destination="tQj-ip-Q6B" id="sTq-7W-wkD"/>
+                        <outlet property="onlineSwitchButton" destination="hav-oX-OTe" id="V22-Iw-7LF"/>
                         <outlet property="orderIndexTable" destination="vrK-0J-YhI" id="bZq-nN-Acp"/>
                         <outlet property="orderListTable" destination="YFu-Eu-yyi" id="Zyk-L0-7Yd"/>
+                        <outlet property="orderSwitchButton" destination="d8s-Ep-4oV" id="Abp-UQ-efZ"/>
                         <outlet property="subDiscountLabel" destination="KVy-JS-EFj" id="ja7-Kz-dj7"/>
                         <outlet property="subTotalLabel" destination="iKG-B1-Its" id="q6t-0F-AmG"/>
                         <outlet property="todayAmountLabel" destination="AYG-3x-zsB" id="LSD-xu-kvO"/>
@@ -384,16 +413,20 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sr5-pW-suL">
-                                <rect key="frame" x="419" y="728" width="85" height="40"/>
+                                <rect key="frame" x="468" y="728" width="88" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <state key="normal" title="订单" backgroundImage="bottomButtonFrameBoder">
+                                    <color key="titleColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGq-CH-We4">
-                                <rect key="frame" x="512" y="728" width="66" height="40"/>
+                            <button opaque="NO" tag="32" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGq-CH-We4">
+                                <rect key="frame" x="564" y="728" width="88" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <state key="normal" title="线下">
+                                    <color key="titleColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -456,6 +489,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" tag="31" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4h1-dT-49f">
+                                <rect key="frame" x="372" y="728" width="88" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <state key="normal" title="线上">
+                                    <color key="titleColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchToHistory:" destination="WkM-ge-ThZ" eventType="touchUpInside" id="dlR-mw-7VH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -1157,6 +1202,7 @@
         <image name="DefaultLogo" width="240" height="240"/>
         <image name="activateBg" width="1024" height="768"/>
         <image name="activateProcessbg" width="1024" height="768"/>
+        <image name="bottomButtonFrameBoder" width="66" height="38"/>
         <image name="highlightInput" width="322" height="42"/>
         <image name="historyImgBg" width="1024" height="768"/>
         <image name="imgBtn" width="30" height="30"/>

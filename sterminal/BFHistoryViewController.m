@@ -25,6 +25,9 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 @property (strong, nonatomic) NSMutableArray *totalOrderList;
 @property (strong, nonatomic) NSMutableArray *orderList;
 
+@property (weak, nonatomic) IBOutlet UIButton *onlineSwitchButton;
+@property (weak, nonatomic) IBOutlet UIButton *orderSwitchButton;
+@property (weak, nonatomic) IBOutlet UIButton *offlineSwitchButton;
 
 @end
 
@@ -43,6 +46,25 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    switch (self.selectedHistoryType)
+    {
+        case HistoryTypeOffline:
+            [self.offlineSwitchButton setBackgroundImage:[UIImage imageNamed:@"bottomButtonFrameBoder"]
+                                                forState:UIControlStateNormal];
+            break;
+        case HistoryTypeOnline:
+            [self.onlineSwitchButton setBackgroundImage:[UIImage imageNamed:@"bottomButtonFrameBoder"]
+                                               forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)viewDidLoad
@@ -173,6 +195,40 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
         self.subTotalLabel.text = [NSString stringWithFormat:@"%.2f", amount * count];
         self.subDiscountLabel.text = @"0.00";
     }
+}
+
+- (IBAction)switchToOnline:(id)sender
+{
+    [self.offlineSwitchButton setBackgroundImage:nil
+                                        forState:UIControlStateNormal];
+    [self.onlineSwitchButton setBackgroundImage:[UIImage imageNamed:@"bottomButtonFrameBoder"]
+                                       forState:UIControlStateNormal];
+    
+    self.totalOrderList = nil;
+    self.orderList = nil;
+    
+    [self.orderIndexTable reloadData];
+    [self.orderListTable reloadData];
+}
+
+- (IBAction)switchToOffline:(id)sender
+{
+    [self.onlineSwitchButton setBackgroundImage:nil
+                                       forState:UIControlStateNormal];
+    [self.offlineSwitchButton setBackgroundImage:[UIImage imageNamed:@"bottomButtonFrameBoder"]
+                                        forState:UIControlStateNormal];
+    
+    self.totalOrderList = [BFPreferenceData loadOrderRecordsArray];
+        
+    if(self.totalOrderList == nil)
+    {
+        self.totalOrderList = [[NSMutableArray alloc] init];
+    }
+    
+    self.orderList = nil;
+    
+    [self.orderIndexTable reloadData];
+    [self.orderListTable reloadData];
 }
 
 - (IBAction)switchToOrder:(id)sender

@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "defs.h"
 
 @interface BFUserLoginViewController : UIViewController
 - (IBAction)userLogin:(id)sender;
 - (IBAction)userSwitch:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property HistoryEnumType selectedHistoryType;
 
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)segue;
 

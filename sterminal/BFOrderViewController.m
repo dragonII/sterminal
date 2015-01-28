@@ -694,6 +694,12 @@ static const int MenuLevelInventory = 1;
 {
     BFUserLoginViewController *loginVC = (BFUserLoginViewController *)self.presentingViewController;
     
+    UIButton *button = (UIButton *)sender;
+    if(button.tag == 31)
+        loginVC.selectedHistoryType = HistoryTypeOnline;
+    if(button.tag == 32)
+        loginVC.selectedHistoryType = HistoryTypeOffline;
+    
     [self dismissViewControllerAnimated:NO completion:nil];
     [loginVC switchToHistory];
 }
