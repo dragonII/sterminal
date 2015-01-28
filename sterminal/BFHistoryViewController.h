@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "defs.h"
 
 @interface BFHistoryViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *orderIndexTable;
@@ -16,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *subTotalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subDiscountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
+
+@property HistoryEnumType selectedHistoryType;
 
 - (IBAction)switchToOrder:(id)sender;
 

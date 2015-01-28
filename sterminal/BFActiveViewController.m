@@ -12,8 +12,6 @@
 #import "BFPreferenceData.h"
 #import "defs.h"
 
-//static NSString *baseURLString = @"http://demo.syslive.cn/";
-static NSString *baseURLString = @"http://mixmb.syslive.cn/";
 static NSString *WrongUserOrPassword = @"<rest name=\"rest\">2</rest>";
 static NSString *NoSuchUser = @"<rest name=\"rest\">0</rest>";
 static NSString *LoginOK = @"<rest name=\"rest\">1</rest>";
@@ -75,10 +73,13 @@ static NSString *GarbageString = @"Thread was being aborted.";
         [[self.inputFields objectAtIndex:i] setHidden:YES];
     }
     
+    /*
     NSURL *url = [NSURL URLWithString:baseURLString];
     self.httpSessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
     self.httpSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     self.httpSessionManager.responseSerializer.acceptableContentTypes = [self.httpSessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"html/text"];
+     */
+    self.httpSessionManager = [BFAppDelegate sharedHttpSessionManager];
     
     self.loginStatusDict = @{LoginOK: [NSNumber numberWithInteger:LoginOKValue],
                              WrongUserOrPassword: [NSNumber numberWithInteger:LoginWrongUserOrPasswordValue],

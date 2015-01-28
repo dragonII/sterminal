@@ -11,10 +11,7 @@
 #import "BFOrderItemCell.h"
 #import "BFUserLoginViewController.h"
 #import "BFPreferenceData.h"
-#import "defs.h"
 
-//static int ListModeBasic = 0;
-//static int ListModeImage = 1;
 
 static const int MenuLevelCategory = 0;
 static const int MenuLevelInventory = 1;
@@ -22,15 +19,12 @@ static const int MenuLevelInventory = 1;
 static NSString *HistoryIndexCellIdentifier = @"HistoryIndexCell";
 static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 
+
 @interface BFHistoryViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *totalOrderList;
 @property (strong, nonatomic) NSMutableArray *orderList;
-@property (strong, nonatomic) NSMutableArray *currentList;
 
-//@property int currentList;
-@property int currentMenu;
-@property int listMode;
 
 @end
 
@@ -55,17 +49,14 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 {
     [super viewDidLoad];
 	
-    /*
-    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *orderFilePath = [documentDirectory stringByAppendingPathComponent:@"OrderRecords.plist"];
-    
-    self.totalOrderList = [NSMutableArray arrayWithContentsOfFile:orderFilePath];
-     */
-    self.totalOrderList = [BFPreferenceData loadOrderRecordsArray];
-    
-    if(self.totalOrderList == nil)
+    if(self.selectedHistoryType == HistoryTypeOffline)
     {
-        self.totalOrderList = [[NSMutableArray alloc] init];
+        self.totalOrderList = [BFPreferenceData loadOrderRecordsArray];
+    
+        if(self.totalOrderList == nil)
+        {
+            self.totalOrderList = [[NSMutableArray alloc] init];
+        }
     }
     
     self.orderList = nil;

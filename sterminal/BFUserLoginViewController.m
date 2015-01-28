@@ -8,6 +8,9 @@
 
 #import "BFUserLoginViewController.h"
 #import "BFUserListViewController.h"
+#import "BFHistoryViewController.h"
+
+#import "defs.h"
 
 #import "AFNetworking.h"
 #import "GDataXMLNode.h"
@@ -150,6 +153,15 @@
 {
     //BFUserListViewController *userListVC = (BFUserListViewController *)segue.sourceViewController;
     //NSLog(@"From Source: %@", userListVC.str);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"historySegue"])
+    {
+        BFHistoryViewController *historyVC = (BFHistoryViewController *)segue.destinationViewController;
+        historyVC.selectedHistoryType = HistoryTypeOffline;
+    }
 }
 
 - (void)switchToHistory

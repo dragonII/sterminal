@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class AFHTTPSessionManager;
+
 @interface BFAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -15,5 +17,7 @@
 @property NSTimeInterval lastOperationTimeStamp;
 
 - (void)updateLastOperationTimeStamp;
+
++ (AFHTTPSessionManager *)sharedHttpSessionManager;
 
 @end

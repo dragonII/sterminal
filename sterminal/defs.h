@@ -9,6 +9,9 @@
 #ifndef sterminal_defs_h
 #define sterminal_defs_h
 
+static NSString *baseURLString = @"http://mixmb.syslive.cn/";
+
+
 static NSString *StoreIDKey = @"ID";
 static NSString *StoreNameKey = @"name";
 static NSString *StoreSNameKey = @"shortname";
@@ -52,5 +55,11 @@ static NSString *OrderRecordNumberKey = @"orderNumber";
 static NSString *OrderRecordDateKey = @"orderDate";
 static NSString *OrderRecordAmountKey = @"orderAmount";
 static NSString *OrderRecordItemKey = @"orderItem";
+
+typedef enum
+{
+    HistoryTypeOnline = 1,
+    HistoryTypeOffline
+} HistoryEnumType;
 
 #endif
