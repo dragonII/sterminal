@@ -20,7 +20,7 @@
 
 @property HistoryEnumType selectedHistoryType;
 
-- (IBAction)switchToOrder:(id)sender;
+//- (IBAction)switchToOrder:(id)sender;
 
 
 @end

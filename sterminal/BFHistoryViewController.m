@@ -9,12 +9,12 @@
 #import "BFHistoryViewController.h"
 #import "HistoryIndexTableCell.h"
 #import "BFOrderItemCell.h"
-#import "BFUserLoginViewController.h"
+//#import "BFUserLoginViewController.h"
 #import "BFPreferenceData.h"
 
 
-static const int MenuLevelCategory = 0;
-static const int MenuLevelInventory = 1;
+//static const int MenuLevelCategory = 0;
+//static const int MenuLevelInventory = 1;
 
 static NSString *HistoryIndexCellIdentifier = @"HistoryIndexCell";
 static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
@@ -84,6 +84,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     self.orderList = nil;
     
     // orderIndexTable
+    self.orderIndexTable.rowHeight = 47;
     [self.orderIndexTable registerClass:[HistoryIndexTableCell class] forCellReuseIdentifier:HistoryIndexCellIdentifier];
     UINib *nib = [UINib nibWithNibName:@"HistoryIndexTableCell" bundle:nil];
     [self.orderIndexTable registerNib:nib forCellReuseIdentifier:HistoryIndexCellIdentifier];
@@ -231,6 +232,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     [self.orderListTable reloadData];
 }
 
+/*
 - (IBAction)switchToOrder:(id)sender
 {
     BFUserLoginViewController *loginVC = (BFUserLoginViewController *)self.presentingViewController;
@@ -238,4 +240,6 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     [self dismissViewControllerAnimated:NO completion:nil];
     [loginVC switchToOrder];
 }
+ */
+
 @end

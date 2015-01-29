@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F0C7B101A79D62A0057A010 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F0C7B0F1A79D62A0057A010 /* LaunchScreen.xib */; };
 		2F14804A1A63B5D3000C0BF6 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1480491A63B5D3000C0BF6 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2F242BAC1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F242BAB1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.m */; };
 		2F242BAE1A5D1042004A56B1 /* MyOrderCollCellBasic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F242BAD1A5D1042004A56B1 /* MyOrderCollCellBasic.xib */; };
@@ -71,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F0C7B0F1A79D62A0057A010 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		2F1480481A63B5D3000C0BF6 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		2F1480491A63B5D3000C0BF6 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		2F242BAA1A5D0FF5004A56B1 /* BFMyOrderItemCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFMyOrderItemCollectionCell.h; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			children = (
 				2F89333D1A5BD3BC00A9196E /* classes */,
 				2F89331A1A5BD12400A9196E /* Main.storyboard */,
+				2F0C7B0F1A79D62A0057A010 /* LaunchScreen.xib */,
 				2F8933201A5BD12400A9196E /* Images.xcassets */,
 				2F89330F1A5BD12400A9196E /* Supporting Files */,
 			);
@@ -434,7 +437,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BF;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Wang Long";
 				TargetAttributes = {
 					2F8933041A5BD12300A9196E = {
@@ -476,6 +479,7 @@
 				2F242BAE1A5D1042004A56B1 /* MyOrderCollCellBasic.xib in Resources */,
 				2F89331C1A5BD12400A9196E /* Main.storyboard in Resources */,
 				2F622F651A62DA2A00B0A846 /* HistoryIndexTableCell.xib in Resources */,
+				2F0C7B101A79D62A0057A010 /* LaunchScreen.xib in Resources */,
 				2FF8C4951A5CDA2500B28A0F /* CustomOrderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,7 +587,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -628,7 +631,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -672,6 +674,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sterminal/sterminal-Prefix.pch";
 				INFOPLIST_FILE = "sterminal/sterminal-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -696,7 +699,6 @@
 		2F89333B1A5BD12400A9196E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/sterminal.app/sterminal";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -719,7 +721,6 @@
 		2F89333C1A5BD12400A9196E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/sterminal.app/sterminal";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

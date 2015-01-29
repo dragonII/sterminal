@@ -221,6 +221,8 @@
 
 - (IBAction)click0:(id)sender
 {
+    if([self.rString length] == 0)
+        return;
     /*
     if([self.rString length] >= 7) return;
     [self.rString appendString:@"0"];
@@ -271,6 +273,8 @@
 
 - (IBAction)click00:(id)sender
 {
+    if([self.rString length] == 0)
+        return;
     /*
     if([self.rString length] >= 7) return;
     [self.rString appendString:@"00"];
@@ -284,5 +288,7 @@
 {
     
 }
+
+
 
 @end

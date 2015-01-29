@@ -14,8 +14,14 @@
 #import "BFUserLoginViewController.h"
 #import "BFPreferenceData.h"
 #import "defs.h"
+#import "BFHistoryViewController.h"
 
 @interface BFOrderViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *snLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
 
 @property (strong, nonatomic) NSMutableArray *catagoryList;
 @property (strong, nonatomic) NSMutableArray *inventoryList;
@@ -31,6 +37,8 @@
 @property int currentMenu;
 @property int listMode;
 @property float buyCount;
+
+@property HistoryEnumType selectedHistoryType;
 
 @end
 
@@ -101,6 +109,8 @@ static const int MenuLevelInventory = 1;
     //self.currentMenu = MenuLevelCategory;
     self.currentMenu = MenuLevelInventory;
     self.listMode = ListModeImage;
+    [self hideLabelsForImageMode];
+    
     self.buyCount = 0.0f;
     
     NSString *pathCategory = [[NSBundle mainBundle] pathForResource:@"categories" ofType:@"plist"];
@@ -129,6 +139,11 @@ static const int MenuLevelInventory = 1;
     {
         BFOrderCheckoutViewController *checkoutVC = (BFOrderCheckoutViewController *)segue.destinationViewController;
         checkoutVC.totalAmountString = [NSString stringWithFormat:@"%@", self.currentAmount.text];
+    }
+    if([[segue identifier] isEqualToString:@"ShowHistorySegue"])
+    {
+        BFHistoryViewController *historyVC = (BFHistoryViewController *)segue.destinationViewController;
+        historyVC.selectedHistoryType = self.selectedHistoryType;
     }
 }
 
@@ -392,6 +407,7 @@ static const int MenuLevelInventory = 1;
 
     cell.descriptionStr = [NSString stringWithFormat:@"%@", [dict objectForKey:ProductNameKey]]; //此字段实际为产品名称
     cell.categoryStr = @"";
+    cell.priceStr = [NSString stringWithFormat:@"%@", [dict objectForKey:ProductPriceKey]];
     if([dict objectForKey:ProductIDKey])
     {
         cell.snStr = [NSString stringWithFormat:@"%@", [dict objectForKey:ProductIDKey]];
@@ -610,8 +626,24 @@ static const int MenuLevelInventory = 1;
 }
      */
 
+- (void)hideLabelsForImageMode
+{
+    [self.nameLabel setHidden:YES];
+    [self.snLabel setHidden:YES];
+    [self.priceLabel setHidden:YES];
+}
+
+- (void)showLabelsForBasicMode
+{
+    [self.nameLabel setHidden:NO];
+    [self.snLabel setHidden:NO];
+    [self.priceLabel setHidden:NO];
+}
+
 - (IBAction)setListModeBasic:(id)sender
 {
+    [self showLabelsForBasicMode];
+    
     self.listMode = ListModeBasic;
     [self.imageSwitchButton setImage:[UIImage imageNamed:@"imgBtn"] forState:UIControlStateNormal];
     [self.listSwitchButton setImage:[UIImage imageNamed:@"listBtnHot"] forState:UIControlStateNormal];
@@ -621,6 +653,8 @@ static const int MenuLevelInventory = 1;
 
 - (IBAction)setListModeImage:(id)sender
 {
+    [self hideLabelsForImageMode];
+    
     self.listMode = ListModeImage;
     [self.imageSwitchButton setImage:[UIImage imageNamed:@"imgBtnHot"] forState:UIControlStateNormal];
     [self.listSwitchButton setImage:[UIImage imageNamed:@"listBtn"] forState:UIControlStateNormal];
@@ -692,16 +726,35 @@ static const int MenuLevelInventory = 1;
 
 - (IBAction)switchToHistory:(id)sender
 {
+    /*
     BFUserLoginViewController *loginVC = (BFUserLoginViewController *)self.presentingViewController;
-    
+    */
     UIButton *button = (UIButton *)sender;
     if(button.tag == 31)
-        loginVC.selectedHistoryType = HistoryTypeOnline;
+    {
+        //loginVC.selectedHistoryType = HistoryTypeOnline;
+        self.selectedHistoryType = HistoryTypeOnline;
+    }
     if(button.tag == 32)
-        loginVC.selectedHistoryType = HistoryTypeOffline;
+    {
+        //loginVC.selectedHistoryType = HistoryTypeOffline;
+        self.selectedHistoryType = HistoryTypeOffline;
+    }
     
+    /*
     [self dismissViewControllerAnimated:NO completion:nil];
     [loginVC switchToHistory];
+     */
+    
+    NSLog(@"xxxxx");
+    
+    //[self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"ShowHistorySegue" sender:self];
+}
+
+- (IBAction)unwindToOrderView:(UIStoryboardSegue *)segue
+{
+    
 }
 
 

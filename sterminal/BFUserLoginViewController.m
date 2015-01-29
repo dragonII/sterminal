@@ -8,7 +8,7 @@
 
 #import "BFUserLoginViewController.h"
 #import "BFUserListViewController.h"
-#import "BFHistoryViewController.h"
+//#import "BFHistoryViewController.h"
 
 #import "AFNetworking.h"
 #import "GDataXMLNode.h"
@@ -155,11 +155,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    /*
     if([segue.identifier isEqualToString:@"historySegue"])
     {
         BFHistoryViewController *historyVC = (BFHistoryViewController *)segue.destinationViewController;
         historyVC.selectedHistoryType = self.selectedHistoryType;
     }
+     */
 }
 
 - (void)switchToHistory

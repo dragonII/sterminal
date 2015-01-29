@@ -108,7 +108,7 @@ static NSString *GarbageString = @"Thread was being aborted.";
 {
     self.rString = [[NSMutableString alloc] init];
     //[textField resignFirstResponder];
-    self.activeLabelIndex = textField.tag - 2000;
+    self.activeLabelIndex = (int)textField.tag - 2000;
     self.currentTextField = (UITextField *)[self.textFields objectAtIndex:self.activeLabelIndex];
     
     NSLog(@"Active Index: %d", self.activeLabelIndex);

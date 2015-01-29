@@ -119,6 +119,15 @@
     }
 }
 
+- (void)setPriceStr:(NSString *)priceStr
+{
+    if(![_priceStr isEqualToString:priceStr])
+    {
+        _priceStr = [priceStr copy];
+        _priceLabel.text = _priceStr;
+    }
+}
+
 - (void)setQuantityStr:(NSString *)quantityStr
 {
     if(![_quantityStr isEqualToString:quantityStr])
