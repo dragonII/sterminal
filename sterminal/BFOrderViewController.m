@@ -245,11 +245,11 @@ static const int MenuLevelInventory = 1;
     NSMutableDictionary *dict = [self.orderList objectAtIndex:indexPath.row];
     if(dict)
     {
+        NSLog(@"Name: %@", [dict objectForKey:OrderProductNameKey]);
         cell.productDescriptionStr = [dict objectForKey:OrderProductNameKey];
         cell.productSNStr = [dict objectForKey:OrderProductIDKey];
         cell.productQuantityStr = [dict objectForKey:OrderProductQuantityKey];
         cell.productAmountStr = [dict objectForKey:OrderProductPriceKey];
-        //cell.productImgStr = [dict objectForKey:OrderProductImagePathKey];
         cell.productImgStr = [dict objectForKey:OrderProductThumbnailPathKey];
     }
     int i;
@@ -278,7 +278,7 @@ static const int MenuLevelInventory = 1;
     for(int i = 0; i < [self.productsArray count]; i++)
     {
         inDict = [self.productsArray objectAtIndex:i];
-        if([[dict objectForKey:OrderProductNameKey] isEqualToString:[inDict objectForKey:ProductNameKey]])
+        if([[dict objectForKey:OrderProductIDKey] isEqualToString:[inDict objectForKey:OrderProductIDKey]])
         {
             //price = [[[self.currentList objectAtIndex:i] objectForKey:@"description"] floatValue];
             //price = [[[self.productsArray objectAtIndex:i] objectForKey:@"price"] floatValue];
@@ -503,7 +503,7 @@ static const int MenuLevelInventory = 1;
     NSMutableDictionary *orderItemDict = nil;
     for(int i = 0; i < [self.orderList count]; i++)
     {
-        if([[dict objectForKey:ProductNameKey] isEqualToString:[[self.orderList objectAtIndex:i] objectForKey:ProductNameKey]])
+        if([[dict objectForKey:ProductIDKey] isEqualToString:[[self.orderList objectAtIndex:i] objectForKey:ProductIDKey]])
         {
             orderItemDict = [self.orderList objectAtIndex:i];
             replace = YES;
