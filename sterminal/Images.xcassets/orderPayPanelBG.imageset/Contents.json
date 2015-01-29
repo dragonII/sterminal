@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "orderPayPanelBG.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "2x",
       "filename" : "orderPayPanelBG@2x.png"
     }

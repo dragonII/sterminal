@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "cash.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "2x",
       "filename" : "cash@2x.png"
     }

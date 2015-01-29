@@ -160,7 +160,7 @@ static const int MenuLevelInventory = 1;
     {
         case UIGestureRecognizerStateEnded:
         {
-            NSLog(@"UIGestureRecognizerStateEnded");
+            //NSLog(@"UIGestureRecognizerStateEnded");
             if(self.orderList && [self.orderList count])
             {
                 [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(switchToCheckOut:) userInfo:nil repeats:NO];
@@ -245,7 +245,6 @@ static const int MenuLevelInventory = 1;
     NSMutableDictionary *dict = [self.orderList objectAtIndex:indexPath.row];
     if(dict)
     {
-        NSLog(@"Name: %@", [dict objectForKey:OrderProductNameKey]);
         cell.productDescriptionStr = [dict objectForKey:OrderProductNameKey];
         cell.productSNStr = [dict objectForKey:OrderProductIDKey];
         cell.productQuantityStr = [dict objectForKey:OrderProductQuantityKey];
@@ -740,13 +739,6 @@ static const int MenuLevelInventory = 1;
         //loginVC.selectedHistoryType = HistoryTypeOffline;
         self.selectedHistoryType = HistoryTypeOffline;
     }
-    
-    /*
-    [self dismissViewControllerAnimated:NO completion:nil];
-    [loginVC switchToHistory];
-     */
-    
-    NSLog(@"xxxxx");
     
     //[self dismissViewControllerAnimated:NO completion:nil];
     [self performSegueWithIdentifier:@"ShowHistorySegue" sender:self];

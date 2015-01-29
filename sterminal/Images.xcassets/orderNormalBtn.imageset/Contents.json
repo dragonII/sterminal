@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "orderNormalBtn.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "2x",
       "filename" : "orderNormalBtn@2x.png"
     }
