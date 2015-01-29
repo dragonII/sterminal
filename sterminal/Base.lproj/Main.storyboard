@@ -55,7 +55,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QE5-Ib-iq2">
-                                <rect key="frame" x="683" y="604" width="213" height="103"/>
+                                <rect key="frame" x="683" y="607" width="213" height="103"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="28"/>
                                 <state key="normal" title="登录">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -216,10 +216,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRy-0X-4tn">
-                                <rect key="frame" x="0.0" y="20" width="93" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="99" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="IZ4-Ce-kRA"/>
-                                    <constraint firstAttribute="width" constant="93" id="RHt-Vg-k62"/>
+                                    <constraint firstAttribute="height" constant="42" id="jSn-2C-z1a"/>
+                                    <constraint firstAttribute="width" constant="99" id="rT9-FD-g9r"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                 <state key="normal" title="注销">
@@ -264,8 +264,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYG-3x-zsB">
-                                <rect key="frame" x="229" y="81" width="244" height="31"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYG-3x-zsB">
+                                <rect key="frame" x="0.0" y="81" width="511" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -379,10 +379,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXR-Eo-61B">
-                                <rect key="frame" x="0.0" y="20" width="93" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="99" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="2fU-XS-eoC"/>
-                                    <constraint firstAttribute="width" constant="93" id="xom-O4-OXZ"/>
+                                    <constraint firstAttribute="width" constant="99" id="DoW-5J-LHY"/>
+                                    <constraint firstAttribute="height" constant="42" id="yRW-lj-Tow"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                 <state key="normal" title="注销">
@@ -1165,6 +1165,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Rg5-SO-YcU"/>
+        <segue reference="Uun-q4-ZRH"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -83,6 +83,8 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     
     self.orderList = nil;
     
+    [self calculateAmountOfToday];
+    
     // orderIndexTable
     self.orderIndexTable.rowHeight = 47;
     [self.orderIndexTable registerClass:[HistoryIndexTableCell class] forCellReuseIdentifier:HistoryIndexCellIdentifier];
@@ -100,10 +102,43 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     self.orderListTable.delegate = self;
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)calculateAmountOfToday
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSInteger today_day = [components day];
+    NSInteger today_month = [components month];
+    NSInteger today_year = [components year];
+    //NSLog(@"year: %d, month:%d, day:%d", today_day, today_month, today_year);
+    
+    float todayTotalAmount = 0.0f;
+
+    
+    if([self.totalOrderList count] > 0)
+    {
+        for(NSDictionary *dict in self.totalOrderList)
+        {
+            NSDateComponents *dateComponentsFromOrder = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[dict objectForKey:OrderRecordDateKey]];
+            NSInteger order_day = [dateComponentsFromOrder day];
+            NSInteger order_month = [dateComponentsFromOrder month];
+            NSInteger order_year = [dateComponentsFromOrder year];
+            
+            if(today_year == order_year &&
+               today_month == order_month &&
+               today_day == order_day)
+            {
+                todayTotalAmount += [[dict objectForKey:OrderRecordAmountKey] floatValue];
+            }
+        }
+        
+    }
+    self.todayAmountLabel.text = [NSString stringWithFormat:@"今天: %.2f", todayTotalAmount];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -115,7 +150,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 {
     if([tableView isEqual:self.orderIndexTable])
     {
-        self.todayAmountLabel.text = @"今天: 0.00";
+        //self.todayAmountLabel.text = @"今天: 0.00";
         if([self.totalOrderList count])
         {
             NSArray *mutableQueryStringComponents;// = [NSMutableArray array];
@@ -157,7 +192,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
         [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
         [formatter setAMSymbol:@"上午"];
         [formatter setPMSymbol:@"下午"];
-        [formatter setDateFormat:@"HH:mm aaa"];
+        [formatter setDateFormat:@"MM-dd HH:mm aaa"];
         
         cell.orderDateString = [formatter stringFromDate:[dict objectForKey:OrderRecordDateKey]];
         cell.orderNumberString = [dict objectForKey:OrderRecordNumberKey];
@@ -172,7 +207,6 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
             cell.productSNStr = [dict objectForKey:OrderProductIDKey];
             cell.productQuantityStr = [dict objectForKey:OrderProductQuantityKey];
             cell.productAmountStr = [NSString stringWithFormat:@"%.2f", [[dict objectForKey:OrderProductPriceKey] floatValue]];
-            //cell.productImgStr = [NSString stringWithFormat:@"%@.jpg", [dict objectForKey:@"description"]];
             cell.productImgStr = [dict objectForKey:OrderProductThumbnailPathKey];
         }
         return cell;
@@ -210,6 +244,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     
     [self.orderIndexTable reloadData];
     [self.orderListTable reloadData];
+    [self calculateAmountOfToday];
 }
 
 - (IBAction)switchToOffline:(id)sender
@@ -230,6 +265,7 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     
     [self.orderIndexTable reloadData];
     [self.orderListTable reloadData];
+    [self calculateAmountOfToday];
 }
 
 /*
