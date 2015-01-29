@@ -124,6 +124,8 @@
 		2F622F671A62DBB400B0A846 /* HistoryIndexTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryIndexTableCell.m; sourceTree = "<group>"; };
 		2F622F6D1A62DDF100B0A846 /* BFCellSelectedBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCellSelectedBackgroundView.h; sourceTree = "<group>"; };
 		2F622F6E1A62DDF100B0A846 /* BFCellSelectedBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFCellSelectedBackgroundView.m; sourceTree = "<group>"; };
+		2F7162461A7A331300FE076E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2F7162471A7A331300FE076E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2F8933051A5BD12300A9196E /* sterminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sterminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8933081A5BD12300A9196E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F89330A1A5BD12300A9196E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -450,6 +452,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 2F8932FC1A5BD12300A9196E;
 			productRefGroup = 2F8933061A5BD12300A9196E /* Products */;
@@ -554,6 +557,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2F8933121A5BD12400A9196E /* en */,
+				2F7162461A7A331300FE076E /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -570,6 +574,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2F8933311A5BD12400A9196E /* en */,
+				2F7162471A7A331300FE076E /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
