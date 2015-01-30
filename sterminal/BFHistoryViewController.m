@@ -287,16 +287,9 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 {
     //[self showStatsView];
     
-    //StatisticViewController *statController = [[StatisticViewController alloc] initWithNibName:@"StatisticViewController" bundle:nil];
+    StatisticViewController *statController = [[StatisticViewController alloc] initWithNibName:@"StatisticViewController" bundle:nil];
     
-    StatisticViewController *statController = [[StatisticViewController alloc] init];
-    
-    //statController.view.frame = self.view.frame;
-    statController.view.frame = self.view.bounds;
-    
-    [self.view addSubview:statController.view];
-    [self addChildViewController:statController];
-    [statController didMoveToParentViewController:self];
+    [statController presentInParentViewController:self];
 }
 
 

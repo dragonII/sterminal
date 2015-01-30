@@ -10,4 +10,7 @@
 
 @interface StatisticViewController : UIViewController
 
+- (void)presentInParentViewController:(UIViewController *)parentViewController;
+- (void)dismissFromParentViewController;
+
 @end
