@@ -80,7 +80,7 @@ static const int MenuLevelInventory = 1;
          */
         CGRect rect = CGRectMake(self.view.bounds.origin.x,
                                  self.view.bounds.origin.y + 288,
-                                 self.view.bounds.size.width - 385,
+                                 self.view.bounds.size.width - 384,
                                  self.view.bounds.size.height - 334);
         
         self.productsCollView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout];

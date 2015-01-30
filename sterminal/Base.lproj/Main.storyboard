@@ -343,6 +343,7 @@
                         <outlet property="orderIndexTable" destination="vrK-0J-YhI" id="bZq-nN-Acp"/>
                         <outlet property="orderListTable" destination="YFu-Eu-yyi" id="Zyk-L0-7Yd"/>
                         <outlet property="orderSwitchButton" destination="d8s-Ep-4oV" id="Abp-UQ-efZ"/>
+                        <outlet property="statisticButton" destination="Uid-mR-9JR" id="h7X-B9-mCM"/>
                         <outlet property="subDiscountLabel" destination="KVy-JS-EFj" id="ja7-Kz-dj7"/>
                         <outlet property="subTotalLabel" destination="iKG-B1-Its" id="q6t-0F-AmG"/>
                         <outlet property="todayAmountLabel" destination="AYG-3x-zsB" id="LSD-xu-kvO"/>
@@ -579,7 +580,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndX-il-pee">
-                                <rect key="frame" x="340" y="294" width="353" height="111"/>
+                                <rect key="frame" x="338" y="294" width="348" height="111"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="28"/>
                                 <state key="normal" title="取消">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -690,7 +691,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylC-qT-DTj">
-                                <rect key="frame" x="463" y="431" width="211" height="95"/>
+                                <rect key="frame" x="462" y="431" width="211" height="95"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="28"/>
                                 <state key="normal" title="清除">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -701,7 +702,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXY-bN-iRL">
-                                <rect key="frame" x="463" y="541" width="211" height="208"/>
+                                <rect key="frame" x="462" y="541" width="211" height="208"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="28"/>
                                 <state key="normal" title="支付">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1126,6 +1127,7 @@
                         <outlet property="storeFieldBG" destination="BFs-63-m1v" id="L4h-fg-8ZY"/>
                         <outlet property="storeTextField" destination="ggg-7N-fJW" id="AG3-yJ-aR4"/>
                         <segue destination="Nc8-S2-SLp" kind="modal" identifier="activateProcessSegue" modalTransitionStyle="crossDissolve" id="W4E-gq-ICb"/>
+                        <segue destination="fAM-2l-j4g" kind="modal" identifier="skipActivateToLoginSegue" modalTransitionStyle="crossDissolve" id="Spx-f7-GsP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iN5-lO-3So" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1174,6 +1176,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Spx-f7-GsP"/>
         <segue reference="Uun-q4-ZRH"/>
     </inferredMetricsTieBreakers>
 </document>

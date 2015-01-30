@@ -46,6 +46,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
 @property dispatch_group_t retrieveGroup;
 @property dispatch_group_t loginGroup;
 
+@property (copy, nonatomic) NSString *skipWizardStr;
+
 @end
 
 @implementation BFActiveViewController
@@ -88,6 +90,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
     self.loginStatusCode = LoginInitValue;
     
     self.appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    self.skipWizardStr = @"";
 }
 
 - (void)setLastOperationTimeStamp
@@ -400,6 +404,8 @@ static NSString *GarbageString = @"Thread was being aborted.";
         if(_loginStatusCode == LoginOKValue)
         {
             [self retrievingTask];
+            //[[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:ShowWizardKey];
+            _skipWizardStr = [[NSUserDefaults standardUserDefaults] objectForKey:ShowWizardKey];
         } else {
             [self enableInput];
             [self showAlert];
@@ -420,8 +426,18 @@ static NSString *GarbageString = @"Thread was being aborted.";
     dispatch_group_notify(_retrieveGroup, dispatch_get_main_queue(), ^{
         [self enableInput];
         
-        [self dismissViewControllerAnimated:YES completion:nil];
-        [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
+        //_skipWizardStr = [[NSUserDefaults standardUserDefaults] objectForKey:ShowWizardKey];
+        if(_skipWizardStr.length == 3)
+        {
+            // Skip wizard
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"skipActivateToLoginSegue" sender:self.parentViewController];
+        } else
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:ShowWizardKey];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"activateProcessSegue" sender:self.parentViewController];
+        }
     });
 }
 

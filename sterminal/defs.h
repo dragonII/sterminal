@@ -11,6 +11,7 @@
 
 static NSString *baseURLString = @"http://mixmb.syslive.cn/";
 
+static NSString *ShowWizardKey = @"ShowWizard";
 
 static NSString *StoreIDKey = @"ID";
 static NSString *StoreNameKey = @"name";

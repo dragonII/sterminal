@@ -32,6 +32,8 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 @property (weak, nonatomic) IBOutlet UIButton *orderSwitchButton;
 @property (weak, nonatomic) IBOutlet UIButton *offlineSwitchButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *statisticButton;
+
 @property (strong, nonatomic) UIView *statsBackgroundView;
 @property (strong, nonatomic) UUChart *chartView;
 
@@ -76,6 +78,8 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.statisticButton setHidden:YES];
 	
     if(self.selectedHistoryType == HistoryTypeOffline)
     {
