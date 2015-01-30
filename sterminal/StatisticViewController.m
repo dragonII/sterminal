@@ -8,11 +8,14 @@
 
 #import "StatisticViewController.h"
 #import "GradientView.h"
+#import "UUChart.h"
 
-@interface StatisticViewController () <UIGestureRecognizerDelegate>
+@interface StatisticViewController () <UIGestureRecognizerDelegate, UUChartDataSource>
 
 @property (strong, nonatomic) GradientView *gradientView;
 @property (weak, nonatomic) IBOutlet UIView *chartContainerView;
+
+@property (strong, nonatomic) UUChart *chartView;
 
 @end
 
@@ -29,6 +32,8 @@
     gestureRecognizer.delegate = self;
     
     [self.view addGestureRecognizer:gestureRecognizer];
+    
+    [self showStatsView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,13 +105,53 @@
                          
                          [self.gradientView removeFromSuperview];
                      }];
-    
+}
+
+- (void)showStatsView
+{
     /*
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+    self.statsBackgroundView = [[UIView alloc] init];
+    [self.statsBackgroundView setFrame:self.view.bounds];
     
-    [self.gradientView removeFromSuperview];
+    self.statsBackgroundView.layer.cornerRadius = 10.0f;
+    self.statsBackgroundView.layer.shadowOffset = CGSizeZero;
+    self.statsBackgroundView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.statsBackgroundView.layer.shadowOpacity = 0.5f;
+    self.statsBackgroundView.layer.shadowRadius = 110;
+    self.statsBackgroundView.layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectInset(self.view.bounds, -5, -5)].CGPath;
      */
+    
+    self.chartView = [[UUChart alloc] initwithUUChartDataFrame:self.chartContainerView.frame withSource:self withStyle:UUChartLineStyle];
+    
+    //[self.statsBackgroundView addSubview:self.chartView];
+    //[self.view addSubview:self.statsBackgroundView];
+    
+    [self.chartView showInView:self.chartContainerView];
+}
+
+- (NSArray *)UUChart_xLableArray:(UUChart *)chart
+{
+    return @[@"one", @"two", @"three", @"four", @"five", @"six"];
+}
+
+- (NSArray *)UUChart_yValueArray:(UUChart *)chart
+{
+    return @[@[@"23", @"40", @"17", @"5", @"92", @"56"]];
+}
+
+- (NSArray *)UUChart_ColorArray:(UUChart *)chart
+{
+    return @[UURed];
+}
+
+- (BOOL)UUChart:(UUChart *)chart ShowHorizonLineAtIndex:(NSInteger)index
+{
+    return YES;
+}
+
+- (BOOL)UUChart:(UUChart *)chart ShowMaxMinAtIndex:(NSInteger)index
+{
+    return YES;
 }
 
 @end
