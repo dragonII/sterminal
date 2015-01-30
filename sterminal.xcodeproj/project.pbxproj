@@ -55,6 +55,13 @@
 		2F89334F1A5BE40400A9196E /* BFUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F89334E1A5BE40400A9196E /* BFUserListViewController.m */; };
 		2FA42D621A5C2929004324AF /* BFOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA42D611A5C2929004324AF /* BFOrderViewController.m */; };
 		2FA94FE71A71FB0900386EA3 /* BFPreferenceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA94FE61A71FB0900386EA3 /* BFPreferenceData.m */; };
+		2FB7DAD01A7B2E70002E42D4 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7DAC51A7B2E70002E42D4 /* UUBar.m */; };
+		2FB7DAD11A7B2E70002E42D4 /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7DAC71A7B2E70002E42D4 /* UUBarChart.m */; };
+		2FB7DAD21A7B2E70002E42D4 /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7DAC91A7B2E70002E42D4 /* UUChart.m */; };
+		2FB7DAD31A7B2E70002E42D4 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7DACB1A7B2E70002E42D4 /* UUChartLabel.m */; };
+		2FB7DAD41A7B2E70002E42D4 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7DACD1A7B2E70002E42D4 /* UUColor.m */; };
+		2FB7DAD51A7B2E70002E42D4 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7DACF1A7B2E70002E42D4 /* UULineChart.m */; };
+		2FB7DAE51A7B3E19002E42D4 /* StatisticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7DAE31A7B3E19002E42D4 /* StatisticViewController.m */; };
 		2FF8C4951A5CDA2500B28A0F /* CustomOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8C4941A5CDA2500B28A0F /* CustomOrderCell.xib */; };
 		2FF8C4981A5CDC2900B28A0F /* BFOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8C4971A5CDC2900B28A0F /* BFOrderItemCell.m */; };
 		2FF8C49F1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8C49E1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m */; };
@@ -158,6 +165,20 @@
 		2FA94FE51A71FB0900386EA3 /* BFPreferenceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPreferenceData.h; sourceTree = "<group>"; };
 		2FA94FE61A71FB0900386EA3 /* BFPreferenceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPreferenceData.m; sourceTree = "<group>"; };
 		2FB459EC1A773DAC002A7F87 /* defs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = defs.h; sourceTree = "<group>"; };
+		2FB7DAC41A7B2E70002E42D4 /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
+		2FB7DAC51A7B2E70002E42D4 /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
+		2FB7DAC61A7B2E70002E42D4 /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
+		2FB7DAC71A7B2E70002E42D4 /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
+		2FB7DAC81A7B2E70002E42D4 /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
+		2FB7DAC91A7B2E70002E42D4 /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
+		2FB7DACA1A7B2E70002E42D4 /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
+		2FB7DACB1A7B2E70002E42D4 /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
+		2FB7DACC1A7B2E70002E42D4 /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
+		2FB7DACD1A7B2E70002E42D4 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
+		2FB7DACE1A7B2E70002E42D4 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
+		2FB7DACF1A7B2E70002E42D4 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
+		2FB7DAE21A7B3E19002E42D4 /* StatisticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticViewController.h; sourceTree = "<group>"; };
+		2FB7DAE31A7B3E19002E42D4 /* StatisticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticViewController.m; sourceTree = "<group>"; };
 		2FF8C4941A5CDA2500B28A0F /* CustomOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOrderCell.xib; sourceTree = "<group>"; };
 		2FF8C4961A5CDC2900B28A0F /* BFOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOrderItemCell.h; sourceTree = "<group>"; };
 		2FF8C4971A5CDC2900B28A0F /* BFOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOrderItemCell.m; sourceTree = "<group>"; };
@@ -344,6 +365,8 @@
 		2F89333D1A5BD3BC00A9196E /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				2FB7DAD91A7B33E4002E42D4 /* StatisticView */,
+				2FB7DAC31A7B2E70002E42D4 /* UUChart */,
 				2F5DE0241A63B0C1000A8D45 /* AFNetworking */,
 				2F5DE0381A63B0C2000A8D45 /* UIKit+AFNetworking */,
 				2F622F691A62DD9000B0A846 /* CellBackgroundView */,
@@ -377,6 +400,34 @@
 				2FF8C49E1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m */,
 			);
 			name = classes;
+			sourceTree = "<group>";
+		};
+		2FB7DAC31A7B2E70002E42D4 /* UUChart */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7DAC41A7B2E70002E42D4 /* UUBar.h */,
+				2FB7DAC51A7B2E70002E42D4 /* UUBar.m */,
+				2FB7DAC61A7B2E70002E42D4 /* UUBarChart.h */,
+				2FB7DAC71A7B2E70002E42D4 /* UUBarChart.m */,
+				2FB7DAC81A7B2E70002E42D4 /* UUChart.h */,
+				2FB7DAC91A7B2E70002E42D4 /* UUChart.m */,
+				2FB7DACA1A7B2E70002E42D4 /* UUChartLabel.h */,
+				2FB7DACB1A7B2E70002E42D4 /* UUChartLabel.m */,
+				2FB7DACC1A7B2E70002E42D4 /* UUColor.h */,
+				2FB7DACD1A7B2E70002E42D4 /* UUColor.m */,
+				2FB7DACE1A7B2E70002E42D4 /* UULineChart.h */,
+				2FB7DACF1A7B2E70002E42D4 /* UULineChart.m */,
+			);
+			path = UUChart;
+			sourceTree = "<group>";
+		};
+		2FB7DAD91A7B33E4002E42D4 /* StatisticView */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7DAE21A7B3E19002E42D4 /* StatisticViewController.h */,
+				2FB7DAE31A7B3E19002E42D4 /* StatisticViewController.m */,
+			);
+			name = StatisticView;
 			sourceTree = "<group>";
 		};
 		2FF8C4931A5CD9BC00B28A0F /* TableViewCell */ = {
@@ -501,10 +552,13 @@
 				2F5DE0571A63B0C2000A8D45 /* UIImageView+AFNetworking.m in Sources */,
 				2F5DE0591A63B0C2000A8D45 /* UIRefreshControl+AFNetworking.m in Sources */,
 				2F5DE04F1A63B0C2000A8D45 /* AFURLConnectionOperation.m in Sources */,
+				2FB7DAD51A7B2E70002E42D4 /* UULineChart.m in Sources */,
 				2F8933191A5BD12400A9196E /* BFAppDelegate.m in Sources */,
+				2FB7DAD21A7B2E70002E42D4 /* UUChart.m in Sources */,
 				2F5DE05A1A63B0C2000A8D45 /* UIWebView+AFNetworking.m in Sources */,
 				2F5DE04C1A63B0C2000A8D45 /* AFHTTPSessionManager.m in Sources */,
 				2F5DE04D1A63B0C2000A8D45 /* AFNetworkReachabilityManager.m in Sources */,
+				2FB7DAD11A7B2E70002E42D4 /* UUBarChart.m in Sources */,
 				2F622F601A62D33D00B0A846 /* BFHistoryViewController.m in Sources */,
 				2F8933491A5BDBA800A9196E /* BFActivateProcessViewController.m in Sources */,
 				2F89334F1A5BE40400A9196E /* BFUserListViewController.m in Sources */,
@@ -512,6 +566,7 @@
 				2F5DE04E1A63B0C2000A8D45 /* AFSecurityPolicy.m in Sources */,
 				2F5DE0581A63B0C2000A8D45 /* UIProgressView+AFNetworking.m in Sources */,
 				2F622F6F1A62DDF100B0A846 /* BFCellSelectedBackgroundView.m in Sources */,
+				2FB7DAD31A7B2E70002E42D4 /* UUChartLabel.m in Sources */,
 				2F5DE0561A63B0C2000A8D45 /* UIButton+AFNetworking.m in Sources */,
 				2F8933431A5BD42A00A9196E /* BFActiveViewController.m in Sources */,
 				2F622F681A62DBB400B0A846 /* HistoryIndexTableCell.m in Sources */,
@@ -520,6 +575,7 @@
 				2F8933461A5BD60700A9196E /* BFNavigationViewController.m in Sources */,
 				2F5DE0551A63B0C2000A8D45 /* UIAlertView+AFNetworking.m in Sources */,
 				2FA94FE71A71FB0900386EA3 /* BFPreferenceData.m in Sources */,
+				2FB7DAE51A7B3E19002E42D4 /* StatisticViewController.m in Sources */,
 				2FF8C49F1A5D007500B28A0F /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				2FF8C4981A5CDC2900B28A0F /* BFOrderItemCell.m in Sources */,
 				2FA42D621A5C2929004324AF /* BFOrderViewController.m in Sources */,
@@ -528,6 +584,8 @@
 				2F5DE0501A63B0C2000A8D45 /* AFURLRequestSerialization.m in Sources */,
 				2F5DE0531A63B0C2000A8D45 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				2F5DE04A1A63B0C2000A8D45 /* AFHTTPRequestOperation.m in Sources */,
+				2FB7DAD01A7B2E70002E42D4 /* UUBar.m in Sources */,
+				2FB7DAD41A7B2E70002E42D4 /* UUColor.m in Sources */,
 				2F5DE0541A63B0C2000A8D45 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				2F5DE0511A63B0C2000A8D45 /* AFURLResponseSerialization.m in Sources */,
 				2F89334C1A5BE15C00A9196E /* BFUserLoginViewController.m in Sources */,

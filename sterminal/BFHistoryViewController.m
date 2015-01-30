@@ -11,6 +11,9 @@
 #import "BFOrderItemCell.h"
 //#import "BFUserLoginViewController.h"
 #import "BFPreferenceData.h"
+#import "UUChart.h"
+
+#import "StatisticViewController.h"
 
 
 //static const int MenuLevelCategory = 0;
@@ -20,7 +23,7 @@ static NSString *HistoryIndexCellIdentifier = @"HistoryIndexCell";
 static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 
 
-@interface BFHistoryViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BFHistoryViewController () <UITableViewDataSource, UITableViewDelegate, UUChartDataSource>
 
 @property (strong, nonatomic) NSMutableArray *totalOrderList;
 @property (strong, nonatomic) NSMutableArray *orderList;
@@ -28,6 +31,9 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
 @property (weak, nonatomic) IBOutlet UIButton *onlineSwitchButton;
 @property (weak, nonatomic) IBOutlet UIButton *orderSwitchButton;
 @property (weak, nonatomic) IBOutlet UIButton *offlineSwitchButton;
+
+@property (strong, nonatomic) UIView *statsBackgroundView;
+@property (strong, nonatomic) UUChart *chartView;
 
 @end
 
@@ -277,5 +283,69 @@ static NSString *HistoryItemCellIdentifer = @"HistoryItemCell";
     [loginVC switchToOrder];
 }
  */
+- (IBAction)statClicked:(id)sender
+{
+    //[self showStatsView];
+    
+    //StatisticViewController *statController = [[StatisticViewController alloc] initWithNibName:@"StatisticViewController" bundle:nil];
+    
+    StatisticViewController *statController = [[StatisticViewController alloc] init];
+    
+    //statController.view.frame = self.view.frame;
+    statController.view.frame = self.view.bounds;
+    
+    [self.view addSubview:statController.view];
+    [self addChildViewController:statController];
+    [statController didMoveToParentViewController:self];
+}
+
+
+
+- (void)showStatsView
+{
+    self.statsBackgroundView = [[UIView alloc] init];
+    [self.statsBackgroundView setFrame:self.view.bounds];
+    
+    self.statsBackgroundView.layer.cornerRadius = 10.0f;
+    self.statsBackgroundView.layer.shadowOffset = CGSizeZero;
+    self.statsBackgroundView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.statsBackgroundView.layer.shadowOpacity = 0.5f;
+    self.statsBackgroundView.layer.shadowRadius = 110;
+    self.statsBackgroundView.layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectInset(self.view.bounds, -5, -5)].CGPath;
+    
+    self.chartView = [[UUChart alloc] initwithUUChartDataFrame:CGRectMake(50, 50, 500, 500) withSource:self withStyle:UUChartLineStyle];
+    
+    //[self.statsBackgroundView addSubview:spinner];
+    //[self.statsBackgroundView addSubview:self.chartView];
+    [self.view addSubview:self.statsBackgroundView];
+    
+    [self.chartView showInView:self.statsBackgroundView];
+}
+
+- (NSArray *)UUChart_xLableArray:(UUChart *)chart
+{
+    return @[@"one", @"two", @"three", @"four", @"five", @"six"];
+}
+
+- (NSArray *)UUChart_yValueArray:(UUChart *)chart
+{
+    return @[@[@"23", @"40", @"17", @"5", @"92", @"56"]];
+}
+
+- (NSArray *)UUChart_ColorArray:(UUChart *)chart
+{
+    return @[UURed];
+}
+
+- (BOOL)UUChart:(UUChart *)chart ShowHorizonLineAtIndex:(NSInteger)index
+{
+    return YES;
+}
+
+
+- (IBAction)unwindToHistoryView:(UIStoryboardSegue *)segue
+{
+    
+}
 
 @end

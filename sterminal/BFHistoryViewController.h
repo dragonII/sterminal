@@ -21,6 +21,7 @@
 @property HistoryEnumType selectedHistoryType;
 
 //- (IBAction)switchToOrder:(id)sender;
+- (IBAction)unwindToHistoryView:(UIStoryboardSegue *)segue;
 
 
 @end
